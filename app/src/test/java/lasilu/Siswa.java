@@ -11,4 +11,12 @@ public class Siswa extends User{
     super(id, username, nama, gender, email, password);
     this.nis = nis;
   }
+
+  public int getNis(){
+    return nis;
+  }
+
+  public void setNis(int nis){
+    this.nis = nis;
+  }
 }

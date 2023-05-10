@@ -13,4 +13,12 @@ public class Guru extends User{
     this.nip = nip;
     this.mataPelajaran = mataPelajaran;
   }
+
+  public int getNip(){
+    return nip;
+  }
+
+  public void setNip(int nip){
+    this.nip = nip;
+  }
 }
