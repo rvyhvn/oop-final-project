@@ -33,7 +33,7 @@ public class JawabanSiswa {
     return siswa;
   }
 
-  public Ujian ujian(){
+  public Ujian getUjian(){
     return ujian;
   }
 }
