@@ -12,6 +12,30 @@ public class Siswa extends User{
     this.nis = nis;
   }
 
+  public int getId(){
+    return id; 
+  }
+
+  public String getUsername(){
+    return username;
+  }
+
+  public String getNama(){
+    return nama;
+  }
+
+  public char getGender(){
+    return gender;
+  }
+
+  public String getEmail(){
+    return email;
+  }
+
+  public String getPassword(){
+    return password;
+  }
+
   public int getNis(){
     return nis;
   }

@@ -14,6 +14,34 @@ public class Guru extends User{
     this.mataPelajaran = mataPelajaran;
   }
 
+  public int getId(){
+    return id;
+  }
+
+  public String getUsername(){
+    return username;
+  }
+
+  public String getNama(){
+    return nama;
+  }
+
+  public char getGender(){
+    return gender;
+  }
+
+  public String getEmail(){
+    return email;
+  }
+
+  public String getPassword(){
+    return password;
+  }
+
+  public MataPelajaran getMapel(){
+    return mataPelajaran;
+  }
+
   public int getNip(){
     return nip;
   }
