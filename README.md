@@ -5,7 +5,7 @@
 <img src="images/java-logo-1.png" alt="Java" width="150">
 
 2. JavaFX sebagai library GUI
-<img src="images/JavaFX_Logo.png" alt="JavaFX" width="300">
+<img src="images/JavaFX_Logo.png" alt="JavaFX" width="200">
 
 3. Gradle sebagai package manager
 <img src="images/Gradle_logo.png" alt="Gradle" width="300">
