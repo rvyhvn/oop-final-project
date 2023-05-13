@@ -6,10 +6,26 @@ package lasilu;
 public class MataPelajaran {
 
   private int idMapel;
-  private String namaMapel;
+  private byte[] fileSilabus;
 
-  public MataPelajaran(int idMapel,  String namaMapel){
+  public MataPelajaran(int idMapel, byte[] fileSilabus){
     this.idMapel = idMapel;
-    this.namaMapel = namaMapel;
+    this.fileSilabus = fileSilabus;
+  }
+
+  public int getIdMapel(){
+    return idMapel;
+  }
+
+  public byte[] getFileSilabus(){
+    return fileSilabus;
+  }
+
+  public void setIdMapel(int idMapel){
+    this.idMapel = idMapel;
+  }
+
+  public void setFileSilabus(byte[] fileSilabus){
+    this.fileSilabus = fileSilabus;
   }
 }
