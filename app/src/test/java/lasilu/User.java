@@ -5,12 +5,12 @@ package lasilu;
  */
 public class User {
 
-  private int id;
-  private String username;
-  private String nama;
-  private char gender;
-  private String email; 
-  private String password;
+  public int id;
+  public String username;
+  public String nama;
+  public char gender;
+  public String email; 
+  public String password;
 
   public User(int id, String username, String nama, char gender, String email, String password){
     this.id = id;
