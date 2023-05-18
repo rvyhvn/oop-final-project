@@ -7,8 +7,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 public class App {
@@ -30,5 +33,9 @@ public class App {
         String PASS = properties.getProperty("db.password");
 
         Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+    }
+    protected String getTimeNow() {
+      DateTimeFormatter myFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        return LocalDateTime.now().format(myFormat);
     }
 }

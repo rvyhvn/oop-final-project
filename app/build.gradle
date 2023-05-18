@@ -31,7 +31,7 @@ dependencies {
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:31.1-jre'
-    implementation 'org.postgresql:postgresql:42.2.24'
+    implementation 'org.postgresql:postgresql:42.6.0'
     implementation 'org.openjfx:javafx-controls:17'
     implementation 'org.openjfx:javafx-fxml:17'
 }
