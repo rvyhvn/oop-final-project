@@ -3,9 +3,13 @@
  */
 package lasilu;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
 
 public class App {
     public String getGreeting() {
@@ -14,11 +18,16 @@ public class App {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         System.out.println(new App().getGreeting());
-        String JDBC_DRIVER = "org.postgresql.Driver";
-        Class.forName(JDBC_DRIVER);
-        String DB_URL = "jdbc:postgresql://localhost:5432/test";
-        String USER = "postgres";
-        String PASS = "";
+        Properties properties = new Properties();
+        try (FileInputStream fis = new FileInputStream("/home/hanshi/.config/oop-final-project/config.properties")) {
+          properties.load(fis);
+        } catch (IOException e) {
+          e.printStackTrace();
+          return;
+        }
+        String DB_URL = properties.getProperty("db.url");
+        String USER = properties.getProperty("db.username");
+        String PASS = properties.getProperty("db.password");
 
         Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
     }
