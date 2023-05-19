@@ -47,9 +47,7 @@ public class App extends Application{
         String USER = properties.getProperty("db.username");
         String PASS = properties.getProperty("db.password");
 =======
-    public static void main(String[] args) {
-        launch(args);
-    }
+    
     // public String getGreeting() {
     //     return "Hello World!";
     // }
