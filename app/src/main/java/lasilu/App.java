@@ -24,7 +24,7 @@ public class App extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("loginForm.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/lasilu/LoginForm.fxml"));
         VBox root = loader.load();
 
         Scene scene = new Scene(root);

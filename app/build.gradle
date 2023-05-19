@@ -43,6 +43,19 @@ java {
     }
 }
 
+
+processResources {
+    duplicatesStrategy = 'exclude' // jika ingin mengabaikan duplikat
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDirs 'src/main/resources'
+        }
+    }
+}
+
 application {
     // Define the main class for the application.
     mainClass = 'lasilu.App'
