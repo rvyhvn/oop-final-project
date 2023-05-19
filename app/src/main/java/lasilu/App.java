@@ -22,7 +22,7 @@ public class App {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         System.out.println(new App().getGreeting());
         Properties properties = new Properties();
-        try (FileInputStream fis = new FileInputStream("/home/hanshi/.config/oop-final-project/config.properties")) {
+        try (FileInputStream fis = new FileInputStream("/etc/postgresql/.config/oop-final-project/config.properties")) {
           properties.load(fis);
         } catch (IOException e) {
           e.printStackTrace();
