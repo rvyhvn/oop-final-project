@@ -20,20 +20,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 
-public class App extends Application{
-
-  @Override
-    public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("lasilu/app/controllers/LoginController"));
-        VBox root = loader.load();
-
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("Login Form");
-        primaryStage.show();
-    }
-
-<<<<<<< HEAD
+public class App{
+    public String getGreeting() {
+      return "Hello World!";
+    } 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         System.out.println(new App().getGreeting());
         Properties properties = new Properties();
@@ -43,16 +33,15 @@ public class App extends Application{
           e.printStackTrace();
           return;
         }
+
         String DB_URL = properties.getProperty("db.url");
         String USER = properties.getProperty("db.username");
         String PASS = properties.getProperty("db.password");
-=======
-    
-    // public String getGreeting() {
-    //     return "Hello World!";
-    // }
->>>>>>> 3aa8d5499a0e706cda6f7d2a9f391d476ed432ac
+    }
+}
 
+  
+    
     // public static void main(String[] args) throws SQLException, ClassNotFoundException {
     //     System.out.println(new App().getGreeting());
     //     Properties properties = new Properties();
@@ -72,4 +61,4 @@ public class App extends Application{
     //   DateTimeFormatter myFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
     //     return LocalDateTime.now().format(myFormat);
     // }
-}
+
