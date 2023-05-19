@@ -1,4 +1,4 @@
-package lasilu.app.controllers;
+package lasilu.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
