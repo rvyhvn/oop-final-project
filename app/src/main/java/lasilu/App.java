@@ -20,11 +20,23 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 
-public class App{
+public class App extends Application{
+
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("loginForm.fxml"));
+        VBox root = loader.load();
+
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Login Form");
+        primaryStage.show();
+    }
     public String getGreeting() {
       return "Hello World!";
     } 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
+        launch(args);
         System.out.println(new App().getGreeting());
         Properties properties = new Properties();
         try (FileInputStream fis = new FileInputStream("/etc/postgresql/.config/oop-final-project/config.properties")) {
@@ -33,7 +45,6 @@ public class App{
           e.printStackTrace();
           return;
         }
-
         String DB_URL = properties.getProperty("db.url");
         String USER = properties.getProperty("db.username");
         String PASS = properties.getProperty("db.password");
