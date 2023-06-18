@@ -49,7 +49,7 @@ public class LoginController {
           statement.setString(2, password);
 
           ResultSet resultSet = statement.executeQuery();
-            
+          
           if (resultSet.next()) {
             System.out.println("Login berhasil!");
           } else {

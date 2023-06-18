@@ -13,29 +13,26 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 
 public class App extends Application {
+    
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/lasilu/LoginForm.fxml"));
+      VBox root = loader.load();
 
-  @Override
-  public void start(Stage primaryStage) throws Exception {
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("/lasilu/LoginForm.fxml"));
-    AnchorPane root = loader.load();
+      Scene scene = new Scene(root);
+      primaryStage.setScene(scene);
+      primaryStage.setTitle("Login Form");
+      primaryStage.show();
+    }
+    public String getGreeting() {
+        return "Hello World!";
+    }
 
-    Scene scene = new Scene(root);
-    primaryStage.setScene(scene);
-    primaryStage.setTitle("Login Form");
-    primaryStage.show();
-  }
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
-  public String getGreeting() {
-    return "Hello World!";
-  }
-
-  public static void main(String[] args) throws SQLException, ClassNotFoundException {
-
-    System.out.println(new App().getGreeting());
-    launch(args);
-  }
+        System.out.println(new App().getGreeting());
+        launch(args);
+        }
 }
