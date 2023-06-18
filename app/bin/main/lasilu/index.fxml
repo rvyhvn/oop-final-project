@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id ="rootPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lasilu.controllers.IndexController">
+   <children>
+      <GridPane fx:id ="gridPane" layoutX="143.0" layoutY="27.0" prefHeight="531.0" prefWidth="726.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="52.0" minHeight="5.0" prefHeight="35.0" />
+          <RowConstraints maxHeight="472.0" minHeight="10.0" prefHeight="469.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TableView fx:id="tableView" prefHeight="459.0" prefWidth="706.0" GridPane.rowIndex="1">
+              <columns>
+                <TableColumn fx:id ="idColumn" editable="false" prefWidth="85.0" text="id" />
+                <TableColumn fx:id ="namaColumn" editable="false" prefWidth="143.0" text="Nama" />
+                  <TableColumn fx:id ="waliMuridColumn" editable="false" prefWidth="180.0" text="Wali Murid" />
+                  <TableColumn fx:id ="nilaiRataRataColumn" editable="false" prefWidth="169.0" text="Nilai Rata-rata" />
+                  <TableColumn fx:id="laporanColumn" editable="false" prefWidth="148.0" text="">
+                     <graphic>
+                        <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="158.0" style="-fx-background-color: 255,255,255,0;" text="Buat Laporan" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Button>
+                     </graphic></TableColumn>
+              </columns>
+            </TableView>
+            <HBox fx:id ="comboBoxContainer" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ComboBox fx:id ="kelasComboBox" prefHeight="28.0" prefWidth="134.0" promptText="Kelas" style="-fx-background-color: #2DADFF; -fx-border-color: #2DADFF;" />
+               </children>
+            </HBox>
+         </children>
+      </GridPane>
+      <AnchorPane fx:id ="logoPane" prefHeight="551.0" prefWidth="122.0" style="-fx-background-color: #0A2842;">
+         <children>
+            <VBox fx:id ="logoContainer" alignment="TOP_CENTER" layoutY="1.0" prefHeight="580.0" prefWidth="119.0">
+               <children>
+                  <Pane prefHeight="143.0" prefWidth="103.0">
+                     <children>
+                        <ImageView fitHeight="117.0" fitWidth="188.0" layoutX="11.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../lasilu/wLasilu.png" />
+                           </image>
+                        </ImageView>
+                     </children></Pane>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
