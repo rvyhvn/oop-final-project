@@ -28,8 +28,9 @@ dependencies {
 
     // Use JUnit Jupiter for testing.
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.1'
-
+    
     // This dependency is used by the application.
+    implementation 'org.apache.commons:commons-csv:1.10.0'
     implementation 'com.google.guava:guava:31.1-jre'
     implementation 'org.postgresql:postgresql:42.6.0'
     implementation 'org.openjfx:javafx-controls:17'
