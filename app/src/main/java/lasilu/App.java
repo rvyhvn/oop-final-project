@@ -30,14 +30,14 @@ public class App extends Application {
 
             // Load LoginView.fxml
             // Load file FXML untuk login view
-            FXMLLoader loginLoader = new FXMLLoader(App.class.getResource("LoginView.fxml"));
+            FXMLLoader loginLoader = new FXMLLoader(App.class.getResource("/lasilu/LoginView.fxml"));
             Parent loginRoot = loginLoader.load();
             LoginController loginController = loginLoader.getController();
             loginController.setConnection(connection);
             loginController.setOnLoginSuccess(() -> {
                 try {
                     // Load file FXML untuk main view
-                    FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("view/MainView.fxml"));
+                    FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("/lasilu/MainView.fxml"));
                     Parent mainRoot = mainLoader.load();
                     MainViewController mainController = mainLoader.getController();
                     mainController.initData(); // Mengambil data siswa dan melakukan inisialisasi tampilan
