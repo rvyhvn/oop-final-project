@@ -1,7 +1,7 @@
-package com.project.controller;
+package lasilu.controller;
 
-import com.project.dao.*;
-import com.project.model.*;
+import lasilu.dao.*;
+import lasilu.model.*;
 import java.sql.*;
 import java.util.List;
 

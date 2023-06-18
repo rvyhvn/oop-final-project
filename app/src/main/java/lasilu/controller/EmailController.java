@@ -1,9 +1,9 @@
-package com.project.controller;
+package lasilu.controller;
 
-import com.project.dao.WaliMuridDAO;
-import com.project.model.Email;
-import com.project.model.WaliMurid;
-import com.project.util.EmailUtil;
+import lasilu.dao.WaliMuridDAO;
+import lasilu.model.Email;
+import lasilu.model.WaliMurid;
+import lasilu.util.EmailUtil;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

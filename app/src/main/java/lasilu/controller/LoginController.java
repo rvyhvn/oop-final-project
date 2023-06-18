@@ -1,8 +1,8 @@
-package com.project.controller;
+package lasilu.controller;
 
-import com.project.dao.LoginDAO;
-import com.project.model.Guru;
-import com.project.util.DatabaseUtil;
+import lasilu.dao.LoginDAO;
+import lasilu.model.Guru;
+import lasilu.util.DatabaseUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;

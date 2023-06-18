@@ -1,8 +1,8 @@
-package com.project.controller;
+package lasilu.controller;
 
-import com.project.dao.MapelKelasDAO;
-import com.project.model.MapelKelas;
-import com.project.util.DatabaseUtil;
+import lasilu.dao.MapelKelasDAO;
+import lasilu.model.MapelKelas;
+import lasilu.util.DatabaseUtil;
 
 import java.sql.Connection;
 import java.sql.SQLException;

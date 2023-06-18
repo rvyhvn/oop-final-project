@@ -1,16 +1,16 @@
-package com.project;
+package lasilu;
 
-import com.project.controller.*;
-import com.project.util.*;
-import com.project.model.*;
+import lasilu.controller.*;
+import lasilu.util.*;
+import lasilu.model.*;
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.project.controller.LoginController;
-import com.project.controller.MainViewController;
-import com.project.util.DatabaseUtil;
+import lasilu.controller.LoginController;
+import lasilu.controller.MainViewController;
+import lasilu.util.DatabaseUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

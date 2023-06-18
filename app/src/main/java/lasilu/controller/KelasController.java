@@ -1,7 +1,7 @@
-package com.project.controller;
+package lasilu.controller;
 
-import com.project.dao.KelasDAO;
-import com.project.model.Kelas;
+import lasilu.dao.KelasDAO;
+import lasilu.model.Kelas;
 
 import java.sql.Connection;
 import java.sql.SQLException;

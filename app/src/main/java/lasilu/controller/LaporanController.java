@@ -1,7 +1,7 @@
-package com.project.controller;
+package lasilu.controller;
 
-import com.project.model.Laporan;
-import com.project.util.CSVExporter;
+import lasilu.model.Laporan;
+import lasilu.util.CSVExporter;
 
 import java.io.File;
 import java.util.ArrayList;

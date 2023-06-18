@@ -1,9 +1,9 @@
-package com.project.controller;
+package lasilu.controller;
 
-import com.project.dao.NilaiDAO;
-import com.project.model.Nilai;
-import com.project.model.Siswa;
-import com.project.util.DatabaseUtil;
+import lasilu.dao.NilaiDAO;
+import lasilu.model.Nilai;
+import lasilu.model.Siswa;
+import lasilu.util.DatabaseUtil;
 
 import java.sql.Connection;
 import java.sql.SQLException;

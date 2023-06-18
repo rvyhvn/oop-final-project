@@ -1,6 +1,6 @@
-package com.project.controller;
+package lasilu.controller;
 
-import com.project.model.Guru;
+import lasilu.model.Guru;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 

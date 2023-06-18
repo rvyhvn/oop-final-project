@@ -1,8 +1,8 @@
-package com.project.controller;
+package lasilu.controller;
 
-import com.project.dao.WaliMuridDAO;
-import com.project.model.WaliMurid;
-import com.project.util.DatabaseUtil;
+import lasilu.dao.WaliMuridDAO;
+import lasilu.model.WaliMurid;
+import lasilu.util.DatabaseUtil;
 
 import java.sql.Connection;
 import java.sql.SQLException;
