@@ -1,4 +1,4 @@
-package com.project.util;
+package lasilu.util;
 
 import java.io.FileInputStream;
 import java.io.IOException;

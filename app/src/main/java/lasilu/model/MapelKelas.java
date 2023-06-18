@@ -1,8 +1,8 @@
-package com.project.model;
+package lasilu.model;
 
 import java.util.ArrayList;
-import com.project.model.MataPelajaran;
-import com.project.model.Kelas;
+import lasilu.model.MataPelajaran;
+import lasilu.model.Kelas;
 
 /**
  * MapelKelas

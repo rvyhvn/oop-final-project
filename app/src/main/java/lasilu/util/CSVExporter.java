@@ -1,4 +1,4 @@
-package com.project.util;
+package lasilu.util;
 
 import java.io.FileWriter;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package com.project.model;
+package lasilu.model;
 
 import java.util.Date;
 import org.apache.commons.csv.CSVFormat;

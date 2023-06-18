@@ -1,6 +1,6 @@
-package com.project.model;
+package lasilu.model;
 
-import com.project.dao.*;
+import lasilu.dao.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 

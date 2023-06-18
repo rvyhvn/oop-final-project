@@ -1,6 +1,6 @@
-package com.project.util;
+package lasilu.util;
 
-import com.project.model.Email;
+import lasilu.model.Email;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;

@@ -1,9 +1,9 @@
-package com.project.model;
+package lasilu.model;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
-import com.project.model.Kelas;
-import com.project.model.Laporan;
+import lasilu.model.Kelas;
+import lasilu.model.Laporan;
 /**
  * Guru
  */
