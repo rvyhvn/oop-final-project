@@ -1,8 +1,8 @@
-package com.project.dao;
+package lasilu.dao;
 
-import com.project.model.WaliMurid;
-import com.project.model.Siswa;
-import com.project.util.DatabaseUtil;
+import lasilu.model.WaliMurid;
+import lasilu.model.Siswa;
+import lasilu.util.DatabaseUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

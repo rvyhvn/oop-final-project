@@ -1,8 +1,8 @@
-package com.project.dao;
+package lasilu.dao;
 
-import com.project.model.Guru;
-import com.project.model.Kelas;
-import com.project.model.Laporan;
+import lasilu.model.Guru;
+import lasilu.model.Kelas;
+import lasilu.model.Laporan;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -1,6 +1,6 @@
-package com.project.dao;
+package lasilu.dao;
 
-import com.project.model.*;
+import lasilu.model.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

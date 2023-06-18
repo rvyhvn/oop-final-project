@@ -1,7 +1,7 @@
-package com.project.dao;
+package lasilu.dao;
 
-import com.project.model.MataPelajaran;
-import com.project.util.DatabaseUtil;
+import lasilu.model.MataPelajaran;
+import lasilu.util.DatabaseUtil;
 
 import java.sql.*;
 import java.util.ArrayList;

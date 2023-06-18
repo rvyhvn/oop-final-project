@@ -1,7 +1,7 @@
-package com.project.dao;
+package lasilu.dao;
 
-import com.project.model.Nilai;
-import com.project.model.Siswa;
+import lasilu.model.Nilai;
+import lasilu.model.Siswa;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
