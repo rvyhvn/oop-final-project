@@ -36,7 +36,7 @@ public class LoginController {
                 // Misalnya, pindah ke halaman utama setelah login sukses
                 // MainViewController mainViewController = new MainViewController(guru);
                 // mainViewController.showMainView();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/MainView.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/lasilu/resources/MainView.fxml"));
                 Parent root = loader.load();
                 MainViewController mainViewController = loader.getController();
                 mainViewController.setGuru(guru);
