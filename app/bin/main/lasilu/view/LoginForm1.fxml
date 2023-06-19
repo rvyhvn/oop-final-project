@@ -29,11 +29,11 @@
             <Image url="@/lasilu/assets/Lasilu.png" />
          </image>
       </ImageView>
-      <Button alignment="CENTER" layoutX="353.0" layoutY="191.0" mnemonicParsing="false" style="-fx-background-color: #2DADFF;" text="Login" textAlignment="CENTER" textFill="WHITE" onAction="#login" />
       <PasswordField fx:id="passwordField" alignment="CENTER" layoutX="182.0" layoutY="188.0" prefHeight="32.0" prefWidth="159.0" promptText="Password" style="-fx-background-color: #2DADFF;">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </PasswordField>
+      <Button alignment="CENTER" layoutX="353.0" layoutY="191.0" mnemonicParsing="false" style="-fx-background-color: #2DADFF;" text="Login" textAlignment="CENTER" textFill="WHITE" onAction="#login" />
    </children>
 </AnchorPane>
