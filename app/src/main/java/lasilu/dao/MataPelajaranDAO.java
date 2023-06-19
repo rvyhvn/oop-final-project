@@ -1,5 +1,6 @@
 package lasilu.dao;
 
+import lasilu.model.Kelas;
 import lasilu.model.MataPelajaran;
 import lasilu.util.DatabaseUtil;
 
@@ -13,140 +14,148 @@ public class MataPelajaranDAO {
     public MataPelajaranDAO(Connection connection) {
         this.connection = connection;
     }
+    
+    public List<MataPelajaran> getAllMataPelajaran() throws SQLException {
+      List<MataPelajaran> mapelList = new ArrayList<>();
+      PreparedStatement statement = null;
+      ResultSet resultSet = null;
+      try {
+        String query = "SELECT * FROM mapel";
+        statement = connection.prepareStatement(query);
+        resultSet = statement.executeQuery();
+        while (resultSet.next()) {
+          MataPelajaran mataPelajaran = new MataPelajaran();
+          mataPelajaran.setIdMapel(resultSet.getInt("id_mapel"));
+          mataPelajaran.setNamaMapel(resultSet.getString("nama_mapel"));
+          
+          Kelas kelas = new Kelas();
+          kelas.setIdKelas(resultSet.getInt("kelas_id"));
+          mataPelajaran.setKelas(kelas);
 
-    public void addMataPelajaran(MataPelajaran mataPelajaran) {
-        PreparedStatement statement = null;
-        try {
-            statement = connection.prepareStatement("INSERT INTO mapel (id_mapel, nama_mapel) VALUES (?, ?);");
-            statement.setInt(1, mataPelajaran.getIdMapel());
-            statement.setString(2, mataPelajaran.getNamaMapel());
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            DatabaseUtil.closeConnection(connection);
+          mapelList.add(mataPelajaran);
         }
+      } catch (SQLException e) {
+        e.printStackTrace();
+      } finally {
+        if (resultSet != null) {
+          try {
+            resultSet.close();
+          } catch (SQLException e) {
+            e.printStackTrace();
+          }
+        }
+        if (statement != null) {
+          try {
+            statement.close();
+          } catch (SQLException e) {
+            e.printStackTrace();
+          }
+        }
+      }
+      return mapelList;
     }
 
-    public MataPelajaran getMataPelajaran(int idMapel) {
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
-        MataPelajaran mataPelajaran = null;
-        try {
-            statement = connection.prepareStatement("SELECT * FROM mapel WHERE id_mapel = ?;");
-            statement.setInt(1, idMapel);
-            resultSet = statement.executeQuery();
+    public MataPelajaran getMapelById(int idMapel) throws SQLException {
+      MataPelajaran mataPelajaran = null;
+      PreparedStatement statement = null;
+      ResultSet resultSet = null;
+      try {
+        String query = "SELECT * FROM mapel WHERE id_mapel = ?";
+        statement = connection.prepareStatement(query);
+        statement.setInt(1, idMapel);
+        resultSet = statement.executeQuery();
+        if (resultSet.next()) {
+          mataPelajaran = new MataPelajaran();
+          mataPelajaran.setIdMapel(resultSet.getInt("id_mapel"));
+          mataPelajaran.setNamaMapel(resultSet.getString("nama_mapel"));
 
-            if (resultSet.next()) {
-                int idMpl = resultSet.getInt("id_mapel");
-                String namaMpl = resultSet.getString("nama_mapel");
-
-                mataPelajaran = new MataPelajaran(idMpl, namaMpl, null);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            DatabaseUtil.closeConnection(connection);
+          Kelas kelas = new Kelas();
+          kelas.setIdKelas(resultSet.getInt("kelas_id"));
+          mataPelajaran.setKelas(kelas);
         }
-        return mataPelajaran;
+      } catch (SQLException e) {
+        e.printStackTrace();
+      } finally {
+        if (resultSet != null) {
+          try {
+            resultSet.close();
+          } catch (SQLException e) {
+            e.printStackTrace();
+          }
+        }
+        if (statement != null) {
+          try {
+            statement.close();
+          } catch (SQLException e) {
+            e.printStackTrace();
+          }
+        }
+      }
+      return mataPelajaran;
+    }
+    
+    public void addMataPelajaran(MataPelajaran mataPelajaran) throws SQLException {
+      PreparedStatement statement = null;
+      try {
+        String query = "INSERT INTO mapel (nama_mapel, jurusan, kelas_id) VALUES (?, ?, ?)";
+        statement = connection.prepareStatement(query);
+        statement.setString(1, mataPelajaran.getNamaMapel());
+        statement.setString(2, mataPelajaran.getJurusan());
+        statement.setInt(3, mataPelajaran.getKelas().getIdKelas());
+        statement.executeUpdate();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      } finally {
+        if (statement != null){
+          try {
+            statement.close();
+          } catch (SQLException e){
+            e.printStackTrace();
+          }
+        }
+      }
     }
 
-    public void updateMataPelajaran(MataPelajaran mataPelajaran) {
-        PreparedStatement statement = null;
-        try {
-            statement = connection.prepareStatement("UPDATE mapel SET nama_mapel = ? WHERE id_mapel = ?;");
-            statement.setString(1, mataPelajaran.getNamaMapel());
-            statement.setInt(2, mataPelajaran.getIdMapel());
-            statement.executeUpdate();
-        } catch (SQLException e) {
+    public void updateMataPelajaran(MataPelajaran mataPelajaran) throws SQLException {
+      PreparedStatement statement = null;
+      try {
+        String query = "UPDATE mapel SET nama_mapel = ?, jurusan = ?, kelas_id = ? WHERE id_kelas = ?";
+        statement = connection.prepareStatement(query);
+        statement.setString(1, mataPelajaran.getNamaMapel());
+        statement.setString(2, mataPelajaran.getJurusan());
+        statement.setInt(3, mataPelajaran.getKelas().getIdKelas());
+        statement.setInt(4, mataPelajaran.getIdMapel());
+      } catch (SQLException e){
+        e.printStackTrace();
+      } finally {
+        if (statement != null) {
+          try {
+            statement.close();
+          } catch (SQLException e){
             e.printStackTrace();
-        } finally {
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            DatabaseUtil.closeConnection(connection);
+          }
         }
+      }
     }
 
-    public void deleteMataPelajaran(int idMapel) {
-        PreparedStatement statement = null;
-        try {
-            statement = connection.prepareStatement("DELETE FROM mapel WHERE id_mapel = ?;");
-            statement.setInt(1, idMapel);
-            statement.executeUpdate();
-        } catch (SQLException e) {
+    public void deleteMataPelajaran(int idMapel) throws SQLException {
+      PreparedStatement statement = null;
+      try {
+        String query = "DELETE FROM mapel WHERE id_mapel = ?";
+        statement = connection.prepareStatement(query);
+        statement.executeUpdate();
+      } catch (SQLException e){
+        e.printStackTrace();
+      } finally {
+        if (statement != null){
+          try {
+            statement.close();
+          } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            DatabaseUtil.closeConnection(connection);
+          }
         }
+      }
     }
 
-    public List<MataPelajaran> getAllMataPelajaran() {
-        List<MataPelajaran> mataPelajaranList = new ArrayList<>();
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
-        try {
-            statement = connection.prepareStatement("SELECT * FROM mapel;");
-            resultSet = statement.executeQuery();
 
-            while (resultSet.next()) {
-                int idMpl = resultSet.getInt("id_mapel");
-                String namaMpl = resultSet.getString("nama_mapel");
-
-                MataPelajaran mataPelajaran = new MataPelajaran(idMpl, namaMpl, null);
-                mataPelajaranList.add(mataPelajaran);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            DatabaseUtil.closeConnection(connection);
-        }
-        return mataPelajaranList;
-    }
 }

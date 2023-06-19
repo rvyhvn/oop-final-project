@@ -19,11 +19,12 @@ public class MapelKelasDAO {
 
     public List<MapelKelas> getAllMapelKelas() throws SQLException {
         List<MapelKelas> mapelKelasList = new ArrayList<>();
-        Statement statement = null;
+        PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery("SELECT mk.id_mapelkelas, mk.mapel_id, m.nama_mapel, k.id_kelas, k.tingkat, k.urutan, k.is_ipa FROM mapelkelas mk LEFT JOIN mapel m ON mk.mapel_id = m.id_mapel LEFT JOIN kelas k ON mk.kelas_id = k.id_kelas;");
+            String query = "SELECT * FROM mapelkelas";
+            statement = connection.prepareStatement(query); 
+            resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 MapelKelas mapelKelas = new MapelKelas();
                 mapelKelas.setIdMapelKelas(resultSet.getInt("id_mapelkelas"));
@@ -31,6 +32,8 @@ public class MapelKelasDAO {
                 MataPelajaran mataPelajaran = new MataPelajaran();
                 mataPelajaran.setIdMapel(resultSet.getInt("mapel_id"));
                 mataPelajaran.setNamaMapel(resultSet.getString("nama_mapel"));
+                mataPelajaran.setJurusan(resultSet.getString("jurusan"));
+                mapelKelas.setMapel(mataPelajaran);
 
                 Kelas kelas = new Kelas();
                 kelas.setIdKelas(resultSet.getInt("id_kelas"));
@@ -38,11 +41,8 @@ public class MapelKelasDAO {
                 kelas.setUrutan(resultSet.getInt("urutan"));
                 kelas.setIsIpa(resultSet.getBoolean("is_ipa"));
 
-                ArrayList<Kelas> kelasList = new ArrayList<>();
-                kelasList.add(kelas);
-                mataPelajaran.setKelas(kelasList);
-
                 mapelKelas.setMapel(mataPelajaran);
+                mapelKelas.setKelas(kelas);
 
                 mapelKelasList.add(mapelKelas);
             }
@@ -63,7 +63,7 @@ public class MapelKelasDAO {
                     e.printStackTrace();
                 }
             }
-            DatabaseUtil.closeConnection(connection);
+            
         }
         return mapelKelasList;
     }
@@ -73,7 +73,8 @@ public class MapelKelasDAO {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
-            statement = connection.prepareStatement("SELECT mk.id_mapelkelas, mk.mapel_id, m.nama_mapel, k.id_kelas, k.tingkat, k.urutan, k.is_ipa FROM mapelkelas mk LEFT JOIN mapel m ON mk.mapel_id = m.id_mapel LEFT JOIN kelas k ON mk.kelas_id = k.id_kelas WHERE mk.id_mapelkelas = ?;");
+            String query = "SELECT * FROM mapelkelas WHERE id_mapelkelas = ?";
+            statement = connection.prepareStatement(query);
             statement.setInt(1, idMapelKelas);
             resultSet = statement.executeQuery();
             if (resultSet.next()) {
@@ -90,10 +91,7 @@ public class MapelKelasDAO {
                 kelas.setUrutan(resultSet.getInt("urutan"));
                 kelas.setIsIpa(resultSet.getBoolean("is_ipa"));
 
-                ArrayList<Kelas> kelasList = new ArrayList<>();
-                kelasList.add(kelas);
-                mataPelajaran.setKelas(kelasList);
-
+                mapelKelas.setKelas(kelas);
                 mapelKelas.setMapel(mataPelajaran);
             }
         } catch (SQLException e) {
@@ -113,7 +111,7 @@ public class MapelKelasDAO {
                     e.printStackTrace();
                 }
             }
-            DatabaseUtil.closeConnection(connection);
+            
         }
         return mapelKelas;
     }
@@ -121,8 +119,9 @@ public class MapelKelasDAO {
     public void addMapelKelas(MapelKelas mapelKelas) throws SQLException {
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement("INSERT INTO mapelkelas (kelas_id, mapel_id) VALUES (?, ?);");
-            statement.setInt(1, mapelKelas.getMapel().getKelas().get(0).getIdKelas());
+            String query = "INSERT INTO mapelkelas (kelas_id, mapel_id) VALUES (?, ?)";
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, mapelKelas.getKelas().getIdKelas());
             statement.setInt(2, mapelKelas.getMapel().getIdMapel());
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -135,7 +134,7 @@ public class MapelKelasDAO {
                     e.printStackTrace();
                 }
             }
-            DatabaseUtil.closeConnection(connection);
+            
         }
     }
 
@@ -143,7 +142,7 @@ public class MapelKelasDAO {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement("UPDATE mapelkelas SET kelas_id = ?, mapel_id = ? WHERE id_mapelkelas = ?;");
-            statement.setInt(1, mapelKelas.getMapel().getKelas().get(0).getIdKelas());
+            statement.setInt(1, mapelKelas.getKelas().getIdKelas());
             statement.setInt(2, mapelKelas.getMapel().getIdMapel());
             statement.setInt(3, mapelKelas.getIdMapelKelas());
             statement.executeUpdate();
@@ -157,7 +156,7 @@ public class MapelKelasDAO {
                     e.printStackTrace();
                 }
             }
-            DatabaseUtil.closeConnection(connection);
+            
         }
     }
 
@@ -177,7 +176,7 @@ public class MapelKelasDAO {
                     e.printStackTrace();
                 }
             }
-            DatabaseUtil.closeConnection(connection);
+            
         }
     }
 }

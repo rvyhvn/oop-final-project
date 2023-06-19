@@ -16,62 +16,47 @@ public class NilaiDAO {
     public NilaiDAO(Connection connection) {
         this.connection = connection;
     }
-
-    public void addNilai(Nilai nilai) {
-        String query = "INSERT INTO nilai (id_nilai, nilai, nilai_mean) VALUES (?, ?, ?)";
-
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setInt(1, nilai.getIdNilai());
-            statement.setDouble(2, nilai.getNilai());
-            statement.setDouble(3, nilai.getNilaiMean());
-
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public Nilai getNilaiById(int idNilai) {
-        String query = "SELECT * FROM nilai WHERE id_nilai = ?";
-        Nilai nilai = null;
-
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setInt(1, idNilai);
-
-            try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
-                    nilai = mapResultSetToNilai(resultSet);
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return nilai;
-    }
-
-    public List<Nilai> getAllNilai() {
+    
+    public List<Nilai> getAllNilai() throws SQLException {
+      List<Nilai> nilaiList = new ArrayList<>();
+      PreparedStatement statement = null;
+      ResultSet resultSet = null;
+      try {
         String query = "SELECT * FROM nilai";
-        List<Nilai> nilaiList = new ArrayList<>();
+        statement = connection.prepareStatement(query);
+        resultSet = statement.executeQuery();
+        while (resultSet.next()) {
+          Nilai nilai = new Nilai();
+          nilai.setIdNilai(resultSet.getInt("id_nilai"));
+          nilai.setNilaiMean(resultSet.getDouble("mean"));
+          
+          Siswa siswa = new Siswa();
+          siswa.setIdSiswa(resultSet.getInt("id_siswa"));
+          nilai.setSiswa(siswa);
 
-        try (PreparedStatement statement = connection.prepareStatement(query);
-             ResultSet resultSet = statement.executeQuery()) {
-            while (resultSet.next()) {
-                Nilai nilai = mapResultSetToNilai(resultSet);
-                nilaiList.add(nilai);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+          nilaiList.add(nilai);
+
         }
 
-        return nilaiList;
+      } catch (SQLException e) {
+        e.printStackTrace();
+      } finally {
+        if (resultSet != null){
+          try {
+            resultSet.close();
+          } catch (SQLException e) {
+            e.printStackTrace();
+          }
+        }
+        if (statement != null) {
+          try {
+            statement.close();
+          } catch (SQLException e) {
+            e.printStackTrace();
+          }
+        }
+      }
+      return nilaiList;
     }
 
-    private Nilai mapResultSetToNilai(ResultSet resultSet) throws SQLException {
-        int idNilai = resultSet.getInt("id_nilai");
-        double nilai = resultSet.getDouble("nilai");
-        double nilaiMean = resultSet.getDouble("nilai_mean");
-
-        return new Nilai(idNilai, nilai, nilaiMean);
-    }
 }

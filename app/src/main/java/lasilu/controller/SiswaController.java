@@ -1,17 +1,18 @@
 package lasilu.controller;
 
 import lasilu.dao.SiswaDAO;
-import lasilu.model.*;
+import lasilu.model.Kelas;
+import lasilu.model.Nilai;
+import lasilu.model.Siswa;
+import lasilu.model.WaliMurid;
 import lasilu.util.DatabaseUtil;
 
-import lasilu.controller.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
 public class SiswaController {
     private SiswaDAO siswaDAO;
-    private Connection connection; 
 
     public SiswaController(Connection connection) {
         siswaDAO = new SiswaDAO(connection);
@@ -34,30 +35,65 @@ public class SiswaController {
             return null;
         }
     }
-   
+
     public List<Siswa> getSiswaByKelasId(int idKelas) {
-      try {
-        return siswaDAO.getSiswaByKelasId(idKelas);
-      } catch (SQLException e) {
-        e.printStackTrace();
-        return null;
-      }
-    }
-    
-    public void addSiswa(String nama, String email, String phone, int idKelas, int idWali) {
         try {
-            siswaDAO.addSiswa(createSiswa(nama, email, phone, idKelas, idWali));
+            return siswaDAO.getSiswaByKelasId(idKelas);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public void addSiswa(String nama, String email, String phone, int idWali, int idKelas, int idNilai) {
+        try {
+            Siswa siswa = new Siswa();
+            siswa.setNama(nama);
+            siswa.setEmail(email);
+            siswa.setPhone(phone);
+            
+            WaliMurid waliMurid = new WaliMurid();
+            waliMurid.setIdWali(idWali);
+            siswa.setWaliMurid(waliMurid);
+
+            Kelas kelas = new Kelas();
+            kelas.setIdKelas(idKelas);
+            siswa.setKelas(kelas);
+
+            Nilai nilaiMean = new Nilai();
+            nilaiMean.setIdNilai(idNilai);
+            siswa.setNilaiMean(nilaiMean);
+
+            siswaDAO.addSiswa(siswa);
+        
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void updateSiswa(int idSiswa, String nama, String email, String phone, int idKelas, int idWali) {
+    public void updateSiswa(int idSiswa, String nama, String email, String phone, int idWali, int idKelas, int idNilai) {
         try {
-            siswaDAO.updateSiswa(createSiswa(idSiswa, nama, email, phone, idKelas, idWali));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+            Siswa siswa = new Siswa();
+            siswa.setIdSiswa(idSiswa);
+            siswa.setNama(nama);
+            siswa.setEmail(email);
+            siswa.setPhone(phone);
+            
+            WaliMurid waliMurid = new WaliMurid();
+            waliMurid.setIdWali(idWali);
+            siswa.setWaliMurid(waliMurid);
+
+            Kelas kelas = new Kelas();
+            kelas.setIdKelas(idKelas);
+            siswa.setKelas(kelas);
+
+            Nilai nilaiMean = new Nilai();
+            nilaiMean.setIdNilai(idNilai);
+            siswa.setNilaiMean(nilaiMean);
+            siswaDAO.updateSiswa(siswa);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
     }
 
     public void deleteSiswa(int idSiswa) {
@@ -66,38 +102,5 @@ public class SiswaController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    private Siswa createSiswa(String nama, String email, String phone, int idKelas, int idWali) {
-        Siswa siswa = new Siswa();
-        siswa.setNama(nama);
-        siswa.setEmail(email);
-        siswa.setPhone(phone);
-
-        KelasController kelasController = new KelasController(connection);
-        Kelas kelas = kelasController.getKelasById(idKelas);
-        if (kelas == null) {
-            System.out.println("Kelas dengan ID " + idKelas + " tidak ditemukan.");
-            return null;
-        }
-        siswa.setKelas(kelas);
-
-        WaliMuridController waliMuridController = new WaliMuridController(connection);
-        WaliMurid waliMurid = waliMuridController.getWaliMuridById(idWali);
-        if (waliMurid == null) {
-            System.out.println("Wali Murid dengan ID " + idWali + " tidak ditemukan.");
-            return null;
-        }
-        siswa.setWaliMurid(waliMurid);
-
-        return siswa;
-    }
-
-    private Siswa createSiswa(int idSiswa, String nama, String email, String phone, int idKelas, int idWali) {
-        Siswa siswa = createSiswa(nama, email, phone, idKelas, idWali);
-        if (siswa != null) {
-            siswa.setIdSiswa(idSiswa);
-        }
-        return siswa;
     }
 }

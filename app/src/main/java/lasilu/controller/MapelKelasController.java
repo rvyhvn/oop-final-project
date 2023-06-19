@@ -1,7 +1,9 @@
 package lasilu.controller;
 
 import lasilu.dao.MapelKelasDAO;
+import lasilu.model.Kelas;
 import lasilu.model.MapelKelas;
+import lasilu.model.MataPelajaran;
 import lasilu.util.DatabaseUtil;
 
 import java.sql.Connection;
@@ -34,17 +36,38 @@ public class MapelKelasController {
         return null;
     }
 
-    public void addMapelKelas(MapelKelas mapelKelas) {
+    public void addMapelKelas(int idKelas, int idMapel) {
         try {
-            mapelKelasDAO.addMapelKelas(mapelKelas);
+          MapelKelas mapelKelas = new MapelKelas();
+          
+          MataPelajaran mataPelajaran = new MataPelajaran();
+          mataPelajaran.setIdMapel(idMapel);
+          mapelKelas.setMapel(mataPelajaran);
+
+          Kelas kelas = new Kelas();
+          kelas.setIdKelas(idKelas);
+          mapelKelas.setKelas(kelas);
+
+          mapelKelasDAO.addMapelKelas(mapelKelas);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void updateMapelKelas(MapelKelas mapelKelas) {
+    public void updateMapelKelas(int idMapelKelas, int idKelas, int idMapel) {
         try {
-            mapelKelasDAO.updateMapelKelas(mapelKelas);
+          MapelKelas mapelKelas = new MapelKelas();
+          mapelKelas.setIdMapelKelas(idMapelKelas);
+
+          Kelas kelas = new Kelas();
+          kelas.setIdKelas(idKelas);
+          mapelKelas.setKelas(kelas);
+
+          MataPelajaran mataPelajaran = new MataPelajaran();
+          mataPelajaran.setIdMapel(idMapel);
+          mapelKelas.setMapel(mataPelajaran);
+
+          mapelKelasDAO.updateMapelKelas(mapelKelas);
         } catch (SQLException e) {
             e.printStackTrace();
         }

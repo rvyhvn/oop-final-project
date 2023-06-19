@@ -181,13 +181,14 @@ public class SiswaDAO {
     public void addSiswa(Siswa siswa) throws SQLException {
         PreparedStatement statement = null;
         try {
-            String query = "INSERT INTO siswa (nama, email, phone, kelas_id, wali_id) VALUES (?, ?, ?, ?, ?)";
+            String query = "INSERT INTO siswa (nama, email, phone, kelas_id, wali_id, nilai_id) VALUES (?, ?, ?, ?, ?, ?)";
             statement = connection.prepareStatement(query);
             statement.setString(1, siswa.getNama());
             statement.setString(2, siswa.getEmail());
             statement.setString(3, siswa.getPhone());
             statement.setInt(4, siswa.getKelas().getIdKelas());
             statement.setInt(5, siswa.getWaliMurid().getIdWali());
+            statement.setInt(6, siswa.getNilaiMean().getIdNilai());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -206,14 +207,15 @@ public class SiswaDAO {
     public void updateSiswa(Siswa siswa) throws SQLException {
         PreparedStatement statement = null;
         try {
-            String query = "UPDATE siswa SET nama = ?, email = ?, phone = ?, kelas_id = ?, wali_id = ? WHERE id_siswa = ?";
+            String query = "UPDATE siswa SET nama = ?, email = ?, phone = ?, kelas_id = ?, wali_id = ?, nilai_id = ? WHERE id_siswa = ?";
             statement = connection.prepareStatement(query);
             statement.setString(1, siswa.getNama());
             statement.setString(2, siswa.getEmail());
             statement.setString(3, siswa.getPhone());
             statement.setInt(4, siswa.getKelas().getIdKelas());
             statement.setInt(5, siswa.getWaliMurid().getIdWali());
-            statement.setInt(6, siswa.getIdSiswa());
+            statement.setInt(6, siswa.getNilaiMean().getIdNilai());
+            statement.setInt(7, siswa.getIdSiswa());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
