@@ -34,15 +34,15 @@ public class SiswaDAO {
 
                 Kelas kelas = new Kelas();
                 kelas.setIdKelas(resultSet.getInt("kelas_id"));
-                kelas.setTingkat(resultSet.getString("tingkat"));
-                kelas.setUrutan(resultSet.getInt("urutan"));
-                kelas.setIsIpa(resultSet.getBoolean("is_ipa"));
+                // kelas.setTingkat(resultSet.getString("tingkat"));
+                // kelas.setUrutan(resultSet.getInt("urutan"));
+                // kelas.setIsIpa(resultSet.getBoolean("is_ipa"));
 
                 WaliMurid waliMurid = new WaliMurid();
                 waliMurid.setIdWali(resultSet.getInt("wali_id"));
-                waliMurid.setNama(resultSet.getString("nama"));
-                waliMurid.setEmail(resultSet.getString("email"));
-                waliMurid.setPhone(resultSet.getString("phone"));
+                // waliMurid.setNama(resultSet.getString("nama"));
+                // waliMurid.setEmail(resultSet.getString("email"));
+                // waliMurid.setPhone(resultSet.getString("phone"));
 
                 siswa.setKelas(kelas);
                 siswa.setWaliMurid(waliMurid);
