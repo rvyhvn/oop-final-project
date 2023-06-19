@@ -2,7 +2,6 @@ package lasilu.controller;
 
 import lasilu.dao.SiswaDAO;
 import lasilu.model.*;
-import lasilu.model.WaliMurid;
 import lasilu.util.DatabaseUtil;
 
 import lasilu.controller.*;
@@ -35,7 +34,16 @@ public class SiswaController {
             return null;
         }
     }
-
+   
+    public List<Siswa> getSiswaByKelasId(int idKelas) {
+      try {
+        return siswaDAO.getSiswaByKelasId(idKelas);
+      } catch (SQLException e) {
+        e.printStackTrace();
+        return null;
+      }
+    }
+    
     public void addSiswa(String nama, String email, String phone, int idKelas, int idWali) {
         try {
             siswaDAO.addSiswa(createSiswa(nama, email, phone, idKelas, idWali));

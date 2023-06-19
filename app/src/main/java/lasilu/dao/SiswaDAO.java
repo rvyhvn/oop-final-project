@@ -1,6 +1,8 @@
 package lasilu.dao;
 
-import lasilu.model.*;
+import lasilu.model.Kelas;
+import lasilu.model.Siswa;
+import lasilu.model.WaliMurid;
 import lasilu.util.DatabaseUtil;
 
 import java.sql.*;
@@ -32,15 +34,15 @@ public class SiswaDAO {
 
                 Kelas kelas = new Kelas();
                 kelas.setIdKelas(resultSet.getInt("kelas_id"));
-                //kelas.setTingkat(resultSet.getString("tingkat"));
-                //kelas.setUrutan(resultSet.getInt("urutan"));
-                //kelas.setIsIpa(resultSet.getBoolean("is_ipa"));
+                // kelas.setTingkat(resultSet.getString("tingkat"));
+                // kelas.setUrutan(resultSet.getInt("urutan"));
+                // kelas.setIsIpa(resultSet.getBoolean("is_ipa"));
 
                 WaliMurid waliMurid = new WaliMurid();
                 waliMurid.setIdWali(resultSet.getInt("wali_id"));
-                //waliMurid.setNama(resultSet.getString("nama_wali"));
-                //waliMurid.setEmail(resultSet.getString("email_wali"));
-                //waliMurid.setPhone(resultSet.getString("phone_wali"));
+                // waliMurid.setNama(resultSet.getString("nama"));
+                // waliMurid.setEmail(resultSet.getString("email"));
+                // waliMurid.setPhone(resultSet.getString("phone"));
 
                 siswa.setKelas(kelas);
                 siswa.setWaliMurid(waliMurid);
@@ -64,7 +66,6 @@ public class SiswaDAO {
                     e.printStackTrace();
                 }
             }
-            DatabaseUtil.closeConnection(connection);
         }
         return siswaList;
     }
@@ -93,9 +94,9 @@ public class SiswaDAO {
 
                 WaliMurid waliMurid = new WaliMurid();
                 waliMurid.setIdWali(resultSet.getInt("wali_id"));
-                waliMurid.setNama(resultSet.getString("nama_wali"));
-                waliMurid.setEmail(resultSet.getString("email_wali"));
-                waliMurid.setPhone(resultSet.getString("phone_wali"));
+                waliMurid.setNama(resultSet.getString("nama"));
+                waliMurid.setEmail(resultSet.getString("email"));
+                waliMurid.setPhone(resultSet.getString("phone"));
 
                 siswa.setKelas(kelas);
                 siswa.setWaliMurid(waliMurid);
@@ -117,9 +118,64 @@ public class SiswaDAO {
                     e.printStackTrace();
                 }
             }
-            DatabaseUtil.closeConnection(connection);
+            
         }
         return siswa;
+    }
+
+    public List<Siswa> getSiswaByKelasId(int idKelas) throws SQLException {
+        List<Siswa> siswaList = new ArrayList<>();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            String query = "SELECT siswa.*, kelas.tingkat, kelas.urutan, kelas.is_ipa FROM siswa JOIN kelas ON siswa.kelas_id = kelas.id_kelas WHERE id_kelas = ?;";
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, idKelas);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+              WaliMurid waliMurid = new WaliMurid();
+              waliMurid.setIdWali(resultSet.getInt("wali_id"));
+              waliMurid.setNama(resultSet.getString("nama"));
+              waliMurid.setEmail(resultSet.getString("email"));
+              waliMurid.setPhone(resultSet.getString("phone"));
+              
+              Kelas kelas = new Kelas();
+              kelas.setIdKelas(resultSet.getInt("kelas_id"));
+              kelas.setTingkat(resultSet.getString("tingkat"));
+              kelas.setUrutan(resultSet.getInt("urutan"));
+              kelas.setIsIpa(resultSet.getBoolean("is_ipa"));
+
+              Siswa siswa = new Siswa();
+              siswa.setIdSiswa(resultSet.getInt("id_siswa"));
+              siswa.setNama(resultSet.getString("nama"));
+              siswa.setEmail(resultSet.getString("email"));
+              siswa.setPhone(resultSet.getString("phone"));
+
+              siswa.setKelas(kelas);
+              siswa.setWaliMurid(waliMurid);
+
+              siswaList.add(siswa);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            
+        }
+        return siswaList;
     }
 
     public void addSiswa(Siswa siswa) throws SQLException {
@@ -143,7 +199,7 @@ public class SiswaDAO {
                     e.printStackTrace();
                 }
             }
-            DatabaseUtil.closeConnection(connection);
+            
         }
     }
 
@@ -169,7 +225,7 @@ public class SiswaDAO {
                     e.printStackTrace();
                 }
             }
-            DatabaseUtil.closeConnection(connection);
+            
         }
     }
 
@@ -190,7 +246,7 @@ public class SiswaDAO {
                     e.printStackTrace();
                 }
             }
-            DatabaseUtil.closeConnection(connection);
+            
         }
     }
 }
