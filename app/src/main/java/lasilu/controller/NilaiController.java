@@ -21,15 +21,7 @@ public class NilaiController {
         }
     }
 
-    public void saveNilai(Nilai nilai) {
-        nilaiDAO.addNilai(nilai);
-    }
-
-    public Nilai getNilaiById(int idNilai) {
-        return nilaiDAO.getNilaiById(idNilai);
-    }
-
-    public List<Nilai> getAllNilai() {
+   public List<Nilai> getAllNilai() throws SQLException {
         return nilaiDAO.getAllNilai();
     }
 
