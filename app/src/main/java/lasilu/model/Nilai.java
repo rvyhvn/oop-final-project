@@ -1,5 +1,6 @@
 package lasilu.model;
 
+import lasilu.model.*;
 import java.util.ArrayList;
 
 /**
@@ -10,17 +11,17 @@ public class Nilai {
   private int idNilai;
   private double nilai;
   private double nilaiMean;
-  private ArrayList<Siswa> siswaList;
+  private Siswa siswa;
 
   public Nilai() {
 
   }
 
-  public Nilai(int idNilai, double nilai, double nilaiMean) {
+  public Nilai(int idNilai, double nilai, double nilaiMean, Siswa siswa) {
     this.idNilai = idNilai;
     this.nilai = nilai;
     this.nilaiMean = nilaiMean;
-    this.siswaList = new ArrayList<>();
+    this.siswa = siswa;
   }
 
   public int getIdNilai(){
@@ -47,20 +48,12 @@ public class Nilai {
     this.nilaiMean = nilaiMean;
   }
 
-  public ArrayList<Siswa> getSiswaList(){
-    return siswaList;
+  public Siswa getSiswa(){
+    return siswa;
   }
 
-  public void setSiswaList(ArrayList<Siswa> siswaList){
-    this.siswaList = siswaList;
+  public void setSiswa(Siswa siswa){
+    this.siswa = siswa;
   }
   
-  public void addSiswa(Siswa siswa){
-    siswaList.add(siswa);
-  }
-
-  public void removeSiswa(Siswa siswa){
-    siswaList.remove(siswa);
-  }
-
 }

@@ -8,13 +8,13 @@ import java.util.ArrayList;
 
 public class WaliMurid extends Entity {
     private int idWali;
-    private ArrayList<Siswa> anak;
+    private Siswa anak;
 
     public WaliMurid() {
 
     }
 
-    public WaliMurid(int idWali, String nama, String email, String phone, ArrayList<Siswa> anak) {
+    public WaliMurid(int idWali, String nama, String email, String phone, Siswa anak) {
       super(nama, email, phone);
       this.idWali = idWali;
       this.anak = anak;
@@ -30,11 +30,11 @@ public class WaliMurid extends Entity {
       this.idWali = id;
     }
 
-    public ArrayList<Siswa> getAnak(){
+    public Siswa getAnak(){
       return anak;
     }
 
-    public void setAnak(ArrayList<Siswa> anak){
+    public void setAnak(Siswa anak){
       this.anak = anak;
     }
 

@@ -56,7 +56,7 @@ public class GuruDAO {
                     e.printStackTrace();
                 }
             }
-            DatabaseUtil.closeConnection(connection);
+            
         }
         return guruList;
     }
@@ -101,7 +101,7 @@ public class GuruDAO {
                     e.printStackTrace();
                 }
             }
-            DatabaseUtil.closeConnection(connection);
+            
         }
         return guru;
     }
@@ -125,7 +125,7 @@ public class GuruDAO {
                     e.printStackTrace();
                 }
             }
-            DatabaseUtil.closeConnection(connection);
+            
         }
     }
 
@@ -149,7 +149,7 @@ public class GuruDAO {
                     e.printStackTrace();
                 }
             }
-            DatabaseUtil.closeConnection(connection);
+            
         }
     }
 
@@ -169,7 +169,7 @@ public class GuruDAO {
                     e.printStackTrace();
                 }
             }
-            DatabaseUtil.closeConnection(connection);
+            
         }
     }
 }

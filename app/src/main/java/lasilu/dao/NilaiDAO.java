@@ -72,6 +72,6 @@ public class NilaiDAO {
         double nilai = resultSet.getDouble("nilai");
         double nilaiMean = resultSet.getDouble("nilai_mean");
 
-        return new Nilai(idNilai, nilai, nilaiMean);
+        return new Nilai(idNilai, nilai, nilaiMean, new Siswa());
     }
 }

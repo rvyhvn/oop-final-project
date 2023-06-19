@@ -24,8 +24,7 @@ public class WaliMuridDAO {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
-            String query = "SELECT wm.id_wali, wm.nama, wm.email, wm.phone, s.id_siswa, s.nama AS nama_siswa, s.email AS email_siswa, s.phone AS phone_siswa " +
-                           "FROM wali_murid wm LEFT JOIN siswa s ON wm.id_wali = s.id_wali;";
+            String query = "SELECT * FROM walimurid;";
             statement = connection.prepareStatement(query);
             resultSet = statement.executeQuery();
             
@@ -36,35 +35,44 @@ public class WaliMuridDAO {
                 waliMurid.setEmail(resultSet.getString("email"));
                 waliMurid.setPhone(resultSet.getString("phone"));
 
-                Siswa siswa = new Siswa();
-                siswa.setIdSiswa(resultSet.getInt("id_siswa"));
-                siswa.setNama(resultSet.getString("nama_siswa"));
-                siswa.setEmail(resultSet.getString("email_siswa"));
-                siswa.setPhone(resultSet.getString("phone_siswa"));
+                Siswa anak = new Siswa();
+                anak.setIdSiswa(resultSet.getInt("siswa_id"));
+                // siswa.setNama(resultSet.getString("nama"));
+                // siswa.setEmail(resultSet.getString("email"));
+                // siswa.setPhone(resultSet.getString("phone"));
 
-                waliMurid.setAnak(null);
-
+                waliMurid.setAnak(anak);
                 waliMuridList.add(waliMurid);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            DatabaseUtil.closeConnection(connection);
+          if (resultSet != null) {
+            try {
+              resultSet.close();
+            } catch (SQLException e) {
+              e.printStackTrace();
+            }
         }
-        return waliMuridList;
+        if (statement != null) {
+          try {
+            statement.close();
+          } catch (SQLException e){
+            e.printStackTrace();
+          }
+        }
     }
-
+    return waliMuridList;
+  }
     public WaliMurid getWaliMuridById(int idWali) throws SQLException {
         WaliMurid waliMurid = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
-            String query = "SELECT wm.id_wali, wm.nama, wm.email, wm.phone, s.id_siswa, s.nama AS nama_siswa, s.email AS email_siswa, s.phone AS phone_siswa " +
-                           "FROM wali_murid wm LEFT JOIN siswa s ON wm.id_wali = s.id_wali WHERE wm.id_wali = ?;";
+            String query = "SELECT * FROM walimurid WHERE id_wali = ?;";
             statement = connection.prepareStatement(query);
             statement.setInt(1, idWali);
             resultSet = statement.executeQuery();
-
             if (resultSet.next()) {
                 waliMurid = new WaliMurid();
                 waliMurid.setIdWali(resultSet.getInt("id_wali"));
@@ -72,18 +80,31 @@ public class WaliMuridDAO {
                 waliMurid.setEmail(resultSet.getString("email"));
                 waliMurid.setPhone(resultSet.getString("phone"));
 
-                Siswa siswa = new Siswa();
-                siswa.setIdSiswa(resultSet.getInt("id_siswa"));
-                siswa.setNama(resultSet.getString("nama_siswa"));
-                siswa.setEmail(resultSet.getString("email_siswa"));
-                siswa.setPhone(resultSet.getString("phone_siswa"));
+                Siswa anak = new Siswa();
+                anak.setIdSiswa(resultSet.getInt("siswa_id"));
+                anak.setNama(resultSet.getString("nama"));
+                anak.setEmail(resultSet.getString("email"));
+                anak.setPhone(resultSet.getString("phone"));
 
-                waliMurid.setAnak(null);;
+                waliMurid.setAnak(anak);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            DatabaseUtil.closeConnection(connection);
+          if (resultSet != null) {
+            try {
+              resultSet.close();
+            } catch (SQLException e) {
+              e.printStackTrace();
+            }
+          }
+          if (statement != null) {
+            try {
+              statement.close();
+            } catch (SQLException e) {
+              e.printStackTrace();
+            }
+          }
         }
         return waliMurid;
     }
@@ -100,7 +121,13 @@ public class WaliMuridDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            DatabaseUtil.closeConnection(connection);
+          if (statement != null) {
+            try {
+              statement.close();
+            } catch (SQLException e) {
+              e.printStackTrace();
+            }
+          } 
         }
     }
 
@@ -117,7 +144,13 @@ public class WaliMuridDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            DatabaseUtil.closeConnection(connection);
+          if (statement != null) {
+            try {
+              statement.close();
+            } catch (SQLException e) {
+              e.printStackTrace();
+            }
+          } 
         }
     }
 
@@ -131,7 +164,7 @@ public class WaliMuridDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            DatabaseUtil.closeConnection(connection);
+            
         }
     }
 }

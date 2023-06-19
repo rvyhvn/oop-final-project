@@ -9,15 +9,17 @@ public class MataPelajaran {
   
   private int idMapel;
   private String namaMapel;
-  private ArrayList<Kelas> kelas;
+  private String jurusan;
+  private Kelas kelas;
 
   public MataPelajaran() {
 
   }
 
-  public MataPelajaran(int idMapel, String namaMapel, ArrayList<Kelas> kelas) {
+  public MataPelajaran(int idMapel, String namaMapel, String jurusan, Kelas kelas) {
     this.idMapel = idMapel;
     this.namaMapel = namaMapel;
+    this.jurusan = jurusan;
     this.kelas = kelas;
   }
 
@@ -37,11 +39,19 @@ public class MataPelajaran {
     this.namaMapel = namaMapel;
   }
 
-  public ArrayList<Kelas> getKelas(){
+  public String getJurusan(){
+    return jurusan;
+  }
+
+  public void setJurusan(String jurusan){
+    this.jurusan = jurusan;
+  }
+
+  public Kelas getKelas(){
     return kelas;
   }
 
-  public void setKelas(ArrayList<Kelas> kelas){
+  public void setKelas(Kelas kelas){
     this.kelas = kelas;
   }
 }

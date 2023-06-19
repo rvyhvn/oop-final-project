@@ -63,7 +63,7 @@ public class MapelKelasDAO {
                     e.printStackTrace();
                 }
             }
-            DatabaseUtil.closeConnection(connection);
+            
         }
         return mapelKelasList;
     }
@@ -113,7 +113,7 @@ public class MapelKelasDAO {
                     e.printStackTrace();
                 }
             }
-            DatabaseUtil.closeConnection(connection);
+            
         }
         return mapelKelas;
     }
@@ -135,7 +135,7 @@ public class MapelKelasDAO {
                     e.printStackTrace();
                 }
             }
-            DatabaseUtil.closeConnection(connection);
+            
         }
     }
 
@@ -157,7 +157,7 @@ public class MapelKelasDAO {
                     e.printStackTrace();
                 }
             }
-            DatabaseUtil.closeConnection(connection);
+            
         }
     }
 
@@ -177,7 +177,7 @@ public class MapelKelasDAO {
                     e.printStackTrace();
                 }
             }
-            DatabaseUtil.closeConnection(connection);
+            
         }
     }
 }

@@ -17,7 +17,7 @@ public class EmailController {
         this.waliMuridDAO = waliMuridDAO;
     }
 
-    public void sendEmailToRecipients(int waliMuridId, String subject, String body, String attachmentPath) throws SQLException {
+    public void sendEmailToRecipients(int waliMuridId, String from, String subject, String body, String attachmentPath) throws SQLException {
         // Mendapatkan informasi wali murid berdasarkan ID dari database
         WaliMurid waliMurid = waliMuridDAO.getWaliMuridById(waliMuridId);
 
@@ -27,7 +27,7 @@ public class EmailController {
             recipients.add(waliMurid.getEmail());
 
             // Membuat objek Email dengan parameter yang diberikan
-            Email email = new Email(subject, body, recipients, attachmentPath);
+            Email email = new Email(from, subject, body, recipients, attachmentPath);
 
             // Mengirim email menggunakan EmailUtil
             EmailUtil.sendEmail(email);
