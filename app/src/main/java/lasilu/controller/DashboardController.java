@@ -3,6 +3,8 @@ package lasilu.controller;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -22,9 +24,16 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.util.Callback;
+import lasilu.dao.SiswaDAO;
+import lasilu.model.Siswa;
+import lasilu.util.DatabaseUtil;
 import javafx.geometry.Pos;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class DashboardController implements Initializable {
@@ -66,11 +75,48 @@ public class DashboardController implements Initializable {
 
     @FXML
     private Button buatLaporanButton;
+
+    private SiswaDAO siswaDAO;
+
+    private SiswaController siswaController;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        try {
+            Connection connection = DatabaseUtil.getConnection(); // Menghubungkan ke database
+            siswaController = new SiswaController(connection);
+            setupTableColumns();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle error connecting to the database
+        }
+        loadSiswaData();
         setupTableColumns();
         setupComboBox();
-    
+
+    }
+
+    private void loadSiswaData() {
+        // Ambil data siswa dari objek siswaDAO
+        List<Siswa> daftarSiswa = siswaController.getAllSiswa();
+
+        // Buat daftar item data
+        List<DataItem> daftarData = new ArrayList<>();
+        int no = 1;
+
+        for (Siswa siswa : daftarSiswa) {
+            // Ambil nama siswa
+            String namaSiswa = siswa.getNama();
+
+            // Buat item data baru dengan menggunakan nama siswa
+            DataItem dataItem = new DataItem(no, namaSiswa, "asda", 0.0);
+            daftarData.add(dataItem);
+
+            no++;
+        }
+
+        // Set data ke dalam tabel
+        tableView.getItems().setAll(daftarData);
     }
 
     private void setupTableColumns() {
@@ -79,7 +125,11 @@ public class DashboardController implements Initializable {
         waliMuridColumn.setCellValueFactory(cellData -> cellData.getValue().waliMuridProperty());
         nilaiRataRataColumn.setCellValueFactory(cellData -> cellData.getValue().nilaiRataRataProperty().asObject());
         // Set table data
-        tableView.setItems(null); // Ganti dengan data yang sesuai
+        // Buat ObservableList kosong untuk menginisialisasi tableView
+        ObservableList<DataItem> dataItems = FXCollections.observableArrayList();
+
+        // Set data ke dalam tabel
+        tableView.setItems(dataItems);
     }
 
     private void setupComboBox() {
@@ -94,7 +144,7 @@ public class DashboardController implements Initializable {
     private void buatLaporan() {
         // Implementasi logika untuk membuat laporan di sini
     }
-    
+
     // Data model class
     public static class DataItem {
         private final IntegerProperty id = new SimpleIntegerProperty();
@@ -158,4 +208,3 @@ public class DashboardController implements Initializable {
         }
     }
 }
-

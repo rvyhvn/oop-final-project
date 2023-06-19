@@ -17,8 +17,41 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+// /*
+//  * This class Email
+//  */
+// public class App extends Application {
+
+//     public static void main(String[] args) {
+//         launch(args);
+//     }
+
+//     @Override
+//     public void start(Stage primaryStage) throws Exception {
+//         Connection connection = null;
+//         try {
+//             // Membuat koneksi ke database menggunakan DatabaseUtil
+//             connection = DatabaseUtil.getConnection();
+
+//             // Load sendMassageBox.fxml
+//             // Load file FXML untuk sendMassageBox
+//             FXMLLoader loginLoader = new FXMLLoader(App.class.getResource("/lasilu/view/sendMassageBox.fxml"));
+//             Parent loginRoot = loginLoader.load();
+//             // Set scene untuk login view
+//             primaryStage.setScene(new Scene(loginRoot));
+//             primaryStage.resizableProperty().setValue(false);
+//             primaryStage.show();
+//         } catch (Exception e) {
+//             e.printStackTrace();
+//         } finally {
+//             // Menutup koneksi dan sumber daya terkait menggunakan DatabaseUtil
+//             DatabaseUtil.closeConnection(connection);
+//         }
+//     }
+// }
+
 /*
- * This class Email
+ * This class Dashboard
  */
 public class App extends Application {
 
@@ -33,9 +66,9 @@ public class App extends Application {
             // Membuat koneksi ke database menggunakan DatabaseUtil
             connection = DatabaseUtil.getConnection();
 
-            // Load sendMassageBox.fxml
-            // Load file FXML untuk sendMassageBox
-            FXMLLoader loginLoader = new FXMLLoader(App.class.getResource("/lasilu/view/sendMassageBox.fxml"));
+            // Load Dashboard.fxml
+            // Load file FXML untuk Dashboard
+            FXMLLoader loginLoader = new FXMLLoader(App.class.getResource("/lasilu/view/Dashboard.fxml"));
             Parent loginRoot = loginLoader.load();
             // Set scene untuk login view
             primaryStage.setScene(new Scene(loginRoot));
@@ -49,39 +82,6 @@ public class App extends Application {
         }
     }
 }
-
-/*
- * This class Dashboard
- */
-// public class App extends Application {
-
-//     public static void main(String[] args) {
-//         launch(args);
-//     }
-
-//     @Override
-//     public void start(Stage primaryStage) throws Exception {
-//         Connection connection = null;
-//         try {
-//             // Membuat koneksi ke database menggunakan DatabaseUtil
-//             connection = DatabaseUtil.getConnection();
-
-//             // Load Dashboard.fxml
-//             // Load file FXML untuk Dashboard
-//             FXMLLoader loginLoader = new FXMLLoader(App.class.getResource("/lasilu/view/Dashboard.fxml"));
-//             Parent loginRoot = loginLoader.load();
-//             // Set scene untuk login view
-//             primaryStage.setScene(new Scene(loginRoot));
-//             primaryStage.resizableProperty().setValue(false);
-//             primaryStage.show();
-//         } catch (Exception e) {
-//             e.printStackTrace();
-//         } finally {
-//             // Menutup koneksi dan sumber daya terkait menggunakan DatabaseUtil
-//             DatabaseUtil.closeConnection(connection);
-//         }
-//     }
-// }
 
 /*
  * This class loginForm
@@ -133,4 +133,3 @@ public class App extends Application {
 //         }
 //     }
 // }
-

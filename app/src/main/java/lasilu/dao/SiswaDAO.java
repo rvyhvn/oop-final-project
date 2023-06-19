@@ -24,7 +24,7 @@ public class SiswaDAO {
         try {
             String query = "SELECT * FROM siswa";
             statement = connection.prepareStatement(query);
-            resultSet = statement.executeQuery();
+            resultSet = statement.executeQuery();   
             while (resultSet.next()) {
                 Siswa siswa = new Siswa();
                 siswa.setIdSiswa(resultSet.getInt("id_siswa"));
