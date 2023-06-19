@@ -38,7 +38,7 @@ import javafx.stage.Stage;
 //             loginController.setOnLoginSuccess(() -> {
 //                 try {
 //                     // Load file FXML untuk main view
-//                     FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("/lasilu/MainView.fxml"));
+//                     FXMLLoader mainLoader = new FXMLLoader(App.class.getResource("/lasilu/MainView.fxml"));
 //                     Parent mainRoot = mainLoader.load();
 //                     MainViewController mainController = mainLoader.getController();
 //                     mainController.initData(); // Mengambil data siswa dan melakukan inisialisasi tampilan
