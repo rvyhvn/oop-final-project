@@ -35,8 +35,8 @@ public class LoginController {
                 // Login berhasil, lakukan aksi sesuai kebutuhan
                 // Misalnya, pindah ke halaman utama setelah login sukses
                 // MainViewController mainViewController = new MainViewController(guru);
-                // mainViewController.showMainView();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/lasilu/resources/MainView.fxml"));
+                // // mainViewController.showMainView();
+                // FXMLLoader loader = new FXMLLoader(getClass().getResource("/lasilu/resources/MainView.fxml"));
                 // Parent root = loader.load();
                 // MainViewController mainViewController = loader.getController();
                 // mainViewController.setGuru(guru);
@@ -48,7 +48,20 @@ public class LoginController {
                 // // Tutup jendela login saat ini
                 // Stage currentStage = (Stage) emailField.getScene().getWindow();
                 // currentStage.close();
-                showErrorMessage("Login berhasil", "login berhasil");
+                // showErrorMessage("Login berhasil", "login berhasil");
+                
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/lasilu/view/Dashboard.fxml"));
+                Parent root = loader.load();
+                DashboardController2 dashboardController = loader.getController();
+                dashboardController.setApp(this);
+                
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.show();
+
+                // Menutup jendela login saat ini
+                Stage currentStage = (Stage) emailField.getScene().getWindow();
+                currentStage.close();
             } else {
                 showErrorMessage("Login gagal", "Email atau password salah");
             }

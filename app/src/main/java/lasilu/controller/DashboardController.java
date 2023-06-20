@@ -25,6 +25,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.util.Callback;
 import lasilu.dao.SiswaDAO;
+import lasilu.model.Guru;
 import lasilu.model.Siswa;
 import lasilu.util.DatabaseUtil;
 import javafx.geometry.Pos;
@@ -206,5 +207,8 @@ public class DashboardController implements Initializable {
         public void setNilaiRataRata(double nilaiRataRata) {
             this.nilaiRataRata.set(nilaiRataRata);
         }
+    }
+
+    public void setGuru(Guru guru) {
     }
 }

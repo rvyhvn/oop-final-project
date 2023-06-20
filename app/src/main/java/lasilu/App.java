@@ -21,10 +21,66 @@ import javafx.stage.Stage;
 /*
  * This Dashboard class
  */
+// public class App extends Application {
+
+//     public void showSendMessageBox(){
+        
+//         try {
+//             FXMLLoader msgLoader = new FXMLLoader(App.class.getResource("/lasilu/view/SendMessageBox.fxml"));
+//             Parent msgRoot = msgLoader.load();
+//             // set Scene for the message
+//             Stage stage = new Stage();
+//             stage.setTitle("Send Message");
+            
+//             stage.setScene(new Scene(msgRoot));
+//             stage.resizableProperty().setValue(false);
+//             stage.show();
+//         } catch (IOException e) {
+//             e.printStackTrace();
+//         }
+//     }
+
+//     public static void main(String[] args) {
+//         launch(args);
+//     }
+
+//     @Override
+//     public void start(Stage primaryStage) throws Exception {
+//         Connection connection = null;
+//         try {
+//             // Membuat koneksi ke database menggunakan DatabaseUtil
+//             connection = DatabaseUtil.getConnection();
+
+//             // Load Dashboard.fxml
+//             // Load file FXML untuk Dashboard
+//             FXMLLoader loginLoader = new FXMLLoader(App.class.getResource("/lasilu/view/Dashboard.fxml"));
+//             Parent loginRoot = loginLoader.load();
+//             // Set scene untuk login view
+//             DashboardController2 dashboardController = loginLoader.getController();
+//             dashboardController.setApp(this);
+//             primaryStage.setScene(new Scene(loginRoot));
+//             primaryStage.resizableProperty().setValue(false);
+//             primaryStage.show();
+//         } catch (Exception e) {
+//             e.printStackTrace();
+//         } finally {
+//             // Menutup koneksi dan sumber daya terkait menggunakan DatabaseUtil
+//             DatabaseUtil.closeConnection(connection);
+//         }
+//     }
+// }
+
+/*
+ * This class loginForm
+ */
+
 public class App extends Application {
 
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     public void showSendMessageBox(){
-        
         try {
             FXMLLoader msgLoader = new FXMLLoader(App.class.getResource("/lasilu/view/SendMessageBox.fxml"));
             Parent msgRoot = msgLoader.load();
@@ -40,10 +96,6 @@ public class App extends Application {
         }
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
     @Override
     public void start(Stage primaryStage) throws Exception {
         Connection connection = null;
@@ -51,15 +103,13 @@ public class App extends Application {
             // Membuat koneksi ke database menggunakan DatabaseUtil
             connection = DatabaseUtil.getConnection();
 
-            // Load Dashboard.fxml
-            // Load file FXML untuk Dashboard
-            FXMLLoader loginLoader = new FXMLLoader(App.class.getResource("/lasilu/view/Dashboard.fxml"));
+            // Load LoginForm.fxml
+            // Load file FXML untuk login Form
+            FXMLLoader loginLoader = new FXMLLoader(App.class.getResource("/lasilu/view/LoginForm1.fxml"));
             Parent loginRoot = loginLoader.load();
+            
             // Set scene untuk login view
-            DashboardController2 dashboardController = loginLoader.getController();
-            dashboardController.setApp(this);
             primaryStage.setScene(new Scene(loginRoot));
-            primaryStage.resizableProperty().setValue(false);
             primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -69,54 +119,3 @@ public class App extends Application {
         }
     }
 }
-
-/*
- * This class loginForm
- */
-
-// public class App extends Application {
-
-//     public static void main(String[] args) {
-//         launch(args);
-//     }
-
-//     @Override
-//     public void start(Stage primaryStage) throws Exception {
-//         Connection connection = null;
-//         try {
-//             // Membuat koneksi ke database menggunakan DatabaseUtil
-//             connection = DatabaseUtil.getConnection();
-
-//             // Load LoginForm.fxml
-//             // Load file FXML untuk login Form
-//             FXMLLoader loginLoader = new FXMLLoader(App.class.getResource("/lasilu/view/LoginForm1.fxml"));
-//             Parent loginRoot = loginLoader.load();
-//             LoginController loginController = loginLoader.getController();
-//             loginController.setConnection(connection);
-//             loginController.setOnLoginSuccess(() -> {
-//                 try {
-//                     // Load file FXML untuk main view
-//                     FXMLLoader mainLoader = new FXMLLoader(App.class.getResource("../lasilu/view/MainView.fxml"));
-//                     Parent mainRoot = mainLoader.load();
-//                     MainViewController mainController = mainLoader.getController();
-//                     mainController.initData(); // Mengambil data siswa dan melakukan inisialisasi tampilan
-
-//                     // Set scene untuk main view
-//                     primaryStage.setScene(new Scene(mainRoot));
-//                     primaryStage.show();
-//                 } catch (Exception e) {
-//                     e.printStackTrace();
-//                 }
-//             });
-
-//             // Set scene untuk login view
-//             primaryStage.setScene(new Scene(loginRoot));
-//             primaryStage.show();
-//         } catch (Exception e) {
-//             e.printStackTrace();
-//         } finally {
-//             // Menutup koneksi dan sumber daya terkait menggunakan DatabaseUtil
-//             DatabaseUtil.closeConnection(connection);
-//         }
-//     }
-// }

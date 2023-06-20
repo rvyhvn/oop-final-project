@@ -14,9 +14,10 @@ import lasilu.dao.SiswaDAO;
 import lasilu.App;
 import lasilu.dao.KelasDAO;
 import lasilu.model.Siswa;
+import lasilu.model.Guru;
 import lasilu.model.Kelas;
 import lasilu.util.DatabaseUtil;
-
+import lasilu.controller.LoginController;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
@@ -56,11 +57,11 @@ public class DashboardController2 implements Initializable {
         this.app = app;
     }
     @FXML
-    private void buatLaporan() {
-        if (app != null){
-            app.showSendMessageBox();
-        }
-    }
+    // private void buatLaporan() {
+    //     if (app != null){
+    //         app.showSendMessageBox();
+    //     }
+    // }
     
 
     @Override

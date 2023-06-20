@@ -47,7 +47,7 @@
             </TableView>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                <children>
-                  <Button fx:id="buatLaporanButton" alignment="CENTER" contentDisplay="RIGHT" layoutX="598.0" layoutY="11.0" mnemonicParsing="false" onAction="#buatLaporan" prefHeight="37.0" prefWidth="119.0" style="-fx-background-color: #00e699; -fx-background-radius: 12;" text="Buat laporan" textFill="#fffdfd" />
+                  <Button fx:id="buatLaporanButton" alignment="CENTER" contentDisplay="RIGHT" layoutX="598.0" layoutY="11.0" mnemonicParsing="false"  prefHeight="37.0" prefWidth="119.0" style="-fx-background-color: #00e699; -fx-background-radius: 12;" text="Buat laporan" textFill="#fffdfd" onAction="#buatLaporan"/>
                </children>
             </AnchorPane>
          </children>
