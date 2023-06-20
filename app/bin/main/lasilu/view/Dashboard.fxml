@@ -47,7 +47,7 @@
             </TableView>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                <children>
-                  <Button fx:id="buatLaporanButton" alignment="CENTER" contentDisplay="RIGHT" layoutX="598.0" layoutY="11.0" mnemonicParsing="false"  prefHeight="37.0" prefWidth="119.0" style="-fx-background-color: #00e699; -fx-background-radius: 12;" text="Buat laporan" textFill="#fffdfd" onAction="#buatLaporan"/>
+                  <Button fx:id="buatLaporanButton" alignment="CENTER" contentDisplay="RIGHT" layoutX="598.0" layoutY="11.0" mnemonicParsing="false" onAction="#buatLaporan" prefHeight="37.0" prefWidth="119.0" style="-fx-background-color: #00e699; -fx-background-radius: 12;" text="Buat laporan" textFill="#fffdfd" />
                </children>
             </AnchorPane>
          </children>
@@ -56,7 +56,7 @@
          <children>
             <VBox fx:id="logoContainer" alignment="TOP_CENTER" layoutY="1.0" prefHeight="580.0" prefWidth="119.0" AnchorPane.bottomAnchor="0.0">
                <children>
-                  <Pane prefHeight="143.0" prefWidth="103.0">
+                  <Pane prefHeight="173.0" prefWidth="119.0">
                      <children>
                         <ImageView fitHeight="117.0" fitWidth="188.0" layoutX="11.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                            <image>
