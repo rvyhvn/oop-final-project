@@ -88,6 +88,55 @@ public class WaliMuridDAO {
         return waliMurid;
     }
 
+    public List<WaliMurid> getWaliMuridBySiswaId(int idSiswa) throws SQLException {
+      List<WaliMurid> waliMuridList = new ArrayList<>();
+      PreparedStatement statement = null;
+      ResultSet resultSet = null;
+
+      try {
+          String query = "SELECT * FROM walimurid WHERE siswa_id = ?";
+          statement = connection.prepareStatement(query);
+          statement.setInt(1, idSiswa);
+          resultSet = statement.executeQuery();
+
+          while (resultSet.next()) {
+              WaliMurid waliMurid = new WaliMurid();
+              waliMurid.setIdWali(resultSet.getInt("id_wali"));
+              waliMurid.setNama(resultSet.getString("nama"));
+              waliMurid.setEmail(resultSet.getString("email"));
+              waliMurid.setPhone(resultSet.getString("phone"));
+
+              Siswa anak = new Siswa();
+              anak.setIdSiswa(resultSet.getInt("siswa_id"));
+              anak.setNama(resultSet.getString("nama"));
+              anak.setEmail(resultSet.getString("email"));
+              anak.setPhone(resultSet.getString("phone"));
+
+              waliMurid.setAnak(anak);
+
+              waliMuridList.add(waliMurid);
+          }
+      } catch (SQLException e) {
+          e.printStackTrace();
+      } finally {
+          if (resultSet != null) {
+              try {
+                  resultSet.close();
+              } catch (SQLException e) {
+                  e.printStackTrace();
+              }
+          }
+          if (statement != null) {
+              try {
+                  statement.close();
+              } catch (SQLException e) {
+                  e.printStackTrace();
+              }
+          }
+      }
+      return waliMuridList;
+  }
+
     public void addWaliMurid(WaliMurid waliMurid) throws SQLException {
         PreparedStatement statement = null;
         try {

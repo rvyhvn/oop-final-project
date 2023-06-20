@@ -24,7 +24,10 @@ public class App extends Application {
     }
 
     // METHOD menampilkan sendMessageBox
+    
     public void showSendMessageBox(){
+    }
+    public void start(Stage primaryStage) throws Exception {
         try {
             FXMLLoader msgLoader = new FXMLLoader(App.class.getResource("/lasilu/view/EmailView.fxml"));
             Parent msgRoot = msgLoader.load();
@@ -65,26 +68,26 @@ public class App extends Application {
         }
     
     // Main 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        try {
-            // Membuat koneksi ke database menggunakan DatabaseUtil
-            connection = DatabaseUtil.getConnection();
+    // @Override
+    // public void start(Stage primaryStage) throws Exception {
+    //     try {
+    //         // Membuat koneksi ke database menggunakan DatabaseUtil
+    //         connection = DatabaseUtil.getConnection();
 
-            FXMLLoader loginLoader = new FXMLLoader(App.class.getResource("/lasilu/view/LoginForm.fxml"));
-            Parent loginRoot = loginLoader.load();
+    //         FXMLLoader loginLoader = new FXMLLoader(App.class.getResource("/lasilu/view/LoginForm.fxml"));
+    //         Parent loginRoot = loginLoader.load();
             
-            // Set scene untuk loginForm
-            primaryStage.setScene(new Scene(loginRoot));
-            primaryStage.show();
+    //         // Set scene untuk loginForm
+    //         primaryStage.setScene(new Scene(loginRoot));
+    //         primaryStage.show();
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            // Menutup koneksi dan sumber daya terkait menggunakan DatabaseUtil
-            DatabaseUtil.closeConnection(connection);
-        }
-    }
+    //     } catch (Exception e) {
+    //         e.printStackTrace();
+    //     } finally {
+    //         // Menutup koneksi dan sumber daya terkait menggunakan DatabaseUtil
+    //         DatabaseUtil.closeConnection(connection);
+    //     }
+    // }
 
     Connection connection = null;
 }
