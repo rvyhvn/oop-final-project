@@ -92,15 +92,6 @@ public class DashboardController2 implements Initializable {
         waliMuridColumn.setCellValueFactory(new PropertyValueFactory<>("waliMurid"));
         nilaiRataRataColumn.setCellValueFactory(new PropertyValueFactory<>("nilaiMean"));
 
-        // Mengambil data siswa dari database
-        // List<Siswa> siswaList;
-        // try {
-        //     siswaList = siswaDAO.getAllSiswa();
-        //     tableView.getItems().addAll(siswaList);
-        // } catch (SQLException e) {
-        //     e.printStackTrace();
-        // }
-
         kelasComboBox.setOnAction(event -> {
             Kelas selectedKelas = kelasComboBox.getValue();
             if (selectedKelas != null) {
