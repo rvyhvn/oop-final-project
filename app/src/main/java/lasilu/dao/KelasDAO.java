@@ -18,7 +18,7 @@ public class KelasDAO {
         ResultSet resultSet = null;
         try {
             statement = connection.createStatement();
-            resultSet = statement.executeQuery("SELECT id_kelas, tingkat, urutan, is_ipa FROM kelas");
+            resultSet = statement.executeQuery("SELECT * FROM kelas");
             while (resultSet.next()) {
                 Kelas kelas = new Kelas();
                 kelas.setIdKelas(resultSet.getInt("id_kelas"));
