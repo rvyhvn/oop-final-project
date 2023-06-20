@@ -89,4 +89,13 @@ public class WaliMuridController {
         }
     }
 
+    public List<String> getEmailsWaliMurid(int idKelas) throws SQLException {
+      try {
+        return waliMuridDAO.getEmailsWaliMurid(idKelas);
+      } catch (SQLException e) {
+        e.printStackTrace();
+        return null;
+      }
+    } 
+
 }

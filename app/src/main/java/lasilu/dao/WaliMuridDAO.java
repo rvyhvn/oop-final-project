@@ -212,4 +212,38 @@ public class WaliMuridDAO {
             
         }
     }
+
+  public List<String> getEmailsWaliMurid(int idKelas) throws SQLException {
+      List<String> emails = new ArrayList<>();
+      PreparedStatement statement = null;
+      ResultSet resultSet = null;
+      try {
+          String query = "SELECT walimurid.email FROM walimurid JOIN siswa ON walimurid.siswa_id = siswa.id_siswa WHERE siswa.kelas_id = ?;";
+          statement = connection.prepareStatement(query);
+          statement.setInt(1, idKelas);
+          resultSet = statement.executeQuery();
+          while (resultSet.next()) {
+              String email = resultSet.getString("email");
+              emails.add(email);
+          }
+      } catch (SQLException e) {
+          e.printStackTrace();
+      } finally {
+          if (resultSet != null) {
+              try {
+                  resultSet.close();
+              } catch (SQLException e) {
+                  e.printStackTrace();
+              }
+          }
+          if (statement != null) {
+              try {
+                  statement.close();
+              } catch (SQLException e) {
+                  e.printStackTrace();
+              }
+          }
+      }
+      return emails;
+  }
 }

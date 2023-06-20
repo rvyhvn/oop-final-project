@@ -178,6 +178,7 @@ public class App {
 
             WaliMurid waliMuridBySiswa = waliMuridController.getWaliMuridBySiswaId(1);
             System.out.println(waliMuridBySiswa.getNama());
+            System.out.println();
 
             List<Siswa> siswaByKelasList = siswaController.getSiswaByKelasId(2);
             System.out.println("Data siswa berdasar ID Kelas");
