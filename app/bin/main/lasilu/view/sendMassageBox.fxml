@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<<<<<<< HEAD
 <?import com.gluonhq.charm.glisten.control.TextField?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextArea?>
+=======
+<!-- <?import com.gluonhq.charm.glisten.control.TextField?> -->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+>>>>>>> zooper
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
+<<<<<<< HEAD
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="472.0" prefWidth="522.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TextField layoutX="56.0" layoutY="22.0" prefHeight="25.0" prefWidth="439.0" />
@@ -22,14 +31,38 @@
       </VBox>
       <Text layoutX="11.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subject" wrappingWidth="48.0" />
       <Button layoutX="452.0" layoutY="428.0" mnemonicParsing="false" style="-fx-background-radius: 12px;" text="Clear" />
+=======
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="492.0" prefWidth="548.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField layoutX="66.0" layoutY="22.0" prefHeight="25.0" prefWidth="429.0" />
+      <TextField layoutX="66.0" layoutY="56.0" prefHeight="25.0" prefWidth="429.0" />
+      <Text layoutX="14.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To" wrappingWidth="28.13671875" />
+      <Button layoutX="35.0" layoutY="428.0" mnemonicParsing="false" style="-fx-background-radius: 12px; -fx-background-color: #2DADFF;" text="Send" />
+      <VBox layoutX="66.0" layoutY="149.0" prefHeight="270.0" prefWidth="429.0">
+         <children>
+            <TextArea prefHeight="277.0" prefWidth="429.0" />
+         </children>
+      </VBox>
+      <Text layoutX="11.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="From" wrappingWidth="48.0" />
+      <Button layoutX="452.0" layoutY="428.0" mnemonicParsing="false" style="-fx-background-radius: 12px; -fx-background-color: #2DADFF;" text="Clear" />
+>>>>>>> zooper
       <Button layoutX="107.0" layoutY="428.0" minWidth="28.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="28.0" style="-fx-background-radius: 12px; -fx-background-color: 255,255,255,0;">
          <graphic>
             <ImageView fitHeight="33.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
+<<<<<<< HEAD
                   <Image url="@Front%20End/attach.png" />
+=======
+                  <Image url="@/lasilu/assets/attach.png" />
+>>>>>>> zooper
                </image>
             </ImageView>
          </graphic>
       </Button>
+<<<<<<< HEAD
+=======
+      <TextField layoutX="66.0" layoutY="92.0" prefHeight="25.0" prefWidth="429.0" />
+      <Text layoutX="11.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subject" wrappingWidth="48.0" />
+>>>>>>> zooper
    </children>
 </AnchorPane>
