@@ -2,6 +2,7 @@ package lasilu.controller;
 
 import lasilu.dao.LoginDAO;
 import lasilu.model.Guru;
+import lasilu.App;
 import lasilu.util.DatabaseUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -50,18 +51,21 @@ public class LoginController {
                 // currentStage.close();
                 // showErrorMessage("Login berhasil", "login berhasil");
                 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/lasilu/view/Dashboard.fxml"));
-                Parent root = loader.load();
-                DashboardController2 dashboardController = loader.getController();
-                dashboardController.setApp(this);
+                // FXMLLoader loader = new FXMLLoader(getClass().getResource("/lasilu/view/Dashboard.fxml"));
+                // Parent root = loader.load();
+                // DashboardController2 dashboardController = loader.getController();
+                // dashboardController.setApp(this);
                 
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.show();
+                // Stage stage = new Stage();
+                // stage.setScene(new Scene(root));
+                // stage.show();
 
-                // Menutup jendela login saat ini
-                Stage currentStage = (Stage) emailField.getScene().getWindow();
-                currentStage.close();
+                // // Menutup jendela login saat ini
+                // Stage currentStage = (Stage) emailField.getScene().getWindow();
+                // currentStage.close();
+                App app = new App();
+                app.dashboard();
+
             } else {
                 showErrorMessage("Login gagal", "Email atau password salah");
             }

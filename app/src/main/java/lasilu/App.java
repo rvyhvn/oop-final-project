@@ -87,7 +87,7 @@ public class App extends Application {
             // set Scene for the message
             Stage stage = new Stage();
             stage.setTitle("Send Message");
-            
+    
             stage.setScene(new Scene(msgRoot));
             stage.resizableProperty().setValue(false);
             stage.show();
@@ -95,6 +95,33 @@ public class App extends Application {
             e.printStackTrace();
         }
     }
+    public void dashboard(){
+        Connection connection = null;
+            try {
+                // Membuat koneksi ke database menggunakan DatabaseUtil
+                connection = DatabaseUtil.getConnection();
+
+                // Load Dashboard.fxml
+                // Load file FXML untuk Dashboard
+                FXMLLoader dLoader = new FXMLLoader(App.class.getResource("/lasilu/view/Dashboard.fxml"));
+                Parent dRoot = dLoader.load();
+                // Set scene untuk login view
+                DashboardController2 dashboardController = dLoader.getController();
+                dashboardController.setApp(this);
+                Stage dStage = new Stage();
+                dStage.setScene(new Scene(dRoot));
+                dStage.resizableProperty().setValue(false);
+                dStage.show();
+                
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                // Menutup koneksi dan sumber daya terkait menggunakan DatabaseUtil
+                DatabaseUtil.closeConnection(connection);
+            }
+        }
+    
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
