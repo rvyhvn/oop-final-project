@@ -17,7 +17,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /*
  * This Dashboard class
@@ -27,15 +26,14 @@ public class App extends Application {
     public void showSendMessageBox(){
         
         try {
-            FXMLLoader msgLoader = new FXMLLoader(App.class.getResource("/lasilu/view/SendMassageBox.fxml"));
+            FXMLLoader msgLoader = new FXMLLoader(App.class.getResource("/lasilu/view/SendMessageBox.fxml"));
             Parent msgRoot = msgLoader.load();
             // set Scene for the message
             Stage stage = new Stage();
             stage.setTitle("Send Message");
             
             stage.setScene(new Scene(msgRoot));
-            stage.initStyle(StageStyle.UTILITY);
-            stage.setResizable(false);
+            stage.resizableProperty().setValue(false);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -61,8 +59,7 @@ public class App extends Application {
             DashboardController2 dashboardController = loginLoader.getController();
             dashboardController.setApp(this);
             primaryStage.setScene(new Scene(loginRoot));
-            primaryStage.initStyle(StageStyle.UTILITY);
-            primaryStage.setResizable(false);
+            primaryStage.resizableProperty().setValue(false);
             primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();
