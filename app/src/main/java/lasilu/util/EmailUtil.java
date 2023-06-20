@@ -4,15 +4,21 @@ import lasilu.model.Email;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.util.List;
+import javax.mail.internet.*;
+import javax.activation.DataHandler;
+import javax.activation.FileDataSource;
 import java.util.Properties;
 
 public class EmailUtil {
 
-    private static final String EMAIL_USERNAME = "your-email@example.com";
-    private static final String EMAIL_PASSWORD = "your-email-password";
-    private static final String EMAIL_HOST = "smtp.example.com";
-    private static final int EMAIL_PORT = 587;
+    private static String EMAIL_SENDER = "koncipandawa";
+    private static String PASSWORD_SENDER = "koncipandawa5";
+    private static String EMAIL_HOST = "smtp.gmail.com";
+    private static int EMAIL_PORT = 587;
+    
+    public static void setEmailSender(String emailSender) {
+      EMAIL_SENDER = emailSender;
+    }
 
     public static void sendEmail(Email email) {
         Properties properties = new Properties();
@@ -23,13 +29,13 @@ public class EmailUtil {
 
         Session session = Session.getInstance(properties, new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(EMAIL_USERNAME, EMAIL_PASSWORD);
+                return new PasswordAuthentication(EMAIL_SENDER, PASSWORD_SENDER);
             }
         });
 
         try {
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(EMAIL_USERNAME));
+            message.setFrom(new InternetAddress(EMAIL_SENDER));
 
             for (String recipient : email.getRecipients()) {
                 message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
@@ -39,7 +45,19 @@ public class EmailUtil {
 
             if (email.getAttachmentPath() != null) {
                 // Attach file to the email
-                // ...
+               MimeBodyPart attachmentBodyPart = new MimeBodyPart();
+
+              // Set the data source to the attachment file
+              FileDataSource fileDataSource = new FileDataSource(email.getAttachmentPath());
+              attachmentBodyPart.setDataHandler(new DataHandler(fileDataSource));
+              attachmentBodyPart.setFileName(fileDataSource.getName());
+
+              // Create a multipart object and add the attachment body part
+              Multipart multipart = new MimeMultipart();
+              multipart.addBodyPart(attachmentBodyPart);
+
+              // Set the multipart as the content of the message
+              message.setContent(multipart);               // ...
             }
 
             message.setText(email.getBody());

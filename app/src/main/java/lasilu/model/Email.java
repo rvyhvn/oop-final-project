@@ -4,26 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Email {
-    private String from;
+    private String EMAIL_SENDER; // Ganti properti 'from' menjadi 'EMAIL_SENDER'
     private String subject;
     private String body;
     private List<String> recipients;
     private String attachmentPath;
 
-    public Email(String from, String subject, String body, List<String> recipients, String attachmentPath) {  
-      this.from = from;
-      this.subject = subject;  
-      this.body = body;
-      this.recipients = recipients;
-      this.attachmentPath = attachmentPath;
+    public Email(String EMAIL_SENDER, String subject, String body, List<String> recipients, String attachmentPath) {  
+        this.EMAIL_SENDER = EMAIL_SENDER;
+        this.subject = subject;  
+        this.body = body;
+        this.recipients = recipients;
+        this.attachmentPath = attachmentPath;
     }
     
-    public String getFrom() {
-      return from;
+    public String getEMAIL_SENDER() {
+        return EMAIL_SENDER;
     }
 
-    public void setFrom(String from) {
-      this.from = from;
+    public void setEMAIL_SENDER(String EMAIL_SENDER) {
+        this.EMAIL_SENDER = EMAIL_SENDER;
     }
 
     public String getSubject() {

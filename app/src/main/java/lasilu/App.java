@@ -138,30 +138,13 @@ public class App {
         Connection connection = null;
         try {
             connection = DatabaseUtil.getConnection();
-
-            SiswaController siswaController = new SiswaController(connection);
-            int idSiswa = 11;
-            String nama = "Zaky Dio";
-            String email = "zakydio@example.com";
-            String phone = "1234567890";
+            EmailController emailController = new EmailController();
+            
             int idKelas = 1;
-            int idWali = 1;
-            int idNilai = 1;
-
-            // Menjalankan fungsi updateSiswa
-            siswaController.updateSiswa(idSiswa, nama, email, phone, idWali, idKelas, idNilai);
-      
-            // List<Siswa> siswaList = siswaController.getAllSiswa();
-            // System.out.println("Daftar Siswa setelah pembaruan:");
-            // for (Siswa siswa : siswaList) {
-            //     System.out.println("ID: " + siswa.getIdSiswa());
-            //     System.out.println("Nama: " + siswa.getNama());
-            //     System.out.println("Email: " + siswa.getEmail());
-            //     System.out.println("Phone: " + siswa.getPhone());
-            //     System.out.println("Kelas ID: " + siswa.getKelas().getIdKelas());
-            //     System.out.println("Wali Murid ID: " + siswa.getWaliMurid().getIdWali());
-            //     System.out.println();
-            // }
+            String subject = "Test Subject";
+            String body = "test";
+            String attachmentPath = "~/Downloads/output.csv";
+            emailController.sendEmailToWaliMurid(idKelas, attachmentPath, subject, body, attachmentPath);
 
             WaliMuridController waliMuridController = new WaliMuridController(connection);
 
@@ -180,18 +163,7 @@ public class App {
             System.out.println(waliMuridBySiswa.getNama());
             System.out.println();
 
-            List<Siswa> siswaByKelasList = siswaController.getSiswaByKelasId(2);
-            System.out.println("Data siswa berdasar ID Kelas");
-            for (Siswa siswa : siswaByKelasList) {
-              System.out.println("ID: " + siswa.getIdSiswa());
-              System.out.println(siswa.getNama());
-              System.out.println(siswa.getWaliMurid().getIdWali());
-              System.out.println("" + siswa.getEmail());
-              System.out.println("" + siswa.getPhone());
-              System.out.println(siswa.getKelas().getIsIpa());
-              System.out.println();
-            }
-        } catch (SQLException e) {
+            } catch (SQLException e) {
             e.printStackTrace();
             // Menutup koneksi database
         }

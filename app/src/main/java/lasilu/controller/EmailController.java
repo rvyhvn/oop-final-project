@@ -3,36 +3,61 @@ package lasilu.controller;
 import lasilu.dao.WaliMuridDAO;
 import lasilu.model.Email;
 import lasilu.model.WaliMurid;
+import lasilu.util.DatabaseUtil;
 import lasilu.util.EmailUtil;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class EmailController {
-
     private WaliMuridDAO waliMuridDAO;
+    private EmailUtil emailUtil;
 
-    public EmailController(WaliMuridDAO waliMuridDAO) {
-        this.waliMuridDAO = waliMuridDAO;
+    public EmailController(WaliMuridDAO waliMuridDAO, EmailUtil emailUtil) throws SQLException {
+      this.waliMuridDAO = waliMuridDAO;
+      this.emailUtil = emailUtil;
     }
 
-    public void sendEmailToRecipients(int waliMuridId, String from, String subject, String body, String attachmentPath) throws SQLException {
-        // Mendapatkan informasi wali murid berdasarkan ID dari database
-        WaliMurid waliMurid = waliMuridDAO.getWaliMuridById(waliMuridId);
+    public EmailController() throws SQLException {
+        // Membuat koneksi ke database
+        Connection connection = DatabaseUtil.getConnection();
+        // Membuat instance WaliMuridDAO
+        waliMuridDAO = new WaliMuridDAO(connection);
+    }
 
-        if (waliMurid != null) {
-            // Membuat daftar penerima email dari informasi wali murid
-            List<String> recipients = new ArrayList<>();
-            recipients.add(waliMurid.getEmail());
+    public void sendEmailToWaliMurid(int kelasId, String EMAIL_SENDER, String subject, String body, String attachmentPath) {
+        try {
+            // Mendapatkan daftar email wali murid berdasarkan kelasId
+            List<String> recipients = getEmailsWaliMurid(kelasId);
 
-            // Membuat objek Email dengan parameter yang diberikan
-            Email email = new Email(from, subject, body, recipients, attachmentPath);
+            // Membuat instance Email
+            Email email = new Email(EMAIL_SENDER, subject, body, recipients, attachmentPath);
 
-            // Mengirim email menggunakan EmailUtil
-            EmailUtil.sendEmail(email);
-        } else {
-            System.out.println("Wali Murid dengan ID " + waliMuridId + " tidak ditemukan.");
+            // Proses pengiriman email
+            sendEmail(email);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+    }
+
+    private List<String> getEmailsWaliMurid(int idSiswa) throws SQLException {
+        // Mendapatkan daftar wali murid berdasarkan kelasId
+        List<WaliMurid> waliMuridList = new ArrayList<>();
+        waliMuridList = waliMuridDAO.getWaliMuridBySiswaId(idSiswa);
+
+        // Menyimpan email wali murid ke dalam List
+        List<String> recipients = new ArrayList<>();
+        for (WaliMurid waliMurid : waliMuridList) {
+            recipients.add(waliMurid.getEmail());
+        }
+
+        return recipients;
+    }
+
+    private void sendEmail(Email email) {
+        // Menggunakan EmailUtil untuk mengirim email
+        EmailUtil.sendEmail(email);
     }
 }
