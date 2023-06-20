@@ -11,20 +11,20 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="492.0" prefWidth="548.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lasilu.controller.SendMessageBoxController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="492.0" prefWidth="548.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lasilu.controller.SendMessageBoxController">
    <children>
-      <TextField layoutX="66.0" layoutY="22.0" prefHeight="25.0" prefWidth="429.0" />
-      <TextField layoutX="66.0" layoutY="56.0" prefHeight="25.0" prefWidth="429.0" />
+      <TextField layoutX="72.0" layoutY="22.0" prefHeight="26.0" prefWidth="423.0" />
+      <TextField layoutX="72.0" layoutY="56.0" prefHeight="26.0" prefWidth="423.0" />
       <Text layoutX="14.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To" wrappingWidth="28.13671875" />
-      <Button layoutX="35.0" layoutY="428.0" mnemonicParsing="false" style="-fx-background-radius: 12px; -fx-background-color: #2DADFF;" text="Send" />
+      <Button layoutX="441.0" layoutY="432.0" mnemonicParsing="false" style="-fx-background-radius: 12px; -fx-background-color: #7FFFD4;" text="Send" />
       <VBox layoutX="66.0" layoutY="149.0" prefHeight="270.0" prefWidth="429.0">
          <children>
-            <TextArea prefHeight="277.0" prefWidth="429.0" />
+            <TextArea prefHeight="270.0" prefWidth="420.0" />
          </children>
       </VBox>
       <Text layoutX="11.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="From" wrappingWidth="48.0" />
-      <Button layoutX="452.0" layoutY="428.0" mnemonicParsing="false" style="-fx-background-radius: 12px; -fx-background-color: #2DADFF;" text="Clear" />
-      <Button layoutX="107.0" layoutY="428.0" minWidth="28.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="28.0" style="-fx-background-radius: 12px; -fx-background-color: 255,255,255,0;">
+      <Button layoutX="66.0" layoutY="432.0" mnemonicParsing="false" style="-fx-background-radius: 12px; -fx-background-color: #7FFFD4;" text="Clear" />
+      <Button layoutX="400.0" layoutY="428.0" minWidth="28.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="28.0" style="-fx-background-radius: 12px; -fx-background-color: 255,255,255,0;">
          <graphic>
             <ImageView fitHeight="33.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -33,7 +33,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <TextField layoutX="66.0" layoutY="92.0" prefHeight="25.0" prefWidth="429.0" />
-      <Text layoutX="11.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subject" wrappingWidth="48.0" />
+      <TextField layoutX="72.0" layoutY="92.0" prefHeight="26.0" prefWidth="423.0" />
+      <Text layoutX="10.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subject" wrappingWidth="54.0" />
    </children>
 </AnchorPane>
