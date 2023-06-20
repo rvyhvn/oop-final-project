@@ -2,7 +2,6 @@ package lasilu.controller;
 
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -14,14 +13,9 @@ import lasilu.dao.SiswaDAO;
 import lasilu.App;
 import lasilu.dao.KelasDAO;
 import lasilu.model.Siswa;
-import lasilu.model.Guru;
 import lasilu.model.Kelas;
-import lasilu.model.Siswa;
 import lasilu.util.DatabaseUtil;
-import lasilu.controller.LoginController;
-import java.io.IOException;
 import java.net.URL;
-import java.sql.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -73,7 +67,6 @@ public class DashboardController implements Initializable {
             siswaDAO = new SiswaDAO(connection);
             KelasDAO = new KelasDAO(connection);
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } 
         // Mengambil koneksi dari utilitas DatabaseUtil
@@ -104,8 +97,6 @@ public class DashboardController implements Initializable {
                 }
             }
         });
-        // Mengatur gambar logo
-       
     }
     
 }
