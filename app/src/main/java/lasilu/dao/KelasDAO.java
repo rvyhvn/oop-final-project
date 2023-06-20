@@ -22,7 +22,9 @@ public class KelasDAO {
             while (resultSet.next()) {
                 Kelas kelas = new Kelas();
                 kelas.setIdKelas(resultSet.getInt("id_kelas"));
-                kelas.setNamaKelas(resultSet.getString("nama_kelas"));
+                kelas.setTingkat(resultSet.getString("tingkat"));
+                kelas.setUrutan(resultSet.getInt("urutan"));
+                kelas.setIsIpa(resultSet.getBoolean("is_ipa"));
                 // Set properties lainnya sesuai dengan kolom-kolom yang ada dalam tabel
                 kelasList.add(kelas);
             }
