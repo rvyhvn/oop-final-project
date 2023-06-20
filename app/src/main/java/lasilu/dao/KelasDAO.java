@@ -18,11 +18,13 @@ public class KelasDAO {
         ResultSet resultSet = null;
         try {
             statement = connection.createStatement();
-            resultSet = statement.executeQuery("SELECT * FROM kelas");
+            resultSet = statement.executeQuery("SELECT id_kelas, tingkat, urutan, is_ipa FROM kelas");
             while (resultSet.next()) {
                 Kelas kelas = new Kelas();
                 kelas.setIdKelas(resultSet.getInt("id_kelas"));
-                kelas.setNamaKelas(resultSet.getString("nama_kelas"));
+                kelas.setTingkat(resultSet.getString("tingkat"));
+                kelas.setUrutan(resultSet.getInt("urutan"));
+                kelas.setIsIpa(resultSet.getBoolean("is_ipa"));
                 // Set properties lainnya sesuai dengan kolom-kolom yang ada dalam tabel
                 kelasList.add(kelas);
             }
@@ -43,7 +45,7 @@ public class KelasDAO {
                     e.printStackTrace();
                 }
             }
-            connection.close();
+            
         }
         return kelasList;
     }
@@ -59,7 +61,9 @@ public class KelasDAO {
             if (resultSet.next()) {
                 kelas = new Kelas();
                 kelas.setIdKelas(resultSet.getInt("id_kelas"));
-                kelas.setNamaKelas(resultSet.getString("nama_kelas"));
+                kelas.setTingkat(resultSet.getString("tingkat"));
+                kelas.setUrutan(resultSet.getInt("urutan"));
+                kelas.setIsIpa(resultSet.getBoolean("is_ipa"));
                 // Set properties lainnya sesuai dengan kolom-kolom yang ada dalam tabel
             }
         } catch (SQLException e) {
@@ -79,7 +83,7 @@ public class KelasDAO {
                     e.printStackTrace();
                 }
             }
-            connection.close();
+            
         }
         return kelas;
     }
@@ -101,7 +105,7 @@ public class KelasDAO {
                     e.printStackTrace();
                 }
             }
-            connection.close();
+            
         }
     }
 
@@ -123,7 +127,7 @@ public class KelasDAO {
                     e.printStackTrace();
                 }
             }
-            connection.close();
+            
         }
     }
 
@@ -143,7 +147,7 @@ public class KelasDAO {
                     e.printStackTrace();
                 }
             }
-            connection.close();
+            
         }
     }
 }

@@ -113,4 +113,7 @@ public class Kelas {
   public void setMapel(ArrayList<MataPelajaran> mapel){
     this.mapel = mapel;
   }
+  public String toString() {
+    return getNamaKelas();
+  }
 }
