@@ -80,7 +80,7 @@ public class App extends Application {
 
             // Load LoginForm.fxml
             // Load file FXML untuk login Form
-            FXMLLoader loginLoader = new FXMLLoader(App.class.getResource("/lasilu/view/LoginForm1.fxml"));
+            FXMLLoader loginLoader = new FXMLLoader(App.class.getResource("/lasilu/view/LoginForm.fxml"));
             Parent loginRoot = loginLoader.load();
             
             // Set scene untuk login view
