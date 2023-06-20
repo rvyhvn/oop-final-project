@@ -9,7 +9,6 @@ import java.sql.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
-import lasilu.controller.LoginController;
 import lasilu.controller.DashboardController;
 import lasilu.util.DatabaseUtil;
 import javafx.application.Application;
@@ -18,19 +17,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/*
- * This class loginForm
- */
-
 public class App extends Application {
 
     public static void main(String[] args) {
         launch(args);
     }
 
+    // METHOD menampilkan sendMessageBox
     public void showSendMessageBox(){
         try {
-            FXMLLoader msgLoader = new FXMLLoader(App.class.getResource("/lasilu/view/SendMessageBox.fxml"));
+            FXMLLoader msgLoader = new FXMLLoader(App.class.getResource("/lasilu/view/EmailView.fxml"));
             Parent msgRoot = msgLoader.load();
             // set Scene for the message
             Stage stage = new Stage();
@@ -43,19 +39,19 @@ public class App extends Application {
             e.printStackTrace();
         }
     }
+    // METHOD menampilkan dashboard
     public void dashboard(){
         Connection connection = null;
             try {
                 // Membuat koneksi ke database menggunakan DatabaseUtil
                 connection = DatabaseUtil.getConnection();
-
-                // Load Dashboard.fxml
-                // Load file FXML untuk Dashboard
+                
                 FXMLLoader dLoader = new FXMLLoader(App.class.getResource("/lasilu/view/Dashboard.fxml"));
                 Parent dRoot = dLoader.load();
-                // Set scene untuk login view
+                
                 DashboardController dashboardController = dLoader.getController();
                 dashboardController.setApp(this);
+                // set Scene untuk Dashboard
                 Stage dStage = new Stage();
                 dStage.setScene(new Scene(dRoot));
                 dStage.resizableProperty().setValue(false);
@@ -69,8 +65,7 @@ public class App extends Application {
             }
         }
     
-
-
+    // Main 
     @Override
     public void start(Stage primaryStage) throws Exception {
         Connection connection = null;
