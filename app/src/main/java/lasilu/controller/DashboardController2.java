@@ -56,11 +56,11 @@ public class DashboardController2 implements Initializable {
         this.app = app;
     }
     @FXML
-    // private void buatLaporan() {
-    //     if (app != null){
-    //         app.showSendMessageBox();
-    //     }
-    // }
+    private void buatLaporan() {
+        if (app != null){
+            app.showSendMessageBox();
+        }
+    }
     
 
     @Override
