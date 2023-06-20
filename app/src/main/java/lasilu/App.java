@@ -10,7 +10,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import lasilu.controller.LoginController;
-import lasilu.controller.DashboardController2;
+import lasilu.controller.DashboardController;
 import lasilu.util.DatabaseUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -54,7 +54,7 @@ public class App extends Application {
                 FXMLLoader dLoader = new FXMLLoader(App.class.getResource("/lasilu/view/Dashboard.fxml"));
                 Parent dRoot = dLoader.load();
                 // Set scene untuk login view
-                DashboardController2 dashboardController = dLoader.getController();
+                DashboardController dashboardController = dLoader.getController();
                 dashboardController.setApp(this);
                 Stage dStage = new Stage();
                 dStage.setScene(new Scene(dRoot));
