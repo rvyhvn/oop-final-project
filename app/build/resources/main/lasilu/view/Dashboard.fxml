@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="rootPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lasilu.controller.DashboardController">
+<AnchorPane fx:id="rootPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lasilu.controller.DashboardController2">
    <children>
       <GridPane fx:id="gridPane" layoutX="143.0" layoutY="12.0" prefHeight="549.0" prefWidth="726.0">
         <columnConstraints>

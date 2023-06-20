@@ -13,6 +13,7 @@ public class Siswa extends Entity {
   private Kelas kelas;
   private WaliMurid waliMurid;
   private Nilai nilaiMean;
+  private String nama;
 
   public Siswa() {
 

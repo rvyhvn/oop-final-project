@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+    minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17"
+    xmlns:fx="http://javafx.com/fxml/1" fx:controller="lasilu.controller.DashboardController">
+    <children>
+        <TableView fx:id="tableView" layoutX="90.0" layoutY="59.0" prefHeight="317.0"
+            prefWidth="453.0">
+            <columns>
+                <TableColumn prefWidth="75.0" text="nama" />
+                <TableColumn prefWidth="75.0" text="email" />
+                <TableColumn prefWidth="75.0" text="phone" />
+                <TableColumn prefWidth="75.0" text="wali_id" />
+                <TableColumn prefWidth="75.0" text="kelas_id" />
+                <TableColumn prefWidth="75.0" text="nilai_id" />
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>
