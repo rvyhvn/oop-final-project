@@ -41,7 +41,6 @@ public class App extends Application {
     }
     // METHOD menampilkan dashboard
     public void dashboard(){
-        Connection connection = null;
             try {
                 // Membuat koneksi ke database menggunakan DatabaseUtil
                 connection = DatabaseUtil.getConnection();
@@ -68,19 +67,17 @@ public class App extends Application {
     // Main 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Connection connection = null;
         try {
             // Membuat koneksi ke database menggunakan DatabaseUtil
             connection = DatabaseUtil.getConnection();
 
-            // Load LoginForm.fxml
-            // Load file FXML untuk login Form
             FXMLLoader loginLoader = new FXMLLoader(App.class.getResource("/lasilu/view/LoginForm.fxml"));
             Parent loginRoot = loginLoader.load();
             
-            // Set scene untuk login view
+            // Set scene untuk loginForm
             primaryStage.setScene(new Scene(loginRoot));
             primaryStage.show();
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -88,4 +85,6 @@ public class App extends Application {
             DatabaseUtil.closeConnection(connection);
         }
     }
+
+    Connection connection = null;
 }
