@@ -128,7 +128,8 @@ public class SiswaDAO {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
-            String query = "SELECT siswa.*, kelas.tingkat, kelas.urutan, kelas.is_ipa FROM siswa JOIN kelas ON siswa.kelas_id = kelas.id_kelas WHERE id_kelas = ?;";
+
+            String query = "SELECT siswa.*, kelas.tingkat, kelas.urutan, kelas.is_ipa, walimurid.nama AS nama_walimurid FROM siswa JOIN kelas ON siswa.kelas_id = kelas.id_kelas JOIN walimurid ON siswa.wali_id = walimurid.id_wali WHERE kelas.id_kelas = ?";
             statement = connection.prepareStatement(query);
             statement.setInt(1, idKelas);
             resultSet = statement.executeQuery();
