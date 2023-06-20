@@ -25,7 +25,7 @@
          </children>
       </VBox>
       <Button fx:id="clearButton" layoutX="66.0" layoutY="432.0" mnemonicParsing="false" style="-fx-background-radius: 12px; -fx-background-color: #7FFFD4;" text="Clear" onAction="#clearButtonClicked" />
-      <Button fx:id="attachmentButton" layoutX="400.0" layoutY="428.0" minWidth="28.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="28.0" style="-fx-background-radius: 12px; -fx-background-color: 255,255,255,0;" onAction="#attachmentButtonClicked">
+      <Button fx:id="attachmentButton" layoutX="400.0" layoutY="428.0" minWidth="28.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="28.0" style="-fx-background-radius: 12px; -fx-background-color: transparent;" onAction="#attachmentButtonClicked">
          <graphic>
             <ImageView fitHeight="33.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
