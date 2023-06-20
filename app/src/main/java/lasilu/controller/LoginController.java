@@ -37,27 +37,29 @@ public class LoginController {
                 // MainViewController mainViewController = new MainViewController(guru);
                 // mainViewController.showMainView();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/lasilu/resources/MainView.fxml"));
-                Parent root = loader.load();
-                MainViewController mainViewController = loader.getController();
-                mainViewController.setGuru(guru);
+                // Parent root = loader.load();
+                // MainViewController mainViewController = loader.getController();
+                // mainViewController.setGuru(guru);
 
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.show();
+                // Stage stage = new Stage();
+                // stage.setScene(new Scene(root));
+                // stage.show();
 
-                // Tutup jendela login saat ini
-                Stage currentStage = (Stage) emailField.getScene().getWindow();
-                currentStage.close();
+                // // Tutup jendela login saat ini
+                // Stage currentStage = (Stage) emailField.getScene().getWindow();
+                // currentStage.close();
+                showErrorMessage("Login berhasil", "login berhasil");
             } else {
                 showErrorMessage("Login gagal", "Email atau password salah");
             }
         } catch (SQLException e) {
             e.printStackTrace();
             showErrorMessage("Error", "Terjadi kesalahan saat mengakses database");
-        } catch (IOException e) {
-            e.printStackTrace();
-            showErrorMessage("Error", "Terjadi kesalahan saat memuat GUI utama");
         }
+        // } catch (IOException e) {
+        //     e.printStackTrace();
+        //     showErrorMessage("Error", "Terjadi kesalahan saat memuat GUI utama");
+        // }
 
     }
 

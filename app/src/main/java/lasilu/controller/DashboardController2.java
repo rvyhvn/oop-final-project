@@ -2,6 +2,7 @@ package lasilu.controller;
 
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -10,11 +11,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import lasilu.dao.SiswaDAO;
+import lasilu.App;
 import lasilu.dao.KelasDAO;
 import lasilu.model.Siswa;
 import lasilu.model.Kelas;
 import lasilu.util.DatabaseUtil;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.sql.Connection;
@@ -31,7 +34,7 @@ public class DashboardController2 implements Initializable {
     private TableView<Siswa> tableView;
 
     @FXML
-    private TableColumn<Siswa, Integer> noColumn;
+    private TableColumn<Siswa, Integer> idColumn;
 
     @FXML
     private TableColumn<Siswa, String> namaColumn;
@@ -47,13 +50,18 @@ public class DashboardController2 implements Initializable {
 
     private SiswaDAO siswaDAO;
     private KelasDAO KelasDAO;
+    private App app;
     
-
-
+    public void setApp(App app) {
+        this.app = app;
+    }
     @FXML
     private void buatLaporan() {
-        // Logika untuk membuat laporan
+        if (app != null){
+            app.showSendMessageBox();
+        }
     }
+    
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -77,7 +85,7 @@ public class DashboardController2 implements Initializable {
             e.printStackTrace();
         }
         // Mengatur kolom tabel
-        noColumn.setCellValueFactory(new PropertyValueFactory<>("idSiswa"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("idSiswa"));
         namaColumn.setCellValueFactory(new PropertyValueFactory<>("nama"));
         waliMuridColumn.setCellValueFactory(new PropertyValueFactory<>("waliMurid"));
         nilaiRataRataColumn.setCellValueFactory(new PropertyValueFactory<>("nilaiMean"));

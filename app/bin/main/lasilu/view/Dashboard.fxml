@@ -33,7 +33,7 @@
             </HBox>
             <TableView fx:id="tableView" prefHeight="462.0" prefWidth="726.0" GridPane.rowIndex="1">
               <columns>
-                <TableColumn fx:id="noColumn" editable="false" prefWidth="61.0" text="No." />
+                <TableColumn fx:id="idColumn" editable="false" prefWidth="61.0" text="id" />
                 <TableColumn fx:id="namaColumn" editable="false" prefWidth="218.0" text="Nama" />
                   <TableColumn fx:id="waliMuridColumn" editable="false" prefWidth="260.0" text="Wali Murid" />
                   <TableColumn fx:id="nilaiRataRataColumn" editable="false" prefWidth="184.0" text="Nilai Rata-rata" />
