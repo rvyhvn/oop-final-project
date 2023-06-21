@@ -1,6 +1,7 @@
 package lasilu;
 
 import lasilu.controller.*;
+import lasilu.dao.WaliMuridDAO;
 import lasilu.util.*;
 import lasilu.model.*;
 
@@ -9,7 +10,7 @@ import java.sql.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
-import lasilu.controller.DashboardController;
+
 import lasilu.util.DatabaseUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -24,17 +25,17 @@ public class App extends Application {
     }
 
     // METHOD menampilkan sendMessageBox
-    
-    public void showSendMessageBox(){
-    // }
-    // public void start(Stage primaryStage) throws Exception {
+
+    public void showSendMessageBox() {
+        // }
+        // public void start(Stage primaryStage) throws Exception {
         try {
             FXMLLoader msgLoader = new FXMLLoader(App.class.getResource("/lasilu/view/EmailView.fxml"));
             Parent msgRoot = msgLoader.load();
             // set Scene for the message
             Stage stage = new Stage();
             stage.setTitle("Send Message");
-    
+
             stage.setScene(new Scene(msgRoot));
             stage.resizableProperty().setValue(false);
             stage.show();
@@ -42,15 +43,16 @@ public class App extends Application {
             e.printStackTrace();
         }
     }
+
     // METHOD menampilkan dashboard
-    public void dashboard(){
+    public void dashboard() {
         try {
             // Membuat koneksi ke database menggunakan DatabaseUtil
             connection = DatabaseUtil.getConnection();
-            
+
             FXMLLoader dLoader = new FXMLLoader(App.class.getResource("/lasilu/view/Dashboard.fxml"));
             Parent dRoot = dLoader.load();
-            
+
             DashboardController dashboardController = dLoader.getController();
             dashboardController.setApp(this);
             // set Scene untuk Dashboard
@@ -58,7 +60,7 @@ public class App extends Application {
             dStage.setScene(new Scene(dRoot));
             dStage.resizableProperty().setValue(false);
             dStage.show();
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -66,28 +68,61 @@ public class App extends Application {
             DatabaseUtil.closeConnection(connection);
         }
     }
-    
-    // Main 
+
+    // Main
     @Override
     public void start(Stage primaryStage) throws Exception {
+        // dashboard();
+        waliMurid();
+        // try {
+        // // Membuat koneksi ke database menggunakan DatabaseUtil
+        // connection = DatabaseUtil.getConnection();
+
+        // FXMLLoader loginLoader = new
+        // FXMLLoader(App.class.getResource("/lasilu/view/LoginForm.fxml"));
+        // Parent loginRoot = loginLoader.load();
+
+        // // Set scene untuk loginForm
+        // primaryStage.setScene(new Scene(loginRoot));
+        // primaryStage.show();
+
+        // } catch (Exception e) {
+        // e.printStackTrace();
+        // } finally {
+        // // Menutup koneksi dan sumber daya terkait menggunakan DatabaseUtil
+        // DatabaseUtil.closeConnection(connection);
+        // }
+    }
+    
+    // Debug coloumn Wali Murid
+
+    public void waliMurid() {
         try {
-            // Membuat koneksi ke database menggunakan DatabaseUtil
+            // Inisialisasi koneksi database
             connection = DatabaseUtil.getConnection();
 
-            FXMLLoader loginLoader = new FXMLLoader(App.class.getResource("/lasilu/view/LoginForm.fxml"));
-            Parent loginRoot = loginLoader.load();
-            
-            // Set scene untuk loginForm
-            primaryStage.setScene(new Scene(loginRoot));
-            primaryStage.show();
+            // Membuat objek DAO
+            WaliMuridDAO waliMuridDAO = new WaliMuridDAO(connection);
 
-        } catch (Exception e) {
+            // Memuat file FXML
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("/lasilu/view/waliMurid.fxml"));
+            Parent root = loader.load();
+
+            // Mendapatkan controller dari loader
+            waliMuridController controller = loader.getController();
+            // Mengatur objek DAO pada controller
+            controller.setWaliMuridDAO(waliMuridDAO);
+
+            // Menampilkan scene
+            Stage wStage = new Stage();
+            wStage.setScene(new Scene(root));
+            wStage.setTitle("Aplikasi Wali Murid");
+            wStage.show();
+        } catch (IOException | SQLException e) {
             e.printStackTrace();
-        } finally {
-            // Menutup koneksi dan sumber daya terkait menggunakan DatabaseUtil
-            DatabaseUtil.closeConnection(connection);
         }
     }
 
     Connection connection = null;
+
 }
