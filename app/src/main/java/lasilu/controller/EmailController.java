@@ -13,11 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmailController {
-    private WaliMuridDAO waliMuridDAO;
     private EmailUtil emailUtil;
+    private WaliMuridController waliMuridController;
 
     public EmailController(WaliMuridDAO waliMuridDAO, EmailUtil emailUtil) throws SQLException {
-      this.waliMuridDAO = waliMuridDAO;
       this.emailUtil = emailUtil;
     }
 
@@ -25,13 +24,13 @@ public class EmailController {
         // Membuat koneksi ke database
         Connection connection = DatabaseUtil.getConnection();
         // Membuat instance WaliMuridDAO
-        waliMuridDAO = new WaliMuridDAO(connection);
+        waliMuridController = new WaliMuridController(connection);
     }
 
     public void sendEmailToWaliMurid(int idKelas, String EMAIL_SENDER, String subject, String body, String attachmentPath) {
         try {
             // Mendapatkan daftar email wali murid berdasarkan kelasId
-            List<String> recipients = waliMuridDAO.getEmailsWaliMurid(idKelas);
+            List<String> recipients = waliMuridController.getEmailsWaliMurid(idKelas);
 
             // Membuat instance Email
             Email email = new Email(EMAIL_SENDER, subject, body, recipients, attachmentPath);
