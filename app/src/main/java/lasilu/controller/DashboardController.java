@@ -1,6 +1,6 @@
 package lasilu.controller;
 
-
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -22,7 +22,7 @@ import lasilu.model.Kelas;
 import lasilu.model.Siswa;
 import lasilu.model.WaliMurid;
 import lasilu.util.DatabaseUtil;
-
+import javafx.beans.property.SimpleObjectProperty;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -36,9 +36,9 @@ public class DashboardController implements Initializable {
     @FXML
     private AnchorPane mainPane;
 
-    @FXML 
+    @FXML
     private GridPane gridPane;
- 
+
     @FXML
     private VBox logoContainer;
 
@@ -66,7 +66,7 @@ public class DashboardController implements Initializable {
     private SiswaDAO siswaDAO;
     private KelasDAO KelasDAO;
     private App app;
-    
+
     //
     public AnchorPane getLogoPane() {
         return logoPane;
@@ -79,13 +79,13 @@ public class DashboardController implements Initializable {
     public void setApp(App app) {
         this.app = app;
     }
-    // @FXML
-    // private void buatLaporan() {
-    //     if (app != null){
-    //         app.showSendMessageBox();
-    //     }
-    // }
-    
+
+    @FXML
+    private void buatLaporan() {
+        if (app != null) {
+            app.showSendMessageBox();
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -97,9 +97,9 @@ public class DashboardController implements Initializable {
             KelasDAO = new KelasDAO(connection);
         } catch (SQLException e) {
             e.printStackTrace();
-        } 
+        }
         // Mengambil koneksi dari utilitas DatabaseUtil
-        
+
         List<Kelas> kelasList;
         try {
             kelasList = KelasDAO.getAllKelas();
@@ -108,11 +108,16 @@ public class DashboardController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        // Mengatur kolom tabel
+
+        // Menghubungkan atribut PropertyValueFactory dengan properti pada model Siswa
         idColumn.setCellValueFactory(new PropertyValueFactory<>("idSiswa"));
         namaColumn.setCellValueFactory(new PropertyValueFactory<>("nama"));
-        waliMuridColumn.setCellValueFactory(new PropertyValueFactory<>("waliMurid"));
-        nilaiRataRataColumn.setCellValueFactory(new PropertyValueFactory<>("nilaiMean"));
+        waliMuridColumn.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getWaliMurid().getNama()));
+        nilaiRataRataColumn.setCellValueFactory(cellData -> {
+            Double nilaiRataRata = cellData.getValue().getNilaiMean().getNilaiMean();
+            return new SimpleObjectProperty<>(nilaiRataRata);
+        });
 
         kelasComboBox.setOnAction(event -> {
             Kelas selectedKelas = kelasComboBox.getValue();
@@ -127,5 +132,5 @@ public class DashboardController implements Initializable {
             }
         });
     }
-    
+
 }

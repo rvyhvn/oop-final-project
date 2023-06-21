@@ -79,20 +79,13 @@ public class EmailController {
         // Mengirim email menggunakan EmailUtil
         sendEmailToWaliMurid(1, to, subject, body, attachmentPath);
 
-        showInformationAlert("Email Sent", "Email has been sent successfully!");
+        boolean isEmailSent = sendEmailToWaliMurid(1, to, subject, body, attachmentPath);
 
-        // if (isEmailSent) {
-        //     showInformationAlert("Email Sent", "Email has been sent successfully!");
-        // } else {
-        //     showInformationAlert("Email Not Sent", "Failed to send email. Please try again.");
-        // }
-        // Menampilkan pesan berhasil
-        // Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        // alert.setTitle("Email Sent");
-        // alert.setHeaderText(null);
-        // alert.setContentText("Email has been sent to waliMurid@gmail.com");
-        // alert.showAndWait();
-
+        if (isEmailSent) {
+            showInformationAlert("Email Sent", "Email has been sent successfully!");
+        } else {
+            showInformationAlert("Email Not Sent", "Failed to send email. Please try again.");
+        }
         // Mengosongkan sendMessageBox
         sendMessageBox.clear();
     }
@@ -105,7 +98,7 @@ public class EmailController {
         sendMessageBox.clear();
     }
 
-    public void sendEmailToWaliMurid(int idKelas, String EMAIL_SENDER, String subject, String body, String attachmentPath) {
+    public boolean sendEmailToWaliMurid(int idKelas, String EMAIL_SENDER, String subject, String body, String attachmentPath) {
         try {
             // Mendapatkan daftar email wali murid berdasarkan kelasId
             List<String> recipients = waliMuridController.getEmailsWaliMurid(idKelas);
@@ -115,8 +108,10 @@ public class EmailController {
 
             // Proses pengiriman email
             sendEmail(email);
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
     private void showInformationAlert(String title, String message) {

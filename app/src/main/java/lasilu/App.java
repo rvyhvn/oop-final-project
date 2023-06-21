@@ -27,9 +27,9 @@ public class App extends Application {
 
     // METHOD menampilkan sendMessageBox
 
-    // public void showSendMessageBox() {
+    public void showSendMessageBox() {
         // }
-        public void start(Stage primaryStage) throws Exception {
+        // public void start(Stage primaryStage) throws Exception {
         try {
             FXMLLoader msgLoader = new FXMLLoader(App.class.getResource("/lasilu/view/EmailView.fxml"));
             Parent msgRoot = msgLoader.load();
@@ -74,9 +74,9 @@ public class App extends Application {
     }
 
     // Main
-    // @Override
-    // public void start(Stage primaryStage) throws Exception {
-    //     dashboard();
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        dashboard();
         // waliMurid();
 
         // try {
@@ -97,7 +97,7 @@ public class App extends Application {
         // // Menutup koneksi dan sumber daya terkait menggunakan DatabaseUtil
         // DatabaseUtil.closeConnection(connection);
         // }
-    // }
+    }
 
     // Debug coloumn Wali Murid
 
