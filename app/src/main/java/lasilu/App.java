@@ -127,7 +127,6 @@ import javafx.stage.StageStyle;
  */
 
 
-// <<<<<<< HEAD
 public class App {
 
     public static void main(String[] args) {
@@ -165,6 +164,17 @@ public class App {
             WaliMurid waliMuridBySiswa = waliMuridController.getWaliMuridBySiswaId(1);
             System.out.println(waliMuridBySiswa.getNama());
             System.out.println();
+
+            SiswaController siswaController = new SiswaController(connection);
+            
+            List<Siswa> siswas = siswaController.getSiswaByKelasId(idKelas);
+            for (Siswa siswa : siswas) {
+              System.out.println("ID : " + siswa.getIdSiswa());
+              System.out.println("Nama : " + siswa.getNama());
+              System.out.println("Nama Wali Murid : " + siswa.getWaliMurid().getNama());
+              System.out.println("Nilai mean : " + siswa.getNilaiMean().getNilaiMean());
+              System.out.println();
+            }
 
             } catch (SQLException e) {
             e.printStackTrace();
