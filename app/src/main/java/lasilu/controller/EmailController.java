@@ -127,6 +127,18 @@ public class EmailController {
 
     private void sendEmail(Email email) {
         // Menggunakan EmailUtil untuk mengirim email
-        emailUtil.sendEmail(email);
+        String host = "DESKTOP-KBVPI7F"; // Ganti dengan host SMTP yang sesuai
+        int port = 587; // Ganti dengan port yang sesuai
+        String username = "koncipandawa@gmail.com"; // Ganti dengan username email Anda
+        String password = "koncipandawa5";; // Ganti dengan password email Anda
+        String recipient = "princenizroh@gmail.com";
+        String subject = "Test Email";
+        String content = "This is a test email.";
+
+        // Membuat instance EmailUtil dengan host, port, username, dan password
+        emailUtil = new EmailUtil();
+
+        // Mengirim email
+        emailUtil.sendEmail(host, port, username, password, recipient, subject, content);
     }
 }
