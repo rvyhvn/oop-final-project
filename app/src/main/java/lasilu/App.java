@@ -2,6 +2,7 @@ package lasilu;
 
 import lasilu.controller.*;
 import lasilu.dao.WaliMuridDAO;
+import lasilu.dao.*;
 import lasilu.util.*;
 import lasilu.model.*;
 
@@ -131,3 +132,64 @@ public class App extends Application {
     Connection connection = null;
 
 }
+
+
+// public class App {
+
+//     public static void main(String[] args) {
+
+//       // Mendapatkan koneksi ke database
+//         WaliMurid waliMurid1 = new WaliMurid();
+//         waliMurid1.setNama("Sumanto");
+        
+//         System.out.println(waliMurid1.getNama());
+//         Connection connection = null;
+//         try {
+//             connection = DatabaseUtil.getConnection();
+//             EmailController emailController = new EmailController();
+            
+//             int idKelas = 11;
+//             String emailSender = "koncipandawa@gmail.com";
+//             String subject = "Hai, ini email dari Gradle!";
+//             String body = "cok";
+//             String attachmentPath = "~/Downloads/output.csv";
+//             emailController.sendEmailToWaliMurid(idKelas, emailSender, subject, body, attachmentPath);
+
+//             WaliMuridController waliMuridController = new WaliMuridController(connection);
+
+//             List<String> waliMuridEmails = waliMuridController.getEmailsWaliMurid(idKelas);
+//             System.out.println(waliMuridEmails);
+
+//             List<WaliMurid> waliMurids = waliMuridController.getAllWaliMurid();
+//             System.out.println("Data wali murid: ");
+//             for (WaliMurid wali : waliMurids) {
+//               System.out.println("ID : " + wali.getIdWali());
+//               System.out.println("Nama : " + wali.getNama());
+//               System.out.println("Email : " + wali.getEmail());
+//               System.out.println("Phone : " + wali.getPhone());
+//               System.out.println("ID Anak : " + wali.getAnak().getIdSiswa());
+//               System.out.println();
+//             }
+
+//             WaliMurid waliMuridBySiswa = waliMuridController.getWaliMuridBySiswaId(1);
+//             System.out.println(waliMuridBySiswa.getNama());
+//             System.out.println();
+
+//             SiswaController siswaController = new SiswaController(connection);
+            
+//             List<Siswa> siswas = siswaController.getSiswaByKelasId(idKelas);
+//             for (Siswa siswa : siswas) {
+//               System.out.println("ID : " + siswa.getIdSiswa());
+//               System.out.println("Nama : " + siswa.getNama());
+//               System.out.println("Nama Wali Murid : " + siswa.getWaliMurid().getNama());
+//               System.out.println("Nilai mean : " + siswa.getNilaiMean().getNilaiMean());
+//               System.out.println();
+//             }
+
+//             } catch (SQLException e) {
+//             e.printStackTrace();
+//             // Menutup koneksi database
+//         }
+//     }
+// }
+

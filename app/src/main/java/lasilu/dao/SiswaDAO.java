@@ -129,7 +129,6 @@ public class SiswaDAO {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
- 
             String query = "SELECT siswa.id_siswa AS id, siswa.nama, walimurid.nama AS nama_walimurid, nilai.mean AS nilai_mean, kelas.id_kelas, kelas.tingkat, kelas.urutan, kelas.is_ipa FROM siswa JOIN walimurid ON siswa.wali_id = walimurid.id_wali JOIN nilai ON siswa.nilai_id = nilai.id_nilai JOIN kelas ON siswa.kelas_id = kelas.id_kelas WHERE kelas.id_kelas = ?";
             statement = connection.prepareStatement(query);
             statement.setInt(1, idKelas);
@@ -138,7 +137,9 @@ public class SiswaDAO {
               WaliMurid waliMurid = new WaliMurid();
               waliMurid.setIdWali(resultSet.getInt("id"));
               waliMurid.setNama(resultSet.getString("nama_walimurid"));
- 
+              // waliMurid.setEmail(resultSet.getString("email"));
+              // waliMurid.setPhone(resultSet.getString("phone"));
+              
               Kelas kelas = new Kelas();
               kelas.setIdKelas(resultSet.getInt("id_kelas"));
               kelas.setTingkat(resultSet.getString("tingkat"));

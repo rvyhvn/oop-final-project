@@ -14,6 +14,7 @@ import lasilu.model.Email;
 import lasilu.model.WaliMurid;
 import lasilu.util.DatabaseUtil;
 import lasilu.util.EmailUtil;
+import lasilu.controller.WaliMuridController;
 
 import java.io.File;
 import java.sql.Connection;
@@ -85,6 +86,24 @@ public class EmailController {
             showInformationAlert("Email Sent", "Email has been sent successfully!");
         } else {
             showInformationAlert("Email Not Sent", "Failed to send email. Please try again.");
+
+    // public void sendEmailToWaliMurid(int idKelas, String emailSender, String subject, String body, String attachmentPath) {
+    //     try {
+    //         // Mendapatkan daftar email wali murid berdasarkan kelasId
+    //         List<String> recipients = waliMuridController.getEmailsWaliMurid(idKelas);
+
+    //         // Membuat instance Email
+    //         Email email = new Email();
+    //         email.setEMAIL_SENDER(emailSender);
+    //         email.setRecipients(recipients);
+    //         email.setSubject(subject);
+    //         email.setBody(body);
+    //         email.setAttachmentPath(attachmentPath);
+
+    //         // Proses pengiriman email
+    //         sendEmail(email);
+    //     } catch (SQLException e) {
+    //         e.printStackTrace();
         }
         // Mengosongkan sendMessageBox
         sendMessageBox.clear();
@@ -140,4 +159,5 @@ public class EmailController {
         // Menggunakan EmailUtil untuk mengirim email
         EmailUtil.sendEmail(email);
     }
+
 }
