@@ -1,0 +1,27 @@
+/* styles.css */
+.tableView {
+    -fx-background-color: #2d9bf0;
+    -fx-border-color: #2d9bf0;
+    -fx-background-radius: 5px;
+}
+
+.tableView .column-header-background {
+    -fx-background-color: #2d9bf0;
+}
+
+.tableView .table-cell {
+    -fx-alignment: CENTER;
+}
+
+.tableView .table-row-cell {
+    -fx-background-color: #2d9bf0;
+}
+
+.tableView .table-row-cell:even {
+    -fx-background-color: #2d9bf0;
+}
+
+.tableView .table-row-cell:selected {
+    -fx-background-color: #2d9bf0;
+    -fx-text-fill: #2d9bf0;
+}
