@@ -15,22 +15,27 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="rootPane" prefHeight="580.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lasilu.controller.DashboardController">
+<AnchorPane fx:id="rootPane" prefHeight="580.0" prefWidth="889.0"
+   xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
+   fx:controller="lasilu.controller.DashboardController">
    <children>
       <GridPane fx:id="gridPane" layoutX="143.0" layoutY="12.0" prefHeight="549.0" prefWidth="726.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="52.0" minHeight="5.0" prefHeight="37.0" />
-          <RowConstraints maxHeight="472.0" minHeight="10.0" prefHeight="452.0" vgrow="SOMETIMES" />
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="52.0" minHeight="5.0" prefHeight="37.0" />
+            <RowConstraints maxHeight="472.0" minHeight="10.0" prefHeight="452.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="472.0" minHeight="10.0" prefHeight="60.0" valignment="BOTTOM" />
-        </rowConstraints>
+         </rowConstraints>
          <children>
             <AnchorPane prefHeight="29.0" prefWidth="726.0">
                <children>
-                  <ComboBox fx:id="kelasComboBox" layoutX="568.0" layoutY="3.0" prefHeight="28.0" prefWidth="157.0" promptText="Kelas" style="-fx-background-color: #00e699; -fx-border-color: #2DADFF; -fx-background-radius: 12px;" />
-                  <Text layoutX="1.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dashboard" wrappingWidth="171.83203125">
+                  <ComboBox fx:id="kelasComboBox" layoutX="568.0" layoutY="3.0" prefHeight="28.0"
+                     prefWidth="157.0" promptText="Kelas"
+                     style="-fx-background-color: #00e699; -fx-border-color: #2DADFF; -fx-background-radius: 12px;" />
+                  <Text layoutX="1.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                     text="Dashboard" wrappingWidth="171.83203125">
                      <font>
                         <Font name="Arial" size="21.0" />
                      </font>
@@ -38,32 +43,42 @@
                </children>
             </AnchorPane>
             <TableView fx:id="tableView" prefHeight="374.0" prefWidth="726.0" GridPane.rowIndex="1">
-              <columns>
-                <TableColumn fx:id="idColumn" editable="false" prefWidth="61.0" text="id" />
-                <TableColumn fx:id="namaColumn" editable="false" prefWidth="218.0" text="Nama" />
-                  <TableColumn fx:id="waliMuridColumn" editable="false" prefWidth="260.0" text="Wali Murid" />
-                  <TableColumn fx:id="nilaiRataRataColumn" editable="false" prefWidth="184.0" text="Nilai Rata-rata" />
-              </columns>
+               <columns>
+                  <TableColumn fx:id="idColumn" editable="false" prefWidth="61.0" text="id" />
+                  <TableColumn fx:id="namaColumn" editable="false" prefWidth="218.0" text="Nama" />
+                  <TableColumn fx:id="waliMuridColumn" editable="false" prefWidth="260.0"
+                     text="Wali Murid" />
+                  <TableColumn fx:id="nilaiRataRataColumn" editable="false" prefWidth="184.0"
+                     text="Nilai Rata-rata" />
+               </columns>
             </TableView>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                <children>
-                  <Button fx:id="buatLaporanButton" alignment="CENTER" contentDisplay="RIGHT" layoutX="598.0" layoutY="11.0" mnemonicParsing="false" onAction="#buatLaporan" prefHeight="37.0" prefWidth="119.0" style="-fx-background-color: #00e699; -fx-background-radius: 12;" text="Buat laporan" textFill="#fffdfd" />
+                  <Button fx:id="buatLaporanButton" alignment="CENTER" contentDisplay="RIGHT"
+                     layoutX="598.0" layoutY="11.0" mnemonicParsing="false" onAction="#buatLaporan"
+                     prefHeight="37.0" prefWidth="119.0"
+                     style="-fx-background-color: #00e699; -fx-background-radius: 12;"
+                     text="Buat laporan" textFill="#fffdfd" />
                </children>
             </AnchorPane>
          </children>
       </GridPane>
-      <AnchorPane fx:id="logoPane" prefHeight="551.0" prefWidth="122.0" style="-fx-background-color: #7FFFD4;">
+      <AnchorPane fx:id="logoPane" prefHeight="551.0" prefWidth="122.0"
+         style="-fx-background-color: #7FFFD4;">
          <children>
-            <VBox fx:id="logoContainer" alignment="TOP_CENTER" layoutY="1.0" prefHeight="580.0" prefWidth="119.0" AnchorPane.bottomAnchor="0.0">
+            <VBox fx:id="logoContainer" alignment="TOP_CENTER" layoutY="1.0" prefHeight="580.0"
+               prefWidth="119.0" AnchorPane.bottomAnchor="0.0">
                <children>
                   <Pane prefHeight="173.0" prefWidth="119.0">
                      <children>
-                        <ImageView fitHeight="117.0" fitWidth="188.0" layoutX="11.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="117.0" fitWidth="188.0" layoutX="11.0" layoutY="6.0"
+                           pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@/lasilu/assets/wLasilu.png" />
+                              <Image url="@/lasilu/assets/Lasilu.png" />
                            </image>
                         </ImageView>
-                     </children></Pane>
+                     </children>
+                  </Pane>
                </children>
             </VBox>
          </children>
