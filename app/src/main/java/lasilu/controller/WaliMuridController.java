@@ -1,6 +1,7 @@
 package lasilu.controller;
 
 import lasilu.dao.WaliMuridDAO;
+import lasilu.model.Siswa;
 import lasilu.model.WaliMurid;
 import lasilu.util.DatabaseUtil;
 
@@ -12,42 +13,59 @@ public class WaliMuridController {
     private WaliMuridDAO waliMuridDAO;
     private Connection connection;
 
-    // Constructor
     public WaliMuridController(Connection connection) {
         waliMuridDAO = new WaliMuridDAO(connection); // Menginisialisasi objek WaliMuridDAO
     }
 
 
     public List<WaliMurid> getAllWaliMurid() {
-        List<WaliMurid> waliMuridList = null;
-        try {
-            waliMuridList = waliMuridDAO.getAllWaliMurid();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return waliMuridList;
+      try {
+        return waliMuridDAO.getAllWaliMurid();
+      } catch (SQLException e) {
+        e.printStackTrace();
+        return null;
+      }
     }
 
     public WaliMurid getWaliMuridById(int idWali) {
-        WaliMurid waliMurid = null;
         try {
-            waliMurid = waliMuridDAO.getWaliMuridById(idWali);
+            return waliMuridDAO.getWaliMuridById(idWali);
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-        return waliMurid;
-    }
-
-    public void addWaliMurid(WaliMurid waliMurid) {
-        try {
-            waliMuridDAO.addWaliMurid(waliMurid);
-        } catch (SQLException e) {
-            e.printStackTrace();
+            return null;
         }
     }
 
-    public void updateWaliMurid(WaliMurid waliMurid) {
+    public void addWaliMurid(String nama, String email, String phone, int idSiswa) {
         try {
+          WaliMurid waliMurid = new WaliMurid();
+          waliMurid.setNama(nama);
+          waliMurid.setEmail(email);
+          waliMurid.setPhone(phone);
+
+          Siswa anak = new Siswa();
+          anak.setIdSiswa(idSiswa);
+          waliMurid.setAnak(anak);
+
+          waliMuridDAO.addWaliMurid(waliMurid);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateWaliMurid(int idWali, String nama, String email, String phone, int idSiswa) {
+        try {
+            WaliMurid waliMurid = new WaliMurid();
+            waliMurid.setIdWali(idWali);
+            waliMurid.setNama(nama);
+            waliMurid.setEmail(email);
+            waliMurid.setPhone(phone);
+
+            Siswa anak = new Siswa();
+            anak.setIdSiswa(idSiswa);
+            waliMurid.setAnak(anak);
+
             waliMuridDAO.updateWaliMurid(waliMurid);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -62,7 +80,4 @@ public class WaliMuridController {
         }
     }
 
-    public void closeConnection() {
-        DatabaseUtil.closeConnection(connection);
-    }
 }
