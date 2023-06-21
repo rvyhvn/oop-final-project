@@ -140,7 +140,7 @@ public class App {
             connection = DatabaseUtil.getConnection();
             EmailController emailController = new EmailController();
             
-            int idKelas = 3;
+            int idKelas = 4;
             String subject = "Test Subject";
             String body = "test";
             String attachmentPath = "~/Downloads/output.csv";
