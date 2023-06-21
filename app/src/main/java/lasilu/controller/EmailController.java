@@ -5,6 +5,7 @@ import lasilu.model.Email;
 import lasilu.model.WaliMurid;
 import lasilu.util.DatabaseUtil;
 import lasilu.util.EmailUtil;
+import lasilu.controller.WaliMuridController;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -30,7 +31,7 @@ public class EmailController {
     public void sendEmailToWaliMurid(int idKelas, String EMAIL_SENDER, String subject, String body, String attachmentPath) {
         try {
             // Mendapatkan daftar email wali murid berdasarkan kelasId
-            List<String> recipients = getEmailsWaliMurid(idKelas);
+            List<String> recipients = waliMuridDAO.getEmailsWaliMurid(idKelas);
 
             // Membuat instance Email
             Email email = new Email(EMAIL_SENDER, subject, body, recipients, attachmentPath);
@@ -42,19 +43,19 @@ public class EmailController {
         }
     }
 
-    private List<String> getEmailsWaliMurid(int idKelas) throws SQLException {
-        // Mendapatkan daftar wali murid berdasarkan kelasId
-        List<WaliMurid> waliMuridList = new ArrayList<>();
-        waliMuridList = waliMuridDAO.getWaliMuridBySiswaId(idKelas);
+    // private List<String> getEmailsWaliMurid(int idKelas) throws SQLException {
+    //     // Mendapatkan daftar wali murid berdasarkan kelasId
+    //     List<WaliMurid> waliMuridList = new ArrayList<>();
+    //     waliMuridList = waliMuridDAO.getWaliMuridBySiswaId(idKelas);
 
-        // Menyimpan email wali murid ke dalam List
-        List<String> recipients = new ArrayList<>();
-        for (WaliMurid waliMurid : waliMuridList) {
-            recipients.add(waliMurid.getEmail());
-        }
+    //     // Menyimpan email wali murid ke dalam List
+    //     List<String> recipients = new ArrayList<>();
+    //     for (WaliMurid waliMurid : waliMuridList) {
+    //         recipients.add(waliMurid.getEmail());
+    //     }
 
-        return recipients;
-    }
+    //     return recipients;
+    // }
 
     private void sendEmail(Email email) {
         // Menggunakan EmailUtil untuk mengirim email
