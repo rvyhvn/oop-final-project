@@ -21,9 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmailController {
-    private WaliMuridDAO waliMuridDAO;
-    private EmailUtil emailUtil;
-
     @FXML
     private TextField toField;
     @FXML
@@ -37,6 +34,13 @@ public class EmailController {
     @FXML
     private Button clearButton;
 
+    private WaliMuridDAO waliMuridDAO;
+    private EmailUtil emailUtil;
+
+    public EmailController(WaliMuridDAO waliMuridDAO, EmailUtil emailUtil) throws SQLException {
+        this.waliMuridDAO = waliMuridDAO;
+        this.emailUtil = emailUtil;
+    }
 
     public EmailController() throws SQLException {
         // Membuat koneksi ke database
@@ -75,6 +79,7 @@ public class EmailController {
 
         // Mengirim email menggunakan EmailUtil
         sendEmailToWaliMurid(recipient, subject, body, attachmentPath);
+        // sendEmailToWaliMurid(idKelas, EMAIL_SENDER, subject, body, attachmentPath);
 
         // Menampilkan pesan berhasil
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -95,6 +100,21 @@ public class EmailController {
         sendMessageBox.clear();
     }
 
+    // public void sendEmailToWaliMurid(int idKelas, String EMAIL_SENDER, String subject, String body, String attachmentPath) {
+    //     try {
+    //         // Mendapatkan daftar email wali murid berdasarkan kelasId
+    //         List<String> recipients = getEmailsWaliMurid(idKelas);
+
+    //         // Membuat instance Email
+    //         Email email = new Email(EMAIL_SENDER, subject, body, recipients, attachmentPath);
+
+    //         // Proses pengiriman email
+    //         sendEmail(email);
+    //     } catch (SQLException e) {
+    //         e.printStackTrace();
+    //     }
+    // }
+    
     private void sendEmailToWaliMurid(String recipient, String subject, String body, String attachmentPath) {
         try {
             // Mendapatkan daftar email wali murid berdasarkan kelasId
@@ -113,7 +133,8 @@ public class EmailController {
     private List<String> getEmailsWaliMurid() throws SQLException {
         // Mendapatkan daftar wali murid berdasarkan kelasId
         List<WaliMurid> waliMuridList = new ArrayList<>();
-        // Ganti dengan metode yang sesuai untuk mendapatkan daftar wali murid dari database
+        // Ganti dengan metode yang sesuai untuk mendapatkan daftar wali murid dari
+        // database
         waliMuridList = waliMuridDAO.getWaliMuridBySiswaId(0);
 
         // Menyimpan email wali murid ke dalam List
@@ -127,18 +148,6 @@ public class EmailController {
 
     private void sendEmail(Email email) {
         // Menggunakan EmailUtil untuk mengirim email
-        String host = "DESKTOP-KBVPI7F"; // Ganti dengan host SMTP yang sesuai
-        int port = 587; // Ganti dengan port yang sesuai
-        String username = "koncipandawa@gmail.com"; // Ganti dengan username email Anda
-        String password = "koncipandawa5";; // Ganti dengan password email Anda
-        String recipient = "princenizroh@gmail.com";
-        String subject = "Test Email";
-        String content = "This is a test email.";
-
-        // Membuat instance EmailUtil dengan host, port, username, dan password
-        emailUtil = new EmailUtil();
-
-        // Mengirim email
-        emailUtil.sendEmail(host, port, username, password, recipient, subject, content);
+        EmailUtil.sendEmail(email);
     }
 }
