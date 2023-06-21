@@ -3,6 +3,7 @@ package lasilu.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -71,18 +72,26 @@ public class EmailController {
 
     @FXML
     private void sendButtonClicked(ActionEvent event) {
-        String recipient = toField.getText();
+        String to = toField.getText();
         String subject = subjectField.getText();
         String body = sendMessageBox.getText();
         String attachmentPath = sendMessageBox.getText(); // Menggunakan isi dari sendMessageBox sebagai path file
         // Mengirim email menggunakan EmailUtil
+        sendEmailToWaliMurid(1, to, subject, body, attachmentPath);
 
+        showInformationAlert("Email Sent", "Email has been sent successfully!");
+
+        // if (isEmailSent) {
+        //     showInformationAlert("Email Sent", "Email has been sent successfully!");
+        // } else {
+        //     showInformationAlert("Email Not Sent", "Failed to send email. Please try again.");
+        // }
         // Menampilkan pesan berhasil
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Email Sent");
-        alert.setHeaderText(null);
-        alert.setContentText("Email has been sent to waliMurid@gmail.com");
-        alert.showAndWait();
+        // Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        // alert.setTitle("Email Sent");
+        // alert.setHeaderText(null);
+        // alert.setContentText("Email has been sent to waliMurid@gmail.com");
+        // alert.showAndWait();
 
         // Mengosongkan sendMessageBox
         sendMessageBox.clear();
@@ -110,6 +119,14 @@ public class EmailController {
             e.printStackTrace();
         }
     }
+    private void showInformationAlert(String title, String message) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle(title);
+            alert.setHeaderText(null);
+            alert.setContentText(message);
+            alert.showAndWait();
+        }
+
 
     // private List<String> getEmailsWaliMurid(int idKelas) throws SQLException {
     //     // Mendapatkan daftar wali murid berdasarkan kelasId
