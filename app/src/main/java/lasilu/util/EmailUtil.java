@@ -11,8 +11,8 @@ import java.util.Properties;
 
 public class EmailUtil {
 
-    private static String EMAIL_SENDER = "koncipandawa";
-    private static String PASSWORD_SENDER = "koncipandawa5";
+    private static String EMAIL_SENDER = "koncipandawa@gmail.com";
+    private static String PASSWORD_SENDER = "xshxgxpbtcybawyw";
     private static String EMAIL_HOST = "smtp.gmail.com";
     private static int EMAIL_PORT = 587;
     
@@ -25,14 +25,18 @@ public class EmailUtil {
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
         properties.put("mail.smtp.host", EMAIL_HOST);
+        properties.put("mail.smtp.user", EMAIL_SENDER);
+        properties.put("mail.smtp.password", PASSWORD_SENDER);
         properties.put("mail.smtp.port", EMAIL_PORT);
+        properties.put("mail.smtp.ssl.trust", EMAIL_HOST);
 
-        Session session = Session.getInstance(properties, new Authenticator() {
+        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(EMAIL_SENDER, PASSWORD_SENDER);
             }
         });
 
+        session.setDebug(true);
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(EMAIL_SENDER));

@@ -140,13 +140,16 @@ public class App {
             connection = DatabaseUtil.getConnection();
             EmailController emailController = new EmailController();
             
-            int idKelas = 1;
+            int idKelas = 3;
             String subject = "Test Subject";
             String body = "test";
             String attachmentPath = "~/Downloads/output.csv";
             emailController.sendEmailToWaliMurid(idKelas, attachmentPath, subject, body, attachmentPath);
 
             WaliMuridController waliMuridController = new WaliMuridController(connection);
+
+            List<String> waliMuridEmails = waliMuridController.getEmailsWaliMurid(idKelas);
+            System.out.println(waliMuridEmails);
 
             List<WaliMurid> waliMurids = waliMuridController.getAllWaliMurid();
             System.out.println("Data wali murid: ");

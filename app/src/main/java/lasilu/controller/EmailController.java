@@ -27,10 +27,10 @@ public class EmailController {
         waliMuridDAO = new WaliMuridDAO(connection);
     }
 
-    public void sendEmailToWaliMurid(int kelasId, String EMAIL_SENDER, String subject, String body, String attachmentPath) {
+    public void sendEmailToWaliMurid(int idKelas, String EMAIL_SENDER, String subject, String body, String attachmentPath) {
         try {
             // Mendapatkan daftar email wali murid berdasarkan kelasId
-            List<String> recipients = getEmailsWaliMurid(kelasId);
+            List<String> recipients = getEmailsWaliMurid(idKelas);
 
             // Membuat instance Email
             Email email = new Email(EMAIL_SENDER, subject, body, recipients, attachmentPath);
@@ -42,10 +42,10 @@ public class EmailController {
         }
     }
 
-    private List<String> getEmailsWaliMurid(int idSiswa) throws SQLException {
+    private List<String> getEmailsWaliMurid(int idKelas) throws SQLException {
         // Mendapatkan daftar wali murid berdasarkan kelasId
         List<WaliMurid> waliMuridList = new ArrayList<>();
-        waliMuridList = waliMuridDAO.getWaliMuridBySiswaId(idSiswa);
+        waliMuridList = waliMuridDAO.getWaliMuridBySiswaId(idKelas);
 
         // Menyimpan email wali murid ke dalam List
         List<String> recipients = new ArrayList<>();
