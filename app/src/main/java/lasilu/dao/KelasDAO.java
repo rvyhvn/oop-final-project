@@ -45,7 +45,7 @@ public class KelasDAO {
                     e.printStackTrace();
                 }
             }
-            
+
         }
         return kelasList;
     }
@@ -83,7 +83,7 @@ public class KelasDAO {
                     e.printStackTrace();
                 }
             }
-            
+
         }
         return kelas;
     }
@@ -105,7 +105,7 @@ public class KelasDAO {
                     e.printStackTrace();
                 }
             }
-            
+
         }
     }
 
@@ -127,7 +127,7 @@ public class KelasDAO {
                     e.printStackTrace();
                 }
             }
-            
+
         }
     }
 
@@ -147,7 +147,7 @@ public class KelasDAO {
                     e.printStackTrace();
                 }
             }
-            
+
         }
     }
 }

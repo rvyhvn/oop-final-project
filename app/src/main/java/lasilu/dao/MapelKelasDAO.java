@@ -3,7 +3,6 @@ package lasilu.dao;
 import lasilu.model.MapelKelas;
 import lasilu.model.MataPelajaran;
 import lasilu.model.Kelas;
-import lasilu.util.DatabaseUtil;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -23,7 +22,7 @@ public class MapelKelasDAO {
         ResultSet resultSet = null;
         try {
             String query = "SELECT * FROM mapelkelas";
-            statement = connection.prepareStatement(query); 
+            statement = connection.prepareStatement(query);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 MapelKelas mapelKelas = new MapelKelas();
@@ -63,7 +62,7 @@ public class MapelKelasDAO {
                     e.printStackTrace();
                 }
             }
-            
+
         }
         return mapelKelasList;
     }
@@ -111,7 +110,7 @@ public class MapelKelasDAO {
                     e.printStackTrace();
                 }
             }
-            
+
         }
         return mapelKelas;
     }
@@ -134,14 +133,15 @@ public class MapelKelasDAO {
                     e.printStackTrace();
                 }
             }
-            
+
         }
     }
 
     public void updateMapelKelas(MapelKelas mapelKelas) throws SQLException {
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement("UPDATE mapelkelas SET kelas_id = ?, mapel_id = ? WHERE id_mapelkelas = ?;");
+            statement = connection
+                    .prepareStatement("UPDATE mapelkelas SET kelas_id = ?, mapel_id = ? WHERE id_mapelkelas = ?;");
             statement.setInt(1, mapelKelas.getKelas().getIdKelas());
             statement.setInt(2, mapelKelas.getMapel().getIdMapel());
             statement.setInt(3, mapelKelas.getIdMapelKelas());
@@ -156,7 +156,7 @@ public class MapelKelasDAO {
                     e.printStackTrace();
                 }
             }
-            
+
         }
     }
 
@@ -176,7 +176,7 @@ public class MapelKelasDAO {
                     e.printStackTrace();
                 }
             }
-            
+
         }
     }
 }

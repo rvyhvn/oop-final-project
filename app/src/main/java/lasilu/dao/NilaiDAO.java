@@ -11,52 +11,52 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NilaiDAO {
-    private Connection connection;
+  private Connection connection;
 
-    public NilaiDAO(Connection connection) {
-        this.connection = connection;
-    }
-    
-    public List<Nilai> getAllNilai() throws SQLException {
-      List<Nilai> nilaiList = new ArrayList<>();
-      PreparedStatement statement = null;
-      ResultSet resultSet = null;
-      try {
-        String query = "SELECT * FROM nilai";
-        statement = connection.prepareStatement(query);
-        resultSet = statement.executeQuery();
-        while (resultSet.next()) {
-          Nilai nilai = new Nilai();
-          nilai.setIdNilai(resultSet.getInt("id_nilai"));
-          nilai.setNilaiMean(resultSet.getDouble("mean"));
-          
-          Siswa siswa = new Siswa();
-          siswa.setIdSiswa(resultSet.getInt("id_siswa"));
-          nilai.setSiswa(siswa);
+  public NilaiDAO(Connection connection) {
+    this.connection = connection;
+  }
 
-          nilaiList.add(nilai);
+  public List<Nilai> getAllNilai() throws SQLException {
+    List<Nilai> nilaiList = new ArrayList<>();
+    PreparedStatement statement = null;
+    ResultSet resultSet = null;
+    try {
+      String query = "SELECT * FROM nilai";
+      statement = connection.prepareStatement(query);
+      resultSet = statement.executeQuery();
+      while (resultSet.next()) {
+        Nilai nilai = new Nilai();
+        nilai.setIdNilai(resultSet.getInt("id_nilai"));
+        nilai.setNilaiMean(resultSet.getDouble("mean"));
 
-        }
+        Siswa siswa = new Siswa();
+        siswa.setIdSiswa(resultSet.getInt("id_siswa"));
+        nilai.setSiswa(siswa);
 
-      } catch (SQLException e) {
-        e.printStackTrace();
-      } finally {
-        if (resultSet != null){
-          try {
-            resultSet.close();
-          } catch (SQLException e) {
-            e.printStackTrace();
-          }
-        }
-        if (statement != null) {
-          try {
-            statement.close();
-          } catch (SQLException e) {
-            e.printStackTrace();
-          }
+        nilaiList.add(nilai);
+
+      }
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      if (resultSet != null) {
+        try {
+          resultSet.close();
+        } catch (SQLException e) {
+          e.printStackTrace();
         }
       }
-      return nilaiList;
+      if (statement != null) {
+        try {
+          statement.close();
+        } catch (SQLException e) {
+          e.printStackTrace();
+        }
+      }
     }
+    return nilaiList;
+  }
 
 }

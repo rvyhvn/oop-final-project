@@ -8,7 +8,7 @@ public abstract class Entity {
   public String nama;
   public String email;
   public String phone;
-  
+
   public Entity() {
 
   }
@@ -19,33 +19,33 @@ public abstract class Entity {
     this.phone = phone;
   }
 
-  public String getNama(){
+  public String getNama() {
     return nama;
   }
 
-  public String getEmail(){
-    return email; 
+  public String getEmail() {
+    return email;
   }
 
-  public String getPhone(){
+  public String getPhone() {
     return phone;
   }
 
-  public void setNama(String nama){
+  public void setNama(String nama) {
     this.nama = nama;
   }
 
-  public void setEmail(String email){
+  public void setEmail(String email) {
     this.email = email;
   }
 
-  public void setPhone(String phone){
+  public void setPhone(String phone) {
     this.phone = phone;
   }
 
   @Override
   public String toString() {
-      // TODO Auto-generated method stub
-      return super.toString();
+    // TODO Auto-generated method stub
+    return super.toString();
   }
 }

@@ -2,7 +2,6 @@ package lasilu.dao;
 
 import lasilu.model.WaliMurid;
 import lasilu.model.Siswa;
-import lasilu.util.DatabaseUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,7 +26,7 @@ public class WaliMuridDAO {
             String query = "SELECT * FROM walimurid;";
             statement = connection.prepareStatement(query);
             resultSet = statement.executeQuery();
-            
+
             while (resultSet.next()) {
                 WaliMurid waliMurid = new WaliMurid();
                 waliMurid.setIdWali(resultSet.getInt("id_wali"));
@@ -47,23 +46,24 @@ public class WaliMuridDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-          if (resultSet != null) {
-            try {
-              resultSet.close();
-            } catch (SQLException e) {
-              e.printStackTrace();
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
-        if (statement != null) {
-          try {
-            statement.close();
-          } catch (SQLException e){
-            e.printStackTrace();
-          }
-        }
+        return waliMuridList;
     }
-    return waliMuridList;
-  }
+
     public WaliMurid getWaliMuridById(int idWali) throws SQLException {
         WaliMurid waliMurid = null;
         PreparedStatement statement = null;
@@ -91,74 +91,72 @@ public class WaliMuridDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-          if (resultSet != null) {
-            try {
-              resultSet.close();
-            } catch (SQLException e) {
-              e.printStackTrace();
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
-          }
-          if (statement != null) {
-            try {
-              statement.close();
-            } catch (SQLException e) {
-              e.printStackTrace();
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
-          }
         }
         return waliMurid;
     }
 
+    public List<WaliMurid> getWaliMuridBySiswaId(int idSiswa) throws SQLException {
+        List<WaliMurid> waliMuridList = new ArrayList<>();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
 
-  public List<WaliMurid> getWaliMuridBySiswaId(int idSiswa) throws SQLException {
-      List<WaliMurid> waliMuridList = new ArrayList<>();
-      PreparedStatement statement = null;
-      ResultSet resultSet = null;
+        try {
+            String query = "SELECT * FROM walimurid WHERE siswa_id = ?";
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, idSiswa);
+            resultSet = statement.executeQuery();
 
-      try {
-          String query = "SELECT * FROM walimurid WHERE siswa_id = ?";
-          statement = connection.prepareStatement(query);
-          statement.setInt(1, idSiswa);
-          resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                WaliMurid waliMurid = new WaliMurid();
+                waliMurid.setIdWali(resultSet.getInt("id_wali"));
+                waliMurid.setNama(resultSet.getString("nama"));
+                waliMurid.setEmail(resultSet.getString("email"));
+                waliMurid.setPhone(resultSet.getString("phone"));
 
-          while (resultSet.next()) {
-              WaliMurid waliMurid = new WaliMurid();
-              waliMurid.setIdWali(resultSet.getInt("id_wali"));
-              waliMurid.setNama(resultSet.getString("nama"));
-              waliMurid.setEmail(resultSet.getString("email"));
-              waliMurid.setPhone(resultSet.getString("phone"));
+                Siswa anak = new Siswa();
+                anak.setIdSiswa(resultSet.getInt("siswa_id"));
+                anak.setNama(resultSet.getString("nama"));
+                anak.setEmail(resultSet.getString("email"));
+                anak.setPhone(resultSet.getString("phone"));
 
-              Siswa anak = new Siswa();
-              anak.setIdSiswa(resultSet.getInt("siswa_id"));
-              anak.setNama(resultSet.getString("nama"));
-              anak.setEmail(resultSet.getString("email"));
-              anak.setPhone(resultSet.getString("phone"));
+                waliMurid.setAnak(anak);
 
-              waliMurid.setAnak(anak);
-
-              waliMuridList.add(waliMurid);
-          }
-      } catch (SQLException e) {
-          e.printStackTrace();
-      } finally {
-          if (resultSet != null) {
-              try {
-                  resultSet.close();
-              } catch (SQLException e) {
-                  e.printStackTrace();
-              }
-          }
-          if (statement != null) {
-              try {
-                  statement.close();
-              } catch (SQLException e) {
-                  e.printStackTrace();
-              }
-          }
-      }
-      return waliMuridList;
-  }
-
+                waliMuridList.add(waliMurid);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return waliMuridList;
+    }
 
     public void addWaliMurid(WaliMurid waliMurid) throws SQLException {
         PreparedStatement statement = null;
@@ -172,13 +170,13 @@ public class WaliMuridDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-          if (statement != null) {
-            try {
-              statement.close();
-            } catch (SQLException e) {
-              e.printStackTrace();
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
-          } 
         }
     }
 
@@ -195,13 +193,13 @@ public class WaliMuridDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-          if (statement != null) {
-            try {
-              statement.close();
-            } catch (SQLException e) {
-              e.printStackTrace();
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
-          } 
         }
     }
 
@@ -215,41 +213,41 @@ public class WaliMuridDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            
+
         }
     }
 
-  public List<String> getEmailsWaliMurid(int idKelas) throws SQLException {
-      List<String> emails = new ArrayList<>();
-      PreparedStatement statement = null;
-      ResultSet resultSet = null;
-      try {
-          String query = "SELECT walimurid.email FROM walimurid JOIN siswa ON walimurid.siswa_id = siswa.id_siswa WHERE siswa.kelas_id = ?;";
-          statement = connection.prepareStatement(query);
-          statement.setInt(1, idKelas);
-          resultSet = statement.executeQuery();
-          while (resultSet.next()) {
-              String email = resultSet.getString("email");
-              emails.add(email);
-          }
-      } catch (SQLException e) {
-          e.printStackTrace();
-      } finally {
-          if (resultSet != null) {
-              try {
-                  resultSet.close();
-              } catch (SQLException e) {
-                  e.printStackTrace();
-              }
-          }
-          if (statement != null) {
-              try {
-                  statement.close();
-              } catch (SQLException e) {
-                  e.printStackTrace();
-              }
-          }
-      }
-      return emails;
-  }
+    public List<String> getEmailsWaliMurid(int idKelas) throws SQLException {
+        List<String> emails = new ArrayList<>();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            String query = "SELECT walimurid.email FROM walimurid JOIN siswa ON walimurid.siswa_id = siswa.id_siswa WHERE siswa.kelas_id = ?;";
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, idKelas);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                String email = resultSet.getString("email");
+                emails.add(email);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return emails;
+    }
 }

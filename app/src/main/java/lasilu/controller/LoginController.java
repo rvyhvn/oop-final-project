@@ -9,7 +9,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -19,8 +18,6 @@ public class LoginController {
     private TextField emailField;
     @FXML
     private PasswordField passwordField;
-    private Connection connection;
-    private Runnable onLoginSuccess;
 
     public void login() throws IOException {
         String email = emailField.getText();
@@ -49,13 +46,5 @@ public class LoginController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
-    }
-
-    public void setConnection(Connection connection) {
-        this.connection = connection;
-    }
-
-    public void setOnLoginSuccess(Runnable onLoginSuccess) {
-        this.onLoginSuccess = onLoginSuccess;
     }
 }

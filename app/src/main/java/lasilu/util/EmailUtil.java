@@ -15,9 +15,9 @@ public class EmailUtil {
     private static String PASSWORD_SENDER = "xshxgxpbtcybawyw";
     private static String EMAIL_HOST = "smtp.gmail.com";
     private static int EMAIL_PORT = 587;
-    
+
     public static void setEmailSender(String emailSender) {
-      EMAIL_SENDER = emailSender;
+        EMAIL_SENDER = emailSender;
     }
 
     public static void sendEmail(Email email) {
@@ -49,19 +49,19 @@ public class EmailUtil {
 
             if (email.getAttachmentPath() != null) {
                 // Attach file to the email
-               MimeBodyPart attachmentBodyPart = new MimeBodyPart();
+                MimeBodyPart attachmentBodyPart = new MimeBodyPart();
 
-              // Set the data source to the attachment file
-              FileDataSource fileDataSource = new FileDataSource(email.getAttachmentPath());
-              attachmentBodyPart.setDataHandler(new DataHandler(fileDataSource));
-              attachmentBodyPart.setFileName(fileDataSource.getName());
+                // Set the data source to the attachment file
+                FileDataSource fileDataSource = new FileDataSource(email.getAttachmentPath());
+                attachmentBodyPart.setDataHandler(new DataHandler(fileDataSource));
+                attachmentBodyPart.setFileName(fileDataSource.getName());
 
-              // Create a multipart object and add the attachment body part
-              Multipart multipart = new MimeMultipart();
-              multipart.addBodyPart(attachmentBodyPart);
+                // Create a multipart object and add the attachment body part
+                Multipart multipart = new MimeMultipart();
+                multipart.addBodyPart(attachmentBodyPart);
 
-              // Set the multipart as the content of the message
-              message.setContent(multipart);               // ...
+                // Set the multipart as the content of the message
+                message.setContent(multipart); // ...
             }
 
             message.setText(email.getBody());

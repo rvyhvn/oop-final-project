@@ -1,9 +1,5 @@
 package lasilu.model;
 
-import java.util.ArrayList;
-import lasilu.model.MataPelajaran;
-import lasilu.model.Kelas;
-
 /**
  * MapelKelas
  */
@@ -23,27 +19,27 @@ public class MapelKelas {
     this.kelas = kelas;
   }
 
-  public int getIdMapelKelas(){
+  public int getIdMapelKelas() {
     return idMapelKelas;
   }
 
-  public MataPelajaran getMapel(){
+  public MataPelajaran getMapel() {
     return mapel;
   }
 
-  public Kelas getKelas(){
+  public Kelas getKelas() {
     return kelas;
   }
-  
-  public void setIdMapelKelas(int idMapelKelas){
+
+  public void setIdMapelKelas(int idMapelKelas) {
     this.idMapelKelas = idMapelKelas;
   }
 
-  public void setMapel(MataPelajaran mapel){
+  public void setMapel(MataPelajaran mapel) {
     this.mapel = mapel;
   }
 
-  public void setKelas(Kelas kelas){
+  public void setKelas(Kelas kelas) {
     this.kelas = kelas;
   }
 }

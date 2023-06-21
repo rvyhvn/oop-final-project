@@ -2,7 +2,6 @@ package lasilu.controller;
 
 import lasilu.dao.NilaiDAO;
 import lasilu.model.Nilai;
-import lasilu.model.Siswa;
 import lasilu.util.DatabaseUtil;
 
 import java.sql.Connection;
@@ -21,7 +20,7 @@ public class NilaiController {
         }
     }
 
-   public List<Nilai> getAllNilai() throws SQLException {
+    public List<Nilai> getAllNilai() throws SQLException {
         return nilaiDAO.getAllNilai();
     }
 

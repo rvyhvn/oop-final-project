@@ -1,12 +1,10 @@
 package lasilu.model;
 
-import java.util.ArrayList;
-
 /**
  * MataPelajaran
  */
 public class MataPelajaran {
-  
+
   private int idMapel;
   private String namaMapel;
   private String jurusan;
@@ -23,35 +21,35 @@ public class MataPelajaran {
     this.kelas = kelas;
   }
 
-  public int getIdMapel(){
+  public int getIdMapel() {
     return idMapel;
   }
 
-  public void setIdMapel(int idMapel){
+  public void setIdMapel(int idMapel) {
     this.idMapel = idMapel;
   }
 
-  public String getNamaMapel(){
+  public String getNamaMapel() {
     return namaMapel;
   }
 
-  public void setNamaMapel(String namaMapel){
+  public void setNamaMapel(String namaMapel) {
     this.namaMapel = namaMapel;
   }
 
-  public String getJurusan(){
+  public String getJurusan() {
     return jurusan;
   }
 
-  public void setJurusan(String jurusan){
+  public void setJurusan(String jurusan) {
     this.jurusan = jurusan;
   }
 
-  public Kelas getKelas(){
+  public Kelas getKelas() {
     return kelas;
   }
 
-  public void setKelas(Kelas kelas){
+  public void setKelas(Kelas kelas) {
     this.kelas = kelas;
   }
 }

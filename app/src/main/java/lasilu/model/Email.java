@@ -1,6 +1,5 @@
 package lasilu.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Email {
@@ -10,18 +9,18 @@ public class Email {
     private List<String> recipients;
     private String attachmentPath;
 
-    public Email(){
+    public Email() {
 
     }
 
-    public Email(String EMAIL_SENDER, String subject, String body, List<String> recipients, String attachmentPath) {  
+    public Email(String EMAIL_SENDER, String subject, String body, List<String> recipients, String attachmentPath) {
         this.EMAIL_SENDER = EMAIL_SENDER;
-        this.subject = subject;  
+        this.subject = subject;
         this.body = body;
         this.recipients = recipients;
         this.attachmentPath = attachmentPath;
     }
-    
+
     public String getEMAIL_SENDER() {
         return EMAIL_SENDER;
     }

@@ -1,7 +1,6 @@
 package lasilu.dao;
 
 import lasilu.model.*;
-import lasilu.util.DatabaseUtil;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -20,9 +19,9 @@ public class GuruDAO {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
-          String query = "SELECT * FROM guru";
-          statement = connection.prepareStatement(query);
-          resultSet = statement.executeQuery();
+            String query = "SELECT * FROM guru";
+            statement = connection.prepareStatement(query);
+            resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Guru guru = new Guru();
                 guru.setIdGuru(resultSet.getInt("id_guru"));
@@ -56,7 +55,7 @@ public class GuruDAO {
                     e.printStackTrace();
                 }
             }
-            
+
         }
         return guruList;
     }
@@ -102,7 +101,7 @@ public class GuruDAO {
                     e.printStackTrace();
                 }
             }
-            
+
         }
         return guruList;
     }
@@ -110,8 +109,8 @@ public class GuruDAO {
     public void addGuru(Guru guru) throws SQLException {
         PreparedStatement statement = null;
         try {
-          String query = "INSERT INTO guru (nama, phone, email, kelas_id, mapel_id, password) VALUES (?, ?, ?, ?, ?, ?)";
-          statement = connection.prepareStatement(query);
+            String query = "INSERT INTO guru (nama, phone, email, kelas_id, mapel_id, password) VALUES (?, ?, ?, ?, ?, ?)";
+            statement = connection.prepareStatement(query);
             statement.setString(1, guru.getNama());
             statement.setString(2, guru.getEmail());
             statement.setString(3, guru.getPhone());
@@ -129,14 +128,15 @@ public class GuruDAO {
                     e.printStackTrace();
                 }
             }
-            
+
         }
     }
 
     public void updateGuru(Guru guru) throws SQLException {
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement("UPDATE guru SET nama = ?, email = ?, phone = ?, kelas_id = ? mapel_id = ?, password = ? WHERE id_guru = ?;");
+            statement = connection.prepareStatement(
+                    "UPDATE guru SET nama = ?, email = ?, phone = ?, kelas_id = ? mapel_id = ?, password = ? WHERE id_guru = ?;");
             statement.setString(1, guru.getNama());
             statement.setString(2, guru.getEmail());
             statement.setString(3, guru.getPhone());
@@ -155,17 +155,17 @@ public class GuruDAO {
                     e.printStackTrace();
                 }
             }
-            
+
         }
     }
 
     public void deleteGuru(int idGuru) throws SQLException {
         PreparedStatement statement = null;
         try {
-          String query = "DELETE FROM guru WHERE id_guru = ?";
-          statement = connection.prepareStatement(query);
-          statement.setInt(1, idGuru);
-          statement.executeUpdate();
+            String query = "DELETE FROM guru WHERE id_guru = ?";
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, idGuru);
+            statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -176,7 +176,7 @@ public class GuruDAO {
                     e.printStackTrace();
                 }
             }
-            
+
         }
     }
 }

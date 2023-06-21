@@ -4,7 +4,6 @@ import lasilu.dao.MapelKelasDAO;
 import lasilu.model.Kelas;
 import lasilu.model.MapelKelas;
 import lasilu.model.MataPelajaran;
-import lasilu.util.DatabaseUtil;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -38,17 +37,17 @@ public class MapelKelasController {
 
     public void addMapelKelas(int idKelas, int idMapel) {
         try {
-          MapelKelas mapelKelas = new MapelKelas();
-          
-          MataPelajaran mataPelajaran = new MataPelajaran();
-          mataPelajaran.setIdMapel(idMapel);
-          mapelKelas.setMapel(mataPelajaran);
+            MapelKelas mapelKelas = new MapelKelas();
 
-          Kelas kelas = new Kelas();
-          kelas.setIdKelas(idKelas);
-          mapelKelas.setKelas(kelas);
+            MataPelajaran mataPelajaran = new MataPelajaran();
+            mataPelajaran.setIdMapel(idMapel);
+            mapelKelas.setMapel(mataPelajaran);
 
-          mapelKelasDAO.addMapelKelas(mapelKelas);
+            Kelas kelas = new Kelas();
+            kelas.setIdKelas(idKelas);
+            mapelKelas.setKelas(kelas);
+
+            mapelKelasDAO.addMapelKelas(mapelKelas);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -56,18 +55,18 @@ public class MapelKelasController {
 
     public void updateMapelKelas(int idMapelKelas, int idKelas, int idMapel) {
         try {
-          MapelKelas mapelKelas = new MapelKelas();
-          mapelKelas.setIdMapelKelas(idMapelKelas);
+            MapelKelas mapelKelas = new MapelKelas();
+            mapelKelas.setIdMapelKelas(idMapelKelas);
 
-          Kelas kelas = new Kelas();
-          kelas.setIdKelas(idKelas);
-          mapelKelas.setKelas(kelas);
+            Kelas kelas = new Kelas();
+            kelas.setIdKelas(idKelas);
+            mapelKelas.setKelas(kelas);
 
-          MataPelajaran mataPelajaran = new MataPelajaran();
-          mataPelajaran.setIdMapel(idMapel);
-          mapelKelas.setMapel(mataPelajaran);
+            MataPelajaran mataPelajaran = new MataPelajaran();
+            mataPelajaran.setIdMapel(idMapel);
+            mapelKelas.setMapel(mataPelajaran);
 
-          mapelKelasDAO.updateMapelKelas(mapelKelas);
+            mapelKelasDAO.updateMapelKelas(mapelKelas);
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -1,9 +1,5 @@
 package lasilu.model;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import lasilu.model.Kelas;
-import lasilu.model.Laporan;
 /**
  * Guru
  */
@@ -15,7 +11,8 @@ public class Guru extends Entity {
   private Laporan laporan;
   private String password;
 
-  public Guru(int idGuru, String nama, String email, String phone, Kelas kelas, MataPelajaran mataPelajaran, Laporan laporan, String password) {
+  public Guru(int idGuru, String nama, String email, String phone, Kelas kelas, MataPelajaran mataPelajaran,
+      Laporan laporan, String password) {
     super(nama, email, phone);
     this.idGuru = idGuru;
     this.kelas = kelas;
@@ -31,19 +28,19 @@ public class Guru extends Entity {
     this.laporan = laporan;
   }
 
-  public int getIdGuru(){
+  public int getIdGuru() {
     return idGuru;
   }
 
-  public void setIdGuru(int idGuru){
+  public void setIdGuru(int idGuru) {
     this.idGuru = idGuru;
   }
 
-  public Kelas getKelas(){
+  public Kelas getKelas() {
     return kelas;
   }
 
-  public void setKelas(Kelas kelas){
+  public void setKelas(Kelas kelas) {
     this.kelas = kelas;
   }
 
@@ -54,19 +51,20 @@ public class Guru extends Entity {
   public void setMapel(MataPelajaran mataPelajaran) {
     this.mataPelajaran = mataPelajaran;
   }
-  public Laporan getLaporan(){
+
+  public Laporan getLaporan() {
     return laporan;
   }
 
-  public void setLaporan(Laporan laporan){
+  public void setLaporan(Laporan laporan) {
     this.laporan = laporan;
   }
 
-  public String getPassword(){
+  public String getPassword() {
     return password;
   }
 
-  public void setPassword(String password){
+  public void setPassword(String password) {
     this.password = password;
   }
 }

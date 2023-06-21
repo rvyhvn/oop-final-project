@@ -5,7 +5,6 @@ import lasilu.model.Kelas;
 import lasilu.model.Nilai;
 import lasilu.model.Siswa;
 import lasilu.model.WaliMurid;
-import lasilu.util.DatabaseUtil;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -51,7 +50,7 @@ public class SiswaController {
             siswa.setNama(nama);
             siswa.setEmail(email);
             siswa.setPhone(phone);
-            
+
             WaliMurid waliMurid = new WaliMurid();
             waliMurid.setIdWali(idWali);
             siswa.setWaliMurid(waliMurid);
@@ -65,20 +64,21 @@ public class SiswaController {
             siswa.setNilaiMean(nilaiMean);
 
             siswaDAO.addSiswa(siswa);
-        
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void updateSiswa(int idSiswa, String nama, String email, String phone, int idWali, int idKelas, int idNilai) {
+    public void updateSiswa(int idSiswa, String nama, String email, String phone, int idWali, int idKelas,
+            int idNilai) {
         try {
             Siswa siswa = new Siswa();
             siswa.setIdSiswa(idSiswa);
             siswa.setNama(nama);
             siswa.setEmail(email);
             siswa.setPhone(phone);
-            
+
             WaliMurid waliMurid = new WaliMurid();
             waliMurid.setIdWali(idWali);
             siswa.setWaliMurid(waliMurid);
@@ -91,9 +91,9 @@ public class SiswaController {
             nilaiMean.setIdNilai(idNilai);
             siswa.setNilaiMean(nilaiMean);
             siswaDAO.updateSiswa(siswa);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void deleteSiswa(int idSiswa) {

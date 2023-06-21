@@ -87,23 +87,24 @@ public class EmailController {
         } else {
             showInformationAlert("Email Not Sent", "Failed to send email. Please try again.");
 
-    // public void sendEmailToWaliMurid(int idKelas, String emailSender, String subject, String body, String attachmentPath) {
-    //     try {
-    //         // Mendapatkan daftar email wali murid berdasarkan kelasId
-    //         List<String> recipients = waliMuridController.getEmailsWaliMurid(idKelas);
+            // public void sendEmailToWaliMurid(int idKelas, String emailSender, String
+            // subject, String body, String attachmentPath) {
+            // try {
+            // // Mendapatkan daftar email wali murid berdasarkan kelasId
+            // List<String> recipients = waliMuridController.getEmailsWaliMurid(idKelas);
 
-    //         // Membuat instance Email
-    //         Email email = new Email();
-    //         email.setEMAIL_SENDER(emailSender);
-    //         email.setRecipients(recipients);
-    //         email.setSubject(subject);
-    //         email.setBody(body);
-    //         email.setAttachmentPath(attachmentPath);
+            // // Membuat instance Email
+            // Email email = new Email();
+            // email.setEMAIL_SENDER(emailSender);
+            // email.setRecipients(recipients);
+            // email.setSubject(subject);
+            // email.setBody(body);
+            // email.setAttachmentPath(attachmentPath);
 
-    //         // Proses pengiriman email
-    //         sendEmail(email);
-    //     } catch (SQLException e) {
-    //         e.printStackTrace();
+            // // Proses pengiriman email
+            // sendEmail(email);
+            // } catch (SQLException e) {
+            // e.printStackTrace();
         }
         // Mengosongkan sendMessageBox
         sendMessageBox.clear();
@@ -117,7 +118,8 @@ public class EmailController {
         sendMessageBox.clear();
     }
 
-    public boolean sendEmailToWaliMurid(int idKelas, String EMAIL_SENDER, String subject, String body, String attachmentPath) {
+    public boolean sendEmailToWaliMurid(int idKelas, String EMAIL_SENDER, String subject, String body,
+            String attachmentPath) {
         try {
             // Mendapatkan daftar email wali murid berdasarkan kelasId
             List<String> recipients = waliMuridController.getEmailsWaliMurid(idKelas);
@@ -133,27 +135,27 @@ public class EmailController {
             return false;
         }
     }
-    private void showInformationAlert(String title, String message) {
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle(title);
-            alert.setHeaderText(null);
-            alert.setContentText(message);
-            alert.showAndWait();
-        }
 
+    private void showInformationAlert(String title, String message) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 
     // private List<String> getEmailsWaliMurid(int idKelas) throws SQLException {
-    //     // Mendapatkan daftar wali murid berdasarkan kelasId
-    //     List<WaliMurid> waliMuridList = new ArrayList<>();
-    //     waliMuridList = waliMuridDAO.getWaliMuridBySiswaId(idKelas);
+    // // Mendapatkan daftar wali murid berdasarkan kelasId
+    // List<WaliMurid> waliMuridList = new ArrayList<>();
+    // waliMuridList = waliMuridDAO.getWaliMuridBySiswaId(idKelas);
 
-    //     // Menyimpan email wali murid ke dalam List
-    //     List<String> recipients = new ArrayList<>();
-    //     for (WaliMurid waliMurid : waliMuridList) {
-    //         recipients.add(waliMurid.getEmail());
-    //     }
+    // // Menyimpan email wali murid ke dalam List
+    // List<String> recipients = new ArrayList<>();
+    // for (WaliMurid waliMurid : waliMuridList) {
+    // recipients.add(waliMurid.getEmail());
+    // }
 
-    //     return recipients;
+    // return recipients;
     // }
     private void sendEmail(Email email) {
         // Menggunakan EmailUtil untuk mengirim email

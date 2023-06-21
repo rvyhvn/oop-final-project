@@ -1,7 +1,5 @@
 package lasilu.model;
 
-import lasilu.dao.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -22,7 +20,8 @@ public class Kelas {
 
   }
 
-  public Kelas(int idKelas, String tingkat, int urutan, boolean isIpa, String namaKelas, ArrayList<Guru> guru, ArrayList<Siswa> siswa, ArrayList<MataPelajaran> mapel) {
+  public Kelas(int idKelas, String tingkat, int urutan, boolean isIpa, String namaKelas, ArrayList<Guru> guru,
+      ArrayList<Siswa> siswa, ArrayList<MataPelajaran> mapel) {
     this.idKelas = idKelas;
     this.tingkat = tingkat;
     this.urutan = urutan;
@@ -33,23 +32,23 @@ public class Kelas {
     this.mapel = mapel;
   }
 
-  public int getIdKelas(){
+  public int getIdKelas() {
     return idKelas;
   }
 
-  public String getTingkat(){
+  public String getTingkat() {
     return tingkat;
   }
 
-  public int getUrutan(){
+  public int getUrutan() {
     return urutan;
   }
 
-  public boolean getIsIpa(){
+  public boolean getIsIpa() {
     return isIpa;
   }
 
-  public String getNamaKelas(){
+  public String getNamaKelas() {
     String namaKelas = tingkat + " ";
     if (isIpa) {
       namaKelas += "IPA";
@@ -61,58 +60,60 @@ public class Kelas {
     return namaKelas;
   }
 
-  public ArrayList<Guru> getGuru(){
-    return guru; 
+  public ArrayList<Guru> getGuru() {
+    return guru;
   }
 
-  public ArrayList<Siswa> getSiswa(){
+  public ArrayList<Siswa> getSiswa() {
     return siswa;
   }
 
-  public ArrayList<MataPelajaran> getMapel(){
+  public ArrayList<MataPelajaran> getMapel() {
     return mapel;
   }
 
-  public void setIdKelas(int idKelas){
+  public void setIdKelas(int idKelas) {
     this.idKelas = idKelas;
   }
 
-  public void setTingkat(String tingkat){
+  public void setTingkat(String tingkat) {
     this.tingkat = tingkat;
   }
 
-  public void setUrutan(int urutan){
+  public void setUrutan(int urutan) {
     this.urutan = urutan;
   }
 
-  public void setIsIpa(boolean isIpa){
+  public void setIsIpa(boolean isIpa) {
     this.isIpa = isIpa;
   }
 
   public void setNamaKelas(String namaKelas) {
-      // Mengurai namaKelas menjadi tingkat, jurusan, dan urutan
-      String[] parts = namaKelas.split(" ");
-      tingkat = parts[0];
+    // Mengurai namaKelas menjadi tingkat, jurusan, dan urutan
+    String[] parts = namaKelas.split(" ");
+    tingkat = parts[0];
 
-      if (parts[1].equalsIgnoreCase("IPA")) {
-          isIpa = true;
-      } else {
-          isIpa = false;
-      }
+    if (parts[1].equalsIgnoreCase("IPA")) {
+      isIpa = true;
+    } else {
+      isIpa = false;
+    }
 
-      urutan = Integer.parseInt(parts[2]);
+    urutan = Integer.parseInt(parts[2]);
   }
-  public void setGuru(ArrayList<Guru> guru){
+
+  public void setGuru(ArrayList<Guru> guru) {
     this.guru = guru;
   }
 
-  public void setSiswa(ArrayList<Siswa> siswa){
+  public void setSiswa(ArrayList<Siswa> siswa) {
     this.siswa = siswa;
   }
 
-  public void setMapel(ArrayList<MataPelajaran> mapel){
+  public void setMapel(ArrayList<MataPelajaran> mapel) {
     this.mapel = mapel;
   }
+
   public String toString() {
     return getNamaKelas();
   }

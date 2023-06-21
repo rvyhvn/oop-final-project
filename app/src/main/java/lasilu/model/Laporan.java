@@ -24,43 +24,43 @@ public class Laporan {
     this.nilai = nilai;
   }
 
-  public int getIdLaporan(){
+  public int getIdLaporan() {
     return idLaporan;
   }
 
-  public Date getTanggal(){
+  public Date getTanggal() {
     return tanggal;
   }
 
-  public Kelas getKelas(){
+  public Kelas getKelas() {
     return kelas;
   }
 
-  public void setKelas(Kelas kelas){
+  public void setKelas(Kelas kelas) {
     this.kelas = kelas;
   }
 
-  public Siswa getSiswa(){
+  public Siswa getSiswa() {
     return siswa;
   }
 
-  public void setSiswa(Siswa siswa){
+  public void setSiswa(Siswa siswa) {
     this.siswa = siswa;
   }
 
-  public Guru getGuru(){
+  public Guru getGuru() {
     return guru;
   }
 
-  public void setGuru(Guru guru){
+  public void setGuru(Guru guru) {
     this.guru = guru;
   }
 
-  public Nilai getNilai(){
+  public Nilai getNilai() {
     return nilai;
   }
 
-  public void setNilai(Nilai nilai){
+  public void setNilai(Nilai nilai) {
     this.nilai = nilai;
   }
 
@@ -69,15 +69,14 @@ public class Laporan {
       csvPrinter.printRecord("idLaporan", "tanggal", "idKelas", "namaKelas", "idSiswa", "idGuru", "idNilai", "nilai");
 
       csvPrinter.printRecord(
-              getIdLaporan(),
-              getTanggal(),
-              getKelas().getIdKelas(),
-              getKelas().getNamaKelas(),
-              getSiswa().getIdSiswa(),
-              getGuru().getIdGuru(),
-              getNilai().getIdNilai(),
-              getNilai().getNilai()
-      );
+          getIdLaporan(),
+          getTanggal(),
+          getKelas().getIdKelas(),
+          getKelas().getNamaKelas(),
+          getSiswa().getIdSiswa(),
+          getGuru().getIdGuru(),
+          getNilai().getIdNilai(),
+          getNilai().getNilai());
     }
   }
 }

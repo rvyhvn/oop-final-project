@@ -1,9 +1,5 @@
 package lasilu.model;
 
-import java.sql.*;
-import java.util.*;
-
-
 /**
  * Siswa
  */
@@ -13,13 +9,13 @@ public class Siswa extends Entity {
   private Kelas kelas;
   private WaliMurid waliMurid;
   private Nilai nilaiMean;
-  private String nama;
 
   public Siswa() {
 
   }
 
-  public Siswa(int idSiswa, String nama, Kelas kelas, String email, String phone, WaliMurid waliMurid, Nilai nilaiMean) {
+  public Siswa(int idSiswa, String nama, Kelas kelas, String email, String phone, WaliMurid waliMurid,
+      Nilai nilaiMean) {
     super(nama, email, phone);
     this.idSiswa = idSiswa;
     this.kelas = kelas;
@@ -32,7 +28,7 @@ public class Siswa extends Entity {
   }
 
   public Kelas getKelas() {
-    return kelas; 
+    return kelas;
   }
 
   public WaliMurid getWaliMurid() {
@@ -42,10 +38,11 @@ public class Siswa extends Entity {
   public Nilai getNilaiMean() {
     return nilaiMean;
   }
-  
+
   public void setIdSiswa(int idSiswa) {
     this.idSiswa = idSiswa;
   }
+
   public void setKelas(Kelas kelas) {
     this.kelas = kelas;
   }
@@ -58,7 +55,4 @@ public class Siswa extends Entity {
     this.nilaiMean = nilaiMean;
   }
 
-  
-} 
-  
-
+}

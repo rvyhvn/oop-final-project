@@ -4,7 +4,6 @@ import lasilu.model.Kelas;
 import lasilu.model.Nilai;
 import lasilu.model.Siswa;
 import lasilu.model.WaliMurid;
-import lasilu.util.DatabaseUtil;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -25,7 +24,7 @@ public class SiswaDAO {
         try {
             String query = "SELECT * FROM siswa";
             statement = connection.prepareStatement(query);
-            resultSet = statement.executeQuery();   
+            resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Siswa siswa = new Siswa();
                 siswa.setIdSiswa(resultSet.getInt("id_siswa"));
@@ -119,7 +118,7 @@ public class SiswaDAO {
                     e.printStackTrace();
                 }
             }
-            
+
         }
         return siswa;
     }
@@ -129,35 +128,40 @@ public class SiswaDAO {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
-            String query = "SELECT siswa.id_siswa AS id, siswa.nama, walimurid.nama AS nama_walimurid, nilai.mean AS nilai_mean, kelas.id_kelas, kelas.tingkat, kelas.urutan, kelas.is_ipa FROM siswa JOIN walimurid ON siswa.wali_id = walimurid.id_wali JOIN nilai ON siswa.nilai_id = nilai.id_nilai JOIN kelas ON siswa.kelas_id = kelas.id_kelas WHERE kelas.id_kelas = ?";
+            String query = "SELECT siswa.id_siswa AS id, siswa.nama, walimurid.nama AS nama_walimurid, nilai.mean AS nilai_mean, kelas.id_kelas, kelas.tingkat, kelas.urutan, kelas.is_ipa "
+                    +
+                    "FROM siswa " +
+                    "JOIN walimurid ON siswa.wali_id = walimurid.id_wali " +
+                    "JOIN nilai ON siswa.nilai_id = nilai.id_nilai " +
+                    "JOIN kelas ON siswa.kelas_id = kelas.id_kelas " +
+                    "WHERE kelas.id_kelas = ?";
             statement = connection.prepareStatement(query);
             statement.setInt(1, idKelas);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
-              WaliMurid waliMurid = new WaliMurid();
-              waliMurid.setIdWali(resultSet.getInt("id"));
-              waliMurid.setNama(resultSet.getString("nama_walimurid"));
-              // waliMurid.setEmail(resultSet.getString("email"));
-              // waliMurid.setPhone(resultSet.getString("phone"));
-              
-              Kelas kelas = new Kelas();
-              kelas.setIdKelas(resultSet.getInt("id_kelas"));
-              kelas.setTingkat(resultSet.getString("tingkat"));
-              kelas.setUrutan(resultSet.getInt("urutan"));
-              kelas.setIsIpa(resultSet.getBoolean("is_ipa"));
- 
-              Nilai nilai = new Nilai();
-              nilai.setNilaiMean(resultSet.getDouble("nilai_mean"));
- 
-              Siswa siswa = new Siswa();
-              siswa.setIdSiswa(resultSet.getInt("id"));
-              siswa.setNama(resultSet.getString("nama"));
+                WaliMurid waliMurid = new WaliMurid();
+                waliMurid.setIdWali(resultSet.getInt("id"));
+                waliMurid.setNama(resultSet.getString("nama_walimurid"));
+                // waliMurid.setEmail(resultSet.getString("email"));
+                // waliMurid.setPhone(resultSet.getString("phone"));
 
- 
-              siswa.setKelas(kelas);
-              siswa.setWaliMurid(waliMurid);
-              siswa.setNilaiMean(nilai);
-              siswaList.add(siswa);
+                Kelas kelas = new Kelas();
+                kelas.setIdKelas(resultSet.getInt("id_kelas"));
+                kelas.setTingkat(resultSet.getString("tingkat"));
+                kelas.setUrutan(resultSet.getInt("urutan"));
+                kelas.setIsIpa(resultSet.getBoolean("is_ipa"));
+
+                Nilai nilai = new Nilai();
+                nilai.setNilaiMean(resultSet.getDouble("nilai_mean"));
+
+                Siswa siswa = new Siswa();
+                siswa.setIdSiswa(resultSet.getInt("id"));
+                siswa.setNama(resultSet.getString("nama"));
+
+                siswa.setKelas(kelas);
+                siswa.setWaliMurid(waliMurid);
+                siswa.setNilaiMean(nilai);
+                siswaList.add(siswa);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -176,7 +180,7 @@ public class SiswaDAO {
                     e.printStackTrace();
                 }
             }
- 
+
         }
         return siswaList;
     }
@@ -203,7 +207,7 @@ public class SiswaDAO {
                     e.printStackTrace();
                 }
             }
-            
+
         }
     }
 
@@ -230,7 +234,7 @@ public class SiswaDAO {
                     e.printStackTrace();
                 }
             }
-            
+
         }
     }
 
@@ -251,7 +255,7 @@ public class SiswaDAO {
                     e.printStackTrace();
                 }
             }
-            
+
         }
     }
 }
