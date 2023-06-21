@@ -140,9 +140,9 @@ public class App {
             connection = DatabaseUtil.getConnection();
             EmailController emailController = new EmailController();
             
-            int idKelas = 4;
-            String subject = "Test Subject";
-            String body = "test";
+            int idKelas = 2;
+            String subject = "Hai, ini email dari Gradle!";
+            String body = "Rubiati";
             String attachmentPath = "~/Downloads/output.csv";
             emailController.sendEmailToWaliMurid(idKelas, attachmentPath, subject, body, attachmentPath);
 
