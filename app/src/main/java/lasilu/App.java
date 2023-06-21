@@ -130,9 +130,11 @@ import javafx.stage.StageStyle;
 public class App {
 
     public static void main(String[] args) {
-        // Mendapatkan koneksi ke database
+
+      // Mendapatkan koneksi ke database
         WaliMurid waliMurid1 = new WaliMurid();
         waliMurid1.setNama("Sumanto");
+        
         System.out.println(waliMurid1.getNama());
         Connection connection = null;
         try {
@@ -140,10 +142,11 @@ public class App {
             EmailController emailController = new EmailController();
             
             int idKelas = 11;
+            String emailSender = "koncipandawa@gmail.com";
             String subject = "Hai, ini email dari Gradle!";
             String body = "cok";
             String attachmentPath = "~/Downloads/output.csv";
-            emailController.sendEmailToWaliMurid(idKelas, attachmentPath, subject, body, attachmentPath);
+            emailController.sendEmailToWaliMurid(idKelas, emailSender, subject, body, attachmentPath);
 
             WaliMuridController waliMuridController = new WaliMuridController(connection);
 

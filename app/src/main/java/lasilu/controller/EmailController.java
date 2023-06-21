@@ -27,13 +27,18 @@ public class EmailController {
         waliMuridController = new WaliMuridController(connection);
     }
 
-    public void sendEmailToWaliMurid(int idKelas, String EMAIL_SENDER, String subject, String body, String attachmentPath) {
+    public void sendEmailToWaliMurid(int idKelas, String emailSender, String subject, String body, String attachmentPath) {
         try {
             // Mendapatkan daftar email wali murid berdasarkan kelasId
             List<String> recipients = waliMuridController.getEmailsWaliMurid(idKelas);
 
             // Membuat instance Email
-            Email email = new Email(EMAIL_SENDER, subject, body, recipients, attachmentPath);
+            Email email = new Email();
+            email.setEMAIL_SENDER(emailSender);
+            email.setRecipients(recipients);
+            email.setSubject(subject);
+            email.setBody(body);
+            email.setAttachmentPath(attachmentPath);
 
             // Proses pengiriman email
             sendEmail(email);
@@ -41,20 +46,6 @@ public class EmailController {
             e.printStackTrace();
         }
     }
-
-    // private List<String> getEmailsWaliMurid(int idKelas) throws SQLException {
-    //     // Mendapatkan daftar wali murid berdasarkan kelasId
-    //     List<WaliMurid> waliMuridList = new ArrayList<>();
-    //     waliMuridList = waliMuridDAO.getWaliMuridBySiswaId(idKelas);
-
-    //     // Menyimpan email wali murid ke dalam List
-    //     List<String> recipients = new ArrayList<>();
-    //     for (WaliMurid waliMurid : waliMuridList) {
-    //         recipients.add(waliMurid.getEmail());
-    //     }
-
-    //     return recipients;
-    // }
 
     private void sendEmail(Email email) {
         // Menggunakan EmailUtil untuk mengirim email
