@@ -34,11 +34,10 @@ public class EmailController {
     @FXML
     private Button clearButton;
 
-    private WaliMuridDAO waliMuridDAO;
+    private WaliMuridController waliMuridController;
     private EmailUtil emailUtil;
 
-    public EmailController(WaliMuridDAO waliMuridDAO, EmailUtil emailUtil) throws SQLException {
-        this.waliMuridDAO = waliMuridDAO;
+    public EmailController(EmailUtil emailUtil) {
         this.emailUtil = emailUtil;
     }
 
@@ -46,7 +45,7 @@ public class EmailController {
         // Membuat koneksi ke database
         Connection connection = DatabaseUtil.getConnection();
         // Membuat instance WaliMuridDAO
-        waliMuridDAO = new WaliMuridDAO(connection);
+        waliMuridController = new WaliMuridController(connection);
     }
 
     @FXML
@@ -72,14 +71,11 @@ public class EmailController {
 
     @FXML
     private void sendButtonClicked(ActionEvent event) {
-        String recipient = "waliMurid@gmail.com";
-        String subject = "Laporan Hasil Nilai Ujian";
+        String recipient = toField.getText();
+        String subject = subjectField.getText();
         String body = sendMessageBox.getText();
         String attachmentPath = sendMessageBox.getText(); // Menggunakan isi dari sendMessageBox sebagai path file
-
         // Mengirim email menggunakan EmailUtil
-        sendEmailToWaliMurid(recipient, subject, body, attachmentPath);
-        // sendEmailToWaliMurid(idKelas, EMAIL_SENDER, subject, body, attachmentPath);
 
         // Menampilkan pesan berhasil
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -100,28 +96,13 @@ public class EmailController {
         sendMessageBox.clear();
     }
 
-    // public void sendEmailToWaliMurid(int idKelas, String EMAIL_SENDER, String subject, String body, String attachmentPath) {
-    //     try {
-    //         // Mendapatkan daftar email wali murid berdasarkan kelasId
-    //         List<String> recipients = getEmailsWaliMurid(idKelas);
-
-    //         // Membuat instance Email
-    //         Email email = new Email(EMAIL_SENDER, subject, body, recipients, attachmentPath);
-
-    //         // Proses pengiriman email
-    //         sendEmail(email);
-    //     } catch (SQLException e) {
-    //         e.printStackTrace();
-    //     }
-    // }
-    
-    private void sendEmailToWaliMurid(String recipient, String subject, String body, String attachmentPath) {
+    public void sendEmailToWaliMurid(int idKelas, String EMAIL_SENDER, String subject, String body, String attachmentPath) {
         try {
             // Mendapatkan daftar email wali murid berdasarkan kelasId
-            List<String> recipients = getEmailsWaliMurid();
+            List<String> recipients = waliMuridController.getEmailsWaliMurid(idKelas);
 
             // Membuat instance Email
-            Email email = new Email(recipient, subject, body, recipients, attachmentPath);
+            Email email = new Email(EMAIL_SENDER, subject, body, recipients, attachmentPath);
 
             // Proses pengiriman email
             sendEmail(email);
@@ -130,22 +111,19 @@ public class EmailController {
         }
     }
 
-    private List<String> getEmailsWaliMurid() throws SQLException {
-        // Mendapatkan daftar wali murid berdasarkan kelasId
-        List<WaliMurid> waliMuridList = new ArrayList<>();
-        // Ganti dengan metode yang sesuai untuk mendapatkan daftar wali murid dari
-        // database
-        waliMuridList = waliMuridDAO.getWaliMuridBySiswaId(0);
+    // private List<String> getEmailsWaliMurid(int idKelas) throws SQLException {
+    //     // Mendapatkan daftar wali murid berdasarkan kelasId
+    //     List<WaliMurid> waliMuridList = new ArrayList<>();
+    //     waliMuridList = waliMuridDAO.getWaliMuridBySiswaId(idKelas);
 
-        // Menyimpan email wali murid ke dalam List
-        List<String> recipients = new ArrayList<>();
-        for (WaliMurid waliMurid : waliMuridList) {
-            recipients.add(waliMurid.getEmail());
-        }
+    //     // Menyimpan email wali murid ke dalam List
+    //     List<String> recipients = new ArrayList<>();
+    //     for (WaliMurid waliMurid : waliMuridList) {
+    //         recipients.add(waliMurid.getEmail());
+    //     }
 
-        return recipients;
-    }
-
+    //     return recipients;
+    // }
     private void sendEmail(Email email) {
         // Menggunakan EmailUtil untuk mengirim email
         EmailUtil.sendEmail(email);

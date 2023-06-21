@@ -10,7 +10,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.sql.SQLException;
 import java.util.List;
 
-public class waliMuridController {
+public class WMController {
     @FXML
     private TableView<WaliMurid> tableView;
     @FXML

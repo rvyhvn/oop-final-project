@@ -58,6 +58,7 @@ public class Siswa extends Entity {
     this.nilaiMean = nilaiMean;
   }
 
+  
 } 
   
 

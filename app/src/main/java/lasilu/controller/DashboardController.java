@@ -8,13 +8,21 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-
-import lasilu.dao.SiswaDAO;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.VBox;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.RowConstraints;
 import lasilu.App;
 import lasilu.dao.KelasDAO;
-import lasilu.model.Siswa;
+import lasilu.dao.SiswaDAO;
+import lasilu.dao.WaliMuridDAO;
 import lasilu.model.Kelas;
+import lasilu.model.Siswa;
+import lasilu.model.WaliMurid;
 import lasilu.util.DatabaseUtil;
+
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -22,6 +30,17 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class DashboardController implements Initializable {
+    @FXML
+    private AnchorPane logoPane;
+
+    @FXML
+    private AnchorPane mainPane;
+
+    @FXML 
+    private GridPane gridPane;
+ 
+    @FXML
+    private VBox logoContainer;
 
     @FXML
     private ComboBox<Kelas> kelasComboBox;
@@ -48,19 +67,29 @@ public class DashboardController implements Initializable {
     private KelasDAO KelasDAO;
     private App app;
     
+    //
+    public AnchorPane getLogoPane() {
+        return logoPane;
+    }
+
+    public AnchorPane getMainPane() {
+        return mainPane;
+    }
+
     public void setApp(App app) {
         this.app = app;
     }
-    @FXML
-    private void buatLaporan() {
-        if (app != null){
-            app.showSendMessageBox();
-        }
-    }
+    // @FXML
+    // private void buatLaporan() {
+    //     if (app != null){
+    //         app.showSendMessageBox();
+    //     }
+    // }
     
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //
         Connection connection;
         try {
             connection = DatabaseUtil.getConnection();

@@ -36,6 +36,16 @@ public class WaliMuridController {
         }
     }
 
+    public WaliMurid getWaliMuridBySiswaId(int idSiswa) {
+      try {
+        List<WaliMurid> waliMuridList = waliMuridDAO.getWaliMuridBySiswaId(idSiswa);
+        return waliMuridList.isEmpty() ? null : waliMuridList.get(0);
+      } catch (SQLException e) {
+        e.printStackTrace();
+        return null;
+      }
+    }
+
     public void addWaliMurid(String nama, String email, String phone, int idSiswa) {
         try {
           WaliMurid waliMurid = new WaliMurid();
@@ -79,5 +89,14 @@ public class WaliMuridController {
             e.printStackTrace();
         }
     }
+
+    public List<String> getEmailsWaliMurid(int idKelas) throws SQLException {
+      try {
+        return waliMuridDAO.getEmailsWaliMurid(idKelas);
+      } catch (SQLException e) {
+        e.printStackTrace();
+        return null;
+      }
+    } 
 
 }

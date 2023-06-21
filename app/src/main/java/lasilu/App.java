@@ -9,13 +9,14 @@ import java.io.IOException;
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
 
 import lasilu.util.DatabaseUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class App extends Application {
@@ -26,9 +27,9 @@ public class App extends Application {
 
     // METHOD menampilkan sendMessageBox
 
-    public void showSendMessageBox() {
+    // public void showSendMessageBox() {
         // }
-        // public void start(Stage primaryStage) throws Exception {
+        public void start(Stage primaryStage) throws Exception {
         try {
             FXMLLoader msgLoader = new FXMLLoader(App.class.getResource("/lasilu/view/EmailView.fxml"));
             Parent msgRoot = msgLoader.load();
@@ -51,10 +52,13 @@ public class App extends Application {
             connection = DatabaseUtil.getConnection();
 
             FXMLLoader dLoader = new FXMLLoader(App.class.getResource("/lasilu/view/Dashboard.fxml"));
-            Parent dRoot = dLoader.load();
+            Parent dRoot = dLoader.load();  
 
             DashboardController dashboardController = dLoader.getController();
             dashboardController.setApp(this);
+            AnchorPane logoPane = dashboardController.getLogoPane();
+            AnchorPane mainPane = dashboardController.getMainPane();
+            logoPane.prefHeightProperty().bind(mainPane.heightProperty());
             // set Scene untuk Dashboard
             Stage dStage = new Stage();
             dStage.setScene(new Scene(dRoot));
@@ -70,10 +74,11 @@ public class App extends Application {
     }
 
     // Main
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        // dashboard();
-        waliMurid();
+    // @Override
+    // public void start(Stage primaryStage) throws Exception {
+    //     dashboard();
+        // waliMurid();
+
         // try {
         // // Membuat koneksi ke database menggunakan DatabaseUtil
         // connection = DatabaseUtil.getConnection();
@@ -92,8 +97,8 @@ public class App extends Application {
         // // Menutup koneksi dan sumber daya terkait menggunakan DatabaseUtil
         // DatabaseUtil.closeConnection(connection);
         // }
-    }
-    
+    // }
+
     // Debug coloumn Wali Murid
 
     public void waliMurid() {
@@ -109,7 +114,7 @@ public class App extends Application {
             Parent root = loader.load();
 
             // Mendapatkan controller dari loader
-            waliMuridController controller = loader.getController();
+            WMController controller = loader.getController();
             // Mengatur objek DAO pada controller
             controller.setWaliMuridDAO(waliMuridDAO);
 
