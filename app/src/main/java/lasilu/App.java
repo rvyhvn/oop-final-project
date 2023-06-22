@@ -86,6 +86,10 @@ public class App extends Application {
         // Function Debug
         // dashboard();
         try {
+             EmailController emailController = new EmailController();
+
+        // Menetapkan objek app ke emailController
+            emailController.setApp(this);
             // Membuat koneksi ke database menggunakan DatabaseUtil
             connection = DatabaseUtil.getConnection();
 
@@ -107,6 +111,10 @@ public class App extends Application {
             DatabaseUtil.closeConnection(connection);
         }
     }
+    private static DashboardController dashboardController;
+    public DashboardController getDashboardController() {
+        return dashboardController;
+    }
 
     Connection connection = null;
 }
@@ -115,6 +123,7 @@ public class App extends Application {
 
 // public static void main(String[] args) {
 
+    
 // // Mengatur pengirim email
 // // Membuat objek Email
 // Email email = new Email();
@@ -188,4 +197,5 @@ public class App extends Application {
 // // e.printStackTrace();
 // // Menutup koneksi database
 // }
+
 // }

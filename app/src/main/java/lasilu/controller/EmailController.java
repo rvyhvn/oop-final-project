@@ -5,16 +5,20 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import lasilu.dao.WaliMuridDAO;
 import lasilu.model.Email;
+import lasilu.model.Kelas;
 import lasilu.model.WaliMurid;
 import lasilu.util.DatabaseUtil;
 import lasilu.util.EmailUtil;
+import lasilu.App;
 import lasilu.controller.WaliMuridController;
+import lasilu.controller.DashboardController;
 
 import java.io.File;
 import java.sql.Connection;
@@ -38,11 +42,16 @@ public class EmailController {
 
     private WaliMuridController waliMuridController;
     private EmailUtil emailUtil;
+    private App app;
 
+    
     public EmailController(EmailUtil emailUtil) {
         this.emailUtil = emailUtil;
     }
 
+    public void setApp(App app) {
+        this.app = app;
+    }
     public EmailController() throws SQLException {
         // Membuat koneksi ke database
         Connection connection = DatabaseUtil.getConnection();
@@ -73,42 +82,59 @@ public class EmailController {
 
     @FXML
     private void sendButtonClicked(ActionEvent event) {
-        String to = toField.getText();
-        String subject = subjectField.getText();
-        String body = sendMessageBox.getText();
-        String attachmentPath = sendMessageBox.getText(); // Menggunakan isi dari sendMessageBox sebagai path file
-        // Mengirim email menggunakan EmailUtil
-        sendEmailToWaliMurid(1, to, subject, body, attachmentPath);
+        if (app != null) {
+            DashboardController dashboardController = app.getDashboardController();
+            ComboBox<Kelas> kelasComboBox = dashboardController.getKelasComboBox();
+            Kelas selectedKelas = kelasComboBox.getValue();
+            if (selectedKelas != null) {
+            int idKelas = selectedKelas.getIdKelas();
+            String to = toField.getText();
+            String subject = subjectField.getText();
+            String body = sendMessageBox.getText();
+            String attachmentPath = sendMessageBox.getText(); // Menggunakan isi dari sendMessageBox sebagai path file
 
-        boolean isEmailSent = sendEmailToWaliMurid(1, to, subject, body, attachmentPath);
+            // Mengirim email menggunakan EmailUtil
+            sendEmailToWaliMurid(idKelas, to, subject, body, attachmentPath);
+            boolean isEmailSent = sendEmailToWaliMurid(idKelas, to, subject, body, attachmentPath);
 
-        if (isEmailSent) {
-            showInformationAlert("Email Sent", "Email has been sent successfully!");
-        } else {
-            showInformationAlert("Email Not Sent", "Failed to send email. Please try again.");
+            if (isEmailSent) {
+                showInformationAlert("Email Sent", "Email has been sent successfully!");
+            } else {
+                showInformationAlert("Email Not Sent", "Failed to send email. Please try again.");
+            }
 
-            // public void sendEmailToWaliMurid(int idKelas, String emailSender, String
-            // subject, String body, String attachmentPath) {
-            // try {
-            // // Mendapatkan daftar email wali murid berdasarkan kelasId
-            // List<String> recipients = waliMuridController.getEmailsWaliMurid(idKelas);
-
-            // // Membuat instance Email
-            // Email email = new Email();
-            // email.setEMAIL_SENDER(emailSender);
-            // email.setRecipients(recipients);
-            // email.setSubject(subject);
-            // email.setBody(body);
-            // email.setAttachmentPath(attachmentPath);
-
-            // // Proses pengiriman email
-            // sendEmail(email);
-            // } catch (SQLException e) {
-            // e.printStackTrace();
+            sendMessageBox.clear();
         }
-        // Mengosongkan sendMessageBox
-        sendMessageBox.clear();
+        }
+        // DashboardController dashboardController = app.getDashboardController();
+        
+        
+        
     }
+    
+
+    // public void sendEmailToWaliMurid(int idKelas, String emailSender, String
+    // subject, String body, String attachmentPath) {
+    // try {
+    // // Mendapatkan daftar email wali murid berdasarkan kelasId
+    // List<String> recipients = waliMuridController.getEmailsWaliMurid(idKelas);
+
+    // // Membuat instance Email
+    // Email email = new Email();
+    // email.setEMAIL_SENDER(emailSender);
+    // email.setRecipients(recipients);
+    // email.setSubject(subject);
+    // email.setBody(body);
+    // email.setAttachmentPath(attachmentPath);
+
+    // // Proses pengiriman email
+    // sendEmail(email);
+    // } catch (SQLException e) {
+    // e.printStackTrace();
+    // }
+    // // Mengosongkan sendMessageBox
+    // sendMessageBox.clear();
+    // }
 
     @FXML
     private void clearButtonClicked(ActionEvent event) {

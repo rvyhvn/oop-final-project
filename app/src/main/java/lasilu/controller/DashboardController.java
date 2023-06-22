@@ -126,6 +126,10 @@ public class DashboardController implements Initializable {
                 }
             }
         });
+        
     }
-
+    public ComboBox<Kelas> getKelasComboBox() {
+        return kelasComboBox;
+    }
 }
+
